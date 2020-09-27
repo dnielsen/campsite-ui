@@ -7,15 +7,14 @@ phases:
     commands:
       - echo Installing Yarn...
       - npm install -g yarn
-    pre_build:
-      commands:
-        - echo Installing dependencies...
-        - yarn install
-    build:
-      commands:
-        - echo Building...
-        - yarn build:microservice
-        - echo $(ls)
+  pre_build:
+    commands:
+      - echo Installing dependencies...
+      - yarn install
+  build:
+    commands:
+      - echo Building...
+      - yarn build:microservice
 cache:
   paths:
     - './node_modules/**/*'
