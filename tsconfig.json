@@ -6,11 +6,6 @@
       "dom.iterable",
       "esnext"
     ],
-    "paths": {
-      "async_hooks": [
-        "node_modules/empty/index.js"
-      ]
-    },
     "baseUrl": ".",
     "allowJs": true,
     "skipLibCheck": true,
