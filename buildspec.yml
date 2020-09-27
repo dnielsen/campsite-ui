@@ -19,9 +19,8 @@ phases:
         - echo Building...
         - yarn build
 artifacts:
-  type: zip
-  paths:
-    - './build/**/*'
+  files:
+    build/**/*
 cache:
   paths:
     - './node_modules/**/*'

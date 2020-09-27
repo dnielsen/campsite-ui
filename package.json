@@ -16,8 +16,9 @@
     "typescript": "^4.0.2"
   },
   "scripts": {
-    "start:prod": "REACT_APP_BASE_API_URL=http://campsites-env.eba-e95xwame.eu-central-1.elasticbeanstalk.com react-scripts start",
-    "start": "REACT_APP_BASE_API_URL=http://localhost:4444 react-scripts start",
+    "start:dev": "REACT_APP_BASE_API_URL=http://localhost:4444 react-scripts start",
+    "start:monolith": "REACT_APP_BASE_API_URL=http://campsites-env.eba-e95xwame.eu-central-1.elasticbeanstalk.com react-scripts start",
+    "start:microservice": "REACT_APP_BASE_API_URL=REACT_APP_BASE_API_URL=http://ec2-18-195-109-117.eu-central-1.compute.amazonaws.com:4444 react-scripts start",
     "build:monolith": "rm -rf build && REACT_APP_BASE_API_URL=http://campsites-env.eba-e95xwame.eu-central-1.elasticbeanstalk.com react-scripts build",
     "build:microservice": "rm -rf build && REACT_APP_BASE_API_URL=http://ec2-18-195-109-117.eu-central-1.compute.amazonaws.com:4444 react-scripts build",
     "test": "react-scripts test",
