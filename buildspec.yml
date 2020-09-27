@@ -19,7 +19,7 @@ cache:
   paths:
     - './node_modules/**/*'
 artifacts:
-  base-directory: build
+  base-directory: ./build
   files:
     - '**/*'
 
