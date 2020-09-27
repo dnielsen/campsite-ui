@@ -14,11 +14,10 @@ phases:
     build:
       commands:
         - echo Building...
-        - yarn build
-        - ls
-#cache:
-#  paths:
-#    - './node_modules/**/*'
+        - yarn build:microservice
+cache:
+  paths:
+    - './node_modules/**/*'
 artifacts:
   base-directory: 'build'
   discard-paths: no
