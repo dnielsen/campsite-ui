@@ -65,7 +65,7 @@ function FullEvent() {
                   {eventDetails.organizerName}
                 </s.EventOrganizer>
                 <s.EventDescription>
-                  hello {eventDetails.description}
+                  {eventDetails.description}
                 </s.EventDescription>
                 <s.EventRegister>
                   <a href={"/"}>Register Now</a>
