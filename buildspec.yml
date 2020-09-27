@@ -15,7 +15,7 @@ phases:
       commands:
         - echo Building...
         - yarn build:microservice
-        - ls
+        - echo $(ls)
 cache:
   paths:
     - './node_modules/**/*'
