@@ -15,12 +15,12 @@ phases:
       commands:
         - echo Building...
         - yarn build
-cache:
-  paths:
-    - './node_modules/**/*'
+#cache:
+#  paths:
+#    - './node_modules/**/*'
 artifacts:
   base-directory: 'build'
   discard-paths: no
   files:
-    - '.**/*'
+    - '**/*'
 
