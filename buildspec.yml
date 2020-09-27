@@ -20,7 +20,7 @@ cache:
     - './node_modules/**/*'
 artifacts:
   files:
-    - '**/*'
+    - './build/**/*'
 #  discard-paths: no
 #  base-directory: build
 
