@@ -16,15 +16,15 @@ function SpeakerForm(props: Props) {
         <Form noValidate>
           <section>
             <StyledLabel htmlFor="name">Name</StyledLabel>
-            <StyledField type={"text"} name={"name"} />
+            <Field type={"text"} name={"name"} />
           </section>
           <section>
             <StyledLabel htmlFor="bio">Bio</StyledLabel>
-            <StyledField type={"text"} name={"bio"} />
+            <Field type={"text"} name={"bio"} />
           </section>
           <section>
             <StyledLabel htmlFor="headline">Headline</StyledLabel>
-            <StyledField type={"text"} name={"headline"} />
+            <Field type={"text"} name={"headline"} />
           </section>
           <section>
             {/*For now it's just a url, later we might add a photo upload*/}

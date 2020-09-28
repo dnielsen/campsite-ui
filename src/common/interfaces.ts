@@ -32,6 +32,7 @@ export interface SpeakerPreview {
 export interface Session extends SessionPreview {
   speakers: SpeakerPreview[];
   eventId: string;
+  event: EventDetails;
 }
 
 export interface SessionPreview {

@@ -30,11 +30,15 @@ function FullSession() {
           <s.SessionListWrapper>
             <h2>Session(s)</h2>
             <ul>
-              <li className="active">Intro to Python</li>
-              <li>Intro to HTML/CSS/Bootstrap</li>
-              <li>Intro to Python Web Framework</li>
-              <li>Python Data Structure</li>
-              <li>Intro to Python</li>
+              {session.event.sessions &&
+                session.event.sessions.map((s) => (
+                  <li
+                    key={s.id}
+                    className={s.id === session.id ? "active" : undefined}
+                  >
+                    {s.name}
+                  </li>
+                ))}
             </ul>
           </s.SessionListWrapper>
           <s.SessionDetailWrapper>

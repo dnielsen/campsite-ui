@@ -17,11 +17,11 @@ function EventForm(props: Props) {
         <Form noValidate>
           <section>
             <StyledLabel htmlFor={"name"}>Name</StyledLabel>
-            <CustomField type={"text"} name={"name"} />
+            <Field type={"text"} name={"name"} />
           </section>
           <section>
             <StyledLabel htmlFor={"description"}>Description</StyledLabel>
-            <CustomField type={"text"} name={"description"} />
+            <Field type={"text"} name={"description"} />
           </section>
           <section>
             <StyledLabel htmlFor={"photo"}>Photo</StyledLabel>
@@ -29,11 +29,11 @@ function EventForm(props: Props) {
           </section>
           <section>
             <StyledLabel htmlFor={"organizerName"}>Organizer name</StyledLabel>
-            <CustomField type={"text"} name={"organizerName"} />
+            <Field type={"text"} name={"organizerName"} />
           </section>
           <section>
             <StyledLabel htmlFor={"address"}>Address</StyledLabel>
-            <CustomField type={"text"} name={"address"} />
+            <Field type={"text"} name={"address"} />
           </section>
           <section>
             <StyledLabel htmlFor={"startDate"}>Start date</StyledLabel>

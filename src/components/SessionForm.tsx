@@ -8,7 +8,7 @@ import {
 } from "../common/interfaces";
 import Checkbox from "./Checkbox";
 import DateTimeField from "./DateTimeField";
-import { StyledButton, StyledLabel } from "../styled/styled";
+import { StyledButton, StyledInput, StyledLabel } from "../styled/styled";
 import CustomField from "./CustomField";
 
 // A temporary solution, later we might load speakers and events asynchronously,
@@ -26,15 +26,15 @@ function SessionForm(props: Props) {
         <Form noValidate>
           <section>
             <StyledLabel htmlFor={"name"}>Name</StyledLabel>
-            <CustomField type={"text"} name={"name"} />
+            <Field type={"text"} name={"name"} />
           </section>
           <section>
             <StyledLabel htmlFor={"description"}>Description</StyledLabel>
-            <CustomField type={"text"} name={"description"} />
+            <Field type={"text"} name={"description"} />
           </section>
           <section>
             <StyledLabel htmlFor={"url"}>Url</StyledLabel>
-            <CustomField type={"text"} name={"url"} />
+            <Field type={"text"} name={"url"} />
           </section>
           <section>
             <StyledLabel htmlFor={"startDate"}>Start date</StyledLabel>
