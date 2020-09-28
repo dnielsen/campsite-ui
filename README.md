@@ -12,5 +12,5 @@ Prerequisites:
     ```
     yarn dev
     ```
-Now your app is available at `http://localhost:3000`. Keep in mind that you should have the server running for the
+Now your app is available at `http://localhost:3000`. Keep in mind that you should have the server (or services) running for the
  app to work appropriately.
