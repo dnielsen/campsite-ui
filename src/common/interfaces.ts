@@ -7,6 +7,7 @@ export interface EventDetails {
   name: string;
   description: string;
   startDate: string;
+  registrationUrl: string;
   endDate: string;
   photo: string;
   organizerName: string;

@@ -46,7 +46,7 @@ function FullEvent() {
           <h1>{eventDetails.name}</h1>
         </s.BannerSection>
         <s.SelectSeatButton>
-          <a href="/">Save your seat!</a>
+          <a href={eventDetails.registrationUrl}>Save your seat!</a>
         </s.SelectSeatButton>
         {eventDetails.speakers && (
           <s.LearnFromBestLogos>
@@ -76,7 +76,10 @@ function FullEvent() {
               relationships with remote teams, decreased visibility, and
               wellbeing.
             </p>
-            <button>Register Now</button>
+            {/*temporary solution, it should be an anchor tag instead of a button but then styles would change*/}
+            <button onClick={() => history.push(eventDetails.registrationUrl)}>
+              Register Now
+            </button>
           </s.ContentLeftWrapper>
           <s.VideoWrapper>
             <h1>Video Here</h1>
@@ -258,7 +261,10 @@ function FullEvent() {
           </s.FounderAndCeo>
         </s.ContentIsThisForMe>
         <s.ButtonSaveYourSeatNow>
-          <button>Save your seat now</button>
+          {/*Temporary solution, it should be an anchor tag instead of a button but then styles would change*/}
+          <button onClick={() => history.push(eventDetails.registrationUrl)}>
+            Save your seat now
+          </button>
         </s.ButtonSaveYourSeatNow>
         <s.SectionAboutOrganizer>
           <s.AboutOrganizer>

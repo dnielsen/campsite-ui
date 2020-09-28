@@ -21,7 +21,7 @@
     "start:microservice": "REACT_APP_BASE_API_URL=REACT_APP_BASE_API_URL=http://ec2-18-195-109-117.eu-central-1.compute.amazonaws.com:4444 react-scripts start",
     "build:monolith": "rm -rf build && REACT_APP_BASE_API_URL=http://campsites-env.eba-e95xwame.eu-central-1.elasticbeanstalk.com react-scripts build",
     "build:microservice": "rm -rf build && REACT_APP_BASE_API_URL=http://ec2-18-195-109-117.eu-central-1.compute.amazonaws.com:4444 react-scripts build",
-    "serve": "serve -s build -l 80",
+    "serve": "serve -s build -l 3000",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
