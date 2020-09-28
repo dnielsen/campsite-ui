@@ -36,7 +36,7 @@ function FullSession() {
                     key={s.id}
                     className={s.id === session.id ? "active" : undefined}
                   >
-                    {s.name}
+                    <Link to={`/sessions/${s.id}`}>{s.name}</Link>
                   </li>
                 ))}
             </ul>
