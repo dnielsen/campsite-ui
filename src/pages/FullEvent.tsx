@@ -76,10 +76,10 @@ function FullEvent() {
               relationships with remote teams, decreased visibility, and
               wellbeing.
             </p>
-            {/*temporary solution, it should be an anchor tag instead of a button but then styles would change*/}
-            <button onClick={() => history.push(eventDetails.registrationUrl)}>
-              Register Now
-            </button>
+            {/*temporary solution, there should be just an anchor tag but then the styling would change*/}
+            <a href={eventDetails.registrationUrl}>
+              <button>Register Now</button>
+            </a>
           </s.ContentLeftWrapper>
           <s.VideoWrapper>
             <h1>Video Here</h1>
@@ -262,9 +262,9 @@ function FullEvent() {
         </s.ContentIsThisForMe>
         <s.ButtonSaveYourSeatNow>
           {/*Temporary solution, it should be an anchor tag instead of a button but then styles would change*/}
-          <button onClick={() => history.push(eventDetails.registrationUrl)}>
-            Save your seat now
-          </button>
+          <a href={eventDetails.registrationUrl}>
+            <button>Save your seat now</button>
+          </a>
         </s.ButtonSaveYourSeatNow>
         <s.SectionAboutOrganizer>
           <s.AboutOrganizer>
