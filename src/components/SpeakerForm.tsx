@@ -2,6 +2,8 @@ import React from "react";
 import { Field, Form, Formik, FormikState, FormikValues } from "formik";
 import { FormProps, FormSpeakerInput } from "../common/interfaces";
 import ImageUploadField from "./ImageUploadField";
+import { StyledButton, StyledForm, StyledLabel } from "../styled/styled";
+import StyledField from "./CustomField";
 
 interface Props {
   formProps: FormProps<FormSpeakerInput>;
@@ -11,27 +13,27 @@ function SpeakerForm(props: Props) {
   return (
     <Formik {...props.formProps}>
       {({ isSubmitting }: FormikState<FormikValues>) => (
-        <Form>
+        <Form noValidate>
           <section>
-            <label htmlFor="name">Name</label>
-            <Field type={"text"} name={"name"} />
+            <StyledLabel htmlFor="name">Name</StyledLabel>
+            <StyledField type={"text"} name={"name"} />
           </section>
           <section>
-            <label htmlFor="bio">Bio</label>
-            <Field type={"text"} name={"bio"} />
+            <StyledLabel htmlFor="bio">Bio</StyledLabel>
+            <StyledField type={"text"} name={"bio"} />
           </section>
           <section>
-            <label htmlFor="headline">Headline</label>
-            <Field type={"text"} name={"headline"} />
+            <StyledLabel htmlFor="headline">Headline</StyledLabel>
+            <StyledField type={"text"} name={"headline"} />
           </section>
           <section>
             {/*For now it's just a url, later we might add a photo upload*/}
-            <label htmlFor="photo">Photo</label>
+            <StyledLabel htmlFor="photo">Photo</StyledLabel>
             <ImageUploadField name={"photo"} />
           </section>
-          <button type={"submit"} disabled={isSubmitting}>
+          <StyledButton type={"submit"} disabled={isSubmitting}>
             Submit
-          </button>
+          </StyledButton>
         </Form>
       )}
     </Formik>

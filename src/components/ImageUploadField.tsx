@@ -17,7 +17,7 @@ function ImageUploadField(props: Props) {
     form: FormikProps<any>,
   ) {
     // Validate the file.
-    if (event.target.validity.valid && event.target.files?.length == 1) {
+    if (event.target.validity.valid && event.target.files?.length === 1) {
       // Get the file.
       const [file] = event.target.files;
       // Set up the form data, it's gonna set up for us the needed headers automatically.

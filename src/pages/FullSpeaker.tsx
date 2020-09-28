@@ -30,7 +30,7 @@ function FullSpeaker() {
             src={
               "https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-minimal-city-building-banner-background-image_232405.jpg"
             }
-            alt="banner-image"
+            alt={`${speaker.name}'s banner`}
           />
         </s.SpeakerBanner>
         <s.FlexWrapper>

@@ -16,6 +16,6 @@ const tracer = new Tracer({
 });
 
 //@ts-ignore
-const zipkinFetch = wrapFetch(fetch, { tracer });
+const zipkinFetch = wrapFetch(fetch, { tracer, remoteServiceName: "server" });
 
 export default zipkinFetch;

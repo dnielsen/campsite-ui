@@ -50,6 +50,7 @@ function FullSession() {
             </s.SpeakerSessionScheduleWrapper>
             <s.VideoWrapper>
               <iframe
+                title={"Session video"}
                 width="560"
                 height="315"
                 src="https://www.youtube.com/embed/IZwdHxC3my0"

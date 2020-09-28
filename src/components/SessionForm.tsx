@@ -8,6 +8,8 @@ import {
 } from "../common/interfaces";
 import Checkbox from "./Checkbox";
 import DateTimeField from "./DateTimeField";
+import { StyledButton, StyledLabel } from "../styled/styled";
+import CustomField from "./CustomField";
 
 // A temporary solution, later we might load speakers and events asynchronously,
 // and fetch less data.
@@ -23,27 +25,27 @@ function SessionForm(props: Props) {
       {({ isSubmitting }: FormikState<FormikValues>) => (
         <Form noValidate>
           <section>
-            <label htmlFor={"name"}>Name</label>
-            <Field type={"text"} name={"name"} />
+            <StyledLabel htmlFor={"name"}>Name</StyledLabel>
+            <CustomField type={"text"} name={"name"} />
           </section>
           <section>
-            <label htmlFor={"description"}>Description</label>
-            <Field type={"text"} name={"description"} />
+            <StyledLabel htmlFor={"description"}>Description</StyledLabel>
+            <CustomField type={"text"} name={"description"} />
           </section>
           <section>
-            <label htmlFor={"url"}>Url</label>
-            <Field type={"text"} name={"url"} />
+            <StyledLabel htmlFor={"url"}>Url</StyledLabel>
+            <CustomField type={"text"} name={"url"} />
           </section>
           <section>
-            <label htmlFor={"startDate"}>Start date</label>
+            <StyledLabel htmlFor={"startDate"}>Start date</StyledLabel>
             <DateTimeField name={"startDate"} />
           </section>
           <section>
-            <label htmlFor={"endDate"}>End date</label>
+            <StyledLabel htmlFor={"endDate"}>End date</StyledLabel>
             <DateTimeField name={"endDate"} />
           </section>
           <section>
-            <label htmlFor="eventId">Event</label>
+            <StyledLabel htmlFor="eventId">Event</StyledLabel>
             <Field name={"eventId"} as={"select"}>
               {props.events.map((event) => (
                 <option key={event.id} value={event.id}>
@@ -53,6 +55,7 @@ function SessionForm(props: Props) {
             </Field>
           </section>
           <section>
+            <StyledLabel htmlFor={"speakerIds"}>Speakers</StyledLabel>
             {props.speakers.map((speaker) => (
               <Checkbox
                 key={speaker.id}
@@ -62,9 +65,9 @@ function SessionForm(props: Props) {
               />
             ))}
           </section>
-          <button type={"submit"} disabled={isSubmitting}>
+          <StyledButton type={"submit"} disabled={isSubmitting}>
             Submit
-          </button>
+          </StyledButton>
         </Form>
       )}
     </Formik>

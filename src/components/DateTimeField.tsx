@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import DateTime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
-import moment, { Moment } from "moment-timezone";
-import { Field, FormikProps, FormikValues, useField } from "formik";
+import moment from "moment-timezone";
+import { Field } from "formik";
+import { StyledInput } from "../styled/styled";
 
 interface Props {
   name: string;
@@ -19,6 +20,9 @@ function DateTimeField(props: Props) {
           onChange={(date) =>
             form.setFieldValue(props.name, moment(date).toDate())
           }
+          renderInput={(props) => {
+            return <StyledInput {...props} />;
+          }}
         />
       )}
     </Field>
