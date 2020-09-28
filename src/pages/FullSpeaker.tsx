@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import useAPI from "../hooks/useAPI";
 import { Speaker } from "../common/interfaces";
 import { Link, useHistory, useParams } from "react-router-dom";
@@ -6,7 +6,6 @@ import { BASE_SPEAKER_API_URL } from "../common/constants";
 import * as g from "../styled/globalStyles";
 import * as s from "../styled/speakerStyles";
 import util from "../common/util";
-import moment from "moment";
 
 function FullSpeaker() {
   const { id } = useParams<{ id: string }>();
@@ -26,62 +25,72 @@ function FullSpeaker() {
   return (
     <g.Container>
       <s.SpeakerProfileWrapper>
-        <s.SpeakerInfoWrapper>
-          <s.SpeakerPhoto>
-            <img src={speaker.photo} alt={speaker.name} className="img-fluid" />
-          </s.SpeakerPhoto>
-          <s.SpeakerName>{speaker.name}</s.SpeakerName>
-          <s.SpeakerTitle>{speaker.headline}</s.SpeakerTitle>
-          <s.SpeakerSocialMedia>
-            <a href={"https://twitter.com/elonmusk"}>
-              <i className="fa fa-twitter twitter" aria-hidden />
-              Twitter
-            </a>
-            <a href={"https://linkedin.com"}>
-              <i className="fa fa-linkedin linkedin" aria-hidden />
-              LinkedIn
-            </a>
-          </s.SpeakerSocialMedia>
-          <s.SpeakerBio>
-            <h3>About Me</h3>
-            <p>{speaker.bio}</p>
-          </s.SpeakerBio>
-          <Link to={`/speakers/${id}/edit`}>Edit</Link>
-          <button onClick={handleClick}>Delete</button>
-        </s.SpeakerInfoWrapper>
-        <s.SpeakerSessionWrapper>
-          <s.SpeakerSessionScheduleWrapper>
-            <h2>Session Schedule</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Time & Date</th>
-                  <th>Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                {speaker.sessions?.map((session) => (
-                  <tr key={session.id}>
-                    <td>
-                      <Link to={`/sessions/${session.id}`}>{session.name}</Link>
-                    </td>
-                    <td>
-                      {util.getHourRangeString(
-                        session.startDate,
-                        session.endDate,
-                      )}{" "}
-                      on {moment(session.startDate).format("MM/DD/YYYY")}
-                    </td>
-                    <td>
-                      <a href={session.url}>View</a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </s.SpeakerSessionScheduleWrapper>
-        </s.SpeakerSessionWrapper>
+        <s.SpeakerBanner>
+          <img
+            src={
+              "https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-minimal-city-building-banner-background-image_232405.jpg"
+            }
+            alt="banner-image"
+          />
+        </s.SpeakerBanner>
+        <s.FlexWrapper>
+          <s.SpeakerInfoWrapper>
+            <s.SpeakerPhoto>
+              <img
+                src={speaker.photo}
+                alt={speaker.name}
+                className="img-fluid"
+              />
+            </s.SpeakerPhoto>
+            <s.SpeakerContent>
+              <s.SpeakerName>{speaker.name}</s.SpeakerName>
+              <s.SpeakerTitle>{speaker.headline}</s.SpeakerTitle>
+              <s.SpeakerSocialMedia>
+                <a href={"https://twitter.com/elonmusk"}>
+                  <i className="fa fa-twitter twitter" aria-hidden="true" />
+                  Twitter
+                </a>
+                <a href={"https://linkedin.com"}>
+                  <i className="fa fa-linkedin linkedin" aria-hidden="true" />
+                  LinkedIn
+                </a>
+              </s.SpeakerSocialMedia>
+              <s.SpeakerBio>
+                <h3>About Me</h3>
+                <p>{speaker.bio}</p>
+              </s.SpeakerBio>
+            </s.SpeakerContent>
+          </s.SpeakerInfoWrapper>
+          {speaker.sessions && (
+            <s.SpeakerSessionWrapper>
+              <h2>Session(s)</h2>
+              {speaker.sessions.map((session) => (
+                <Fragment key={session.id}>
+                  <s.SpeakerSessionScheduleWrapper>
+                    <s.SessionName>{session.name}</s.SessionName>
+                    <s.SessionDate>
+                      {util.getFullDateString(session.startDate)}
+                    </s.SessionDate>
+                    <s.SessionRegister>Registration</s.SessionRegister>
+                    <s.SessionWatch>
+                      <Link to={`/sessions/${session.id}`}>Watch</Link>
+                    </s.SessionWatch>
+                  </s.SpeakerSessionScheduleWrapper>
+                  <p>
+                    What comes next? What are the most innovative developments
+                    in Big Data storage and query design? Where is the
+                    innovation, what should be you be trying out and looking at?
+                    In this talk I&apos;ll cover the latest and greatest for the
+                    Big Data world - this will include in-memory stores such as
+                    Aerospike, triplestores such as AlgebraixData and
+                    Dremel-implementations such as Google Big Query. Come to
+                    this talk to see these new data stores in action.
+                  </p>
+                </Fragment>
+              ))}
+            </s.SpeakerSessionWrapper>
+          )}
+        </s.FlexWrapper>
       </s.SpeakerProfileWrapper>
     </g.Container>
   );

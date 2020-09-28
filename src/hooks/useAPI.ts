@@ -15,8 +15,9 @@ export default function useAPI<T>(route: string): UseResource<T> {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch(`${BASE_API_URL}${route}`);
-        const jsonData = await res.json();
+        const jsonData = await fetch(`${BASE_API_URL}${route}`).then((res) =>
+          res.json(),
+        );
         setData(jsonData);
       } catch (e) {
         setError(e);

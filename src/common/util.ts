@@ -3,11 +3,19 @@ import { Option, SpeakerPreview } from "./interfaces";
 
 const TIMEZONE = "America/Los_Angeles";
 
-function getHourRangeString(startDate: string, endDate: string) {
+function getTimezoneHourRangeString(startDate: string, endDate: string) {
   // for example: 12:55pm
   const startTime = moment(startDate).tz(TIMEZONE).format("h:mma");
   // For example: 12:55pm PDT
   const endTime = moment(endDate).tz(TIMEZONE).format("h:mma z");
+
+  return `${startTime} - ${endTime}`;
+}
+
+function getHourRangeString(startDate: string, endDate: string) {
+  // for example: 12:55pm
+  const startTime = moment(startDate).tz(TIMEZONE).format("h:mma");
+  const endTime = moment(endDate).tz(TIMEZONE).format("h:mma");
 
   return `${startTime} - ${endTime}`;
 }
@@ -41,6 +49,7 @@ function getDateFormValue(date: string | Date) {
 }
 
 export default {
+  getTimezoneHourRangeString,
   getHourRangeString,
   getFullDateString,
   getUniqueElementsFromMultidimensionalArray,
