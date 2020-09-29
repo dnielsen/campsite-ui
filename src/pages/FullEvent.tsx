@@ -108,7 +108,7 @@ function FullEvent() {
       </s.SectionFutureSummit>
       <s.SectionLargeText>
         <s.TextBlack>
-          OOver the past years different studies have always pointed to these
+          OOOver the past years different studies have always pointed to these
           struggles among remote workers:{" "}
         </s.TextBlack>
         <s.TextBlue>
