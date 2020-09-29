@@ -22,47 +22,45 @@ function Home() {
     );
   // ----
   return (
-    <Fragment>
-      <g.Container>
-        <s.EventWrapper>
-          <s.EventMainTitle>
-            <h1>Events</h1>
-          </s.EventMainTitle>
-          <s.FlexWrapper>
-            {events.map((eventDetails) => (
-              <s.Event key={eventDetails.id}>
-                <img src={eventDetails.photo} alt={eventDetails.name} />
-                <s.EventContent>
-                  <s.EventHeading>
-                    <Link to={`/events/${eventDetails.id}`}>
-                      {eventDetails.name}
-                    </Link>
-                  </s.EventHeading>
-                  <s.EventTime>
-                    <i className="fa fa-calendar mr-2" aria-hidden="true" />
-                    {util.getFullDateString(eventDetails.startDate)}
-                  </s.EventTime>
-                  <s.EventLocation>
-                    <i className="fa fa-map-marker mr-2" aria-hidden="true" />
-                    {eventDetails.address}
-                  </s.EventLocation>
-                  <s.EventOrganizer>
-                    <i className="fa fa-user mr-2" aria-hidden="true" />
-                    {eventDetails.organizerName}
-                  </s.EventOrganizer>
-                  <s.EventDescription>
-                    {eventDetails.description}
-                  </s.EventDescription>
-                  <s.EventRegister>
-                    <a href={"/"}>Register Now</a>
-                  </s.EventRegister>{" "}
-                </s.EventContent>
-              </s.Event>
-            ))}
-          </s.FlexWrapper>
-        </s.EventWrapper>
-      </g.Container>
-    </Fragment>
+    <g.Container>
+      <s.EventWrapper>
+        <s.EventMainTitle>
+          <h1>Events</h1>
+        </s.EventMainTitle>
+        <s.FlexWrapper>
+          {events.map((eventDetails) => (
+            <s.Event key={eventDetails.id}>
+              <img src={eventDetails.photo} alt={eventDetails.name} />
+              <s.EventContent>
+                <s.EventHeading>
+                  <Link to={`/events/${eventDetails.id}`}>
+                    {eventDetails.name}
+                  </Link>
+                </s.EventHeading>
+                <s.EventTime>
+                  <i className="fa fa-calendar mr-2" aria-hidden="true" />
+                  {util.getFullDateString(eventDetails.startDate)}
+                </s.EventTime>
+                <s.EventLocation>
+                  <i className="fa fa-map-marker mr-2" aria-hidden="true" />
+                  {eventDetails.address}
+                </s.EventLocation>
+                <s.EventOrganizer>
+                  <i className="fa fa-user mr-2" aria-hidden="true" />
+                  {eventDetails.organizerName}
+                </s.EventOrganizer>
+                <s.EventDescription>
+                  {eventDetails.description}
+                </s.EventDescription>
+                <s.EventRegister>
+                  <a href={"/"}>Register Now</a>
+                </s.EventRegister>{" "}
+              </s.EventContent>
+            </s.Event>
+          ))}
+        </s.FlexWrapper>
+      </s.EventWrapper>
+    </g.Container>
   );
 }
 

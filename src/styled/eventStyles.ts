@@ -3,10 +3,8 @@ import styled from "styled-components";
 
 export const FlexWrapper = styled.div`
   display: flex;
-
-  @media (max-width: 767px) {
-    flex-direction: column;
-  }
+  flex-wrap: wrap;
+  justify-content: flex-start;
 `;
 
 export const EventWrapper = styled.div`
@@ -27,17 +25,19 @@ export const EventMainTitle = styled.div`
 `;
 
 export const Event = styled.div`
-  flex: 1;
+  flex-grow: 1;
+  width: 30%;
   margin: 0px 15px;
   border: 1px solid #ccc;
+  margin-bottom: 30px;
+
+  @media (max-width: 767px) {
+    width: 50%;
+  }
 
   img {
     max-width: 100%;
     height: auto;
-  }
-
-  @media (max-width: 767px) {
-    margin-bottom: 30px;
   }
 `;
 
