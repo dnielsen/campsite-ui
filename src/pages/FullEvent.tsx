@@ -190,7 +190,7 @@ function FullEvent() {
                               session.speakers.map((speaker) => (
                                 <Link
                                   key={speaker.id}
-                                  to={`/speakers/${session.id}`}
+                                  to={`/speakers/${speaker.id}`}
                                 >
                                   <img
                                     key={speaker.id}
