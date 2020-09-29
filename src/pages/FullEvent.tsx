@@ -1,5 +1,5 @@
 import React from "react";
-import { EventDetails } from "../common/interfaces";
+import { EventDetails, Session } from "../common/interfaces";
 import useAPI from "../hooks/useAPI";
 import util from "../common/util";
 import { Link, useHistory, useParams } from "react-router-dom";
@@ -7,6 +7,18 @@ import { BASE_EVENT_API_URL } from "../common/constants";
 import * as s from "../styled/homeStyles";
 import * as g from "../styled/globalStyles";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+
+interface SessionDays {
+  [key: number]: Session[];
+}
+
+function getEarliestSessionStartDate(sessions: Session[]) {
+  return sessions.reduce(
+    (acc, val) =>
+      new Date(val.startDate) < new Date(acc) ? val.startDate : acc,
+    sessions[0].startDate,
+  );
+}
 
 function FullEvent() {
   const { id } = useParams<{ id: string }>();
@@ -18,6 +30,28 @@ function FullEvent() {
   if (loading) return <div>loading...</div>;
   if (error) return <div>something went wrong: {error.message}</div>;
 
+  // TODO: clean it up
+  const sessionDays: SessionDays = {};
+  if (eventDetails.sessions) {
+    eventDetails.sessions.map((session) => {
+      const dayNum = util.getDayDiff(session.startDate, eventDetails.startDate);
+      if (sessionDays[dayNum]) {
+        sessionDays[dayNum] = [...sessionDays[dayNum], session];
+      } else {
+        sessionDays[dayNum] = [session];
+      }
+    });
+
+    // Sort the sessions by date, the earliest come first.
+    Object.entries(sessionDays).forEach(([dayNum, sessions]) => {
+      sessionDays[parseInt(dayNum)] = sessions.sort(
+        (a: Session, b: Session) =>
+          new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
+      );
+    });
+  }
+
+  // There was a delete button but for now there isn't. We'll keep this unused code for now.
   async function handleDelete() {
     // Send a request to delete the event.
     await fetch(`${BASE_EVENT_API_URL}/${id}`, { method: "DELETE" });
@@ -25,6 +59,7 @@ function FullEvent() {
     history.push("/");
   }
 
+  // TODO: do it on the backend side
   if (eventDetails.sessions) {
     const eventSpeakersWithDuplicates = eventDetails.sessions
       .map((session) => session.speakers)
@@ -38,7 +73,7 @@ function FullEvent() {
       <g.Container>
         <s.BannerSection>
           <p>
-            {util.getHourRangeString(
+            {util.getDateRangeString(
               eventDetails.startDate,
               eventDetails.endDate,
             )}
@@ -129,7 +164,7 @@ function FullEvent() {
                   src="https://uploads-ssl.webflow.com/5f329fb0017255d9d0baddec/5f329fb1fd8a9157ca5cd433_icon-x.svg"
                 />
               </s.CircleImageWrapper>
-              <h4>No bulsh*t</h4>
+              <h4>No bullsh*t</h4>
               <p>
                 Industry experts sharing openly about their challenges &
                 failures
@@ -144,8 +179,12 @@ function FullEvent() {
             <s.SpeakersWrapper>
               {eventDetails.speakers.map((speaker) => (
                 <s.Speaker key={speaker.id}>
-                  <img src={speaker.photo} alt={speaker.name} />
-                  <h4>{speaker.name}</h4>
+                  <Link to={`/speakers/${speaker.id}`}>
+                    <img src={speaker.photo} alt={speaker.name} />
+                  </Link>
+                  <Link to={`/speakers/${speaker.id}`}>
+                    <h4>{speaker.name}</h4>
+                  </Link>
                   <s.TextLead>{speaker.headline}</s.TextLead>
                   <s.SpeakerSocialMedia>
                     <a href={"https://twitter.com/elonmusk"}>
@@ -163,61 +202,68 @@ function FullEvent() {
             </s.SpeakersWrapper>
           </s.SectionSpeakersContainer>
         )}
-        <s.SectionAgenda>
-          <h1>See The Agenda</h1>
-          <s.TabsWrapper>
-            <Tabs>
-              <TabList>
-                <Tab>Day 1</Tab>
-              </TabList>
-              <s.TabContent>
-                <TabPanel>
-                  <s.EventTitle>
-                    <h3>Day 1</h3>
-                  </s.EventTitle>
-                  <s.EventTime>
-                    <h2>DAY 1 Opening - 9:00 AM</h2>
-                  </s.EventTime>
-                  {eventDetails.sessions &&
-                    eventDetails.sessions.map((session) => (
-                      <s.PanelDiscussion key={session.id}>
-                        <s.topic>
-                          <Link to={`/sessions/${session.id}`}>
-                            {session.name}
-                          </Link>
-                          <s.PanelImages>
-                            {session.speakers &&
-                              session.speakers.map((speaker) => (
-                                <Link
-                                  key={speaker.id}
-                                  to={`/speakers/${speaker.id}`}
-                                >
-                                  <img
-                                    key={speaker.id}
-                                    src={speaker.photo}
-                                    alt={speaker.name}
-                                  />
-                                </Link>
-                              ))}
-                          </s.PanelImages>
-                        </s.topic>
-                        <s.TimeLimit>
-                          {util.getHourRangeString(
-                            session.startDate,
-                            session.endDate,
-                          )}
-                        </s.TimeLimit>
-                      </s.PanelDiscussion>
-                    ))}
-                </TabPanel>
-                <s.KeepInMindText>
-                  &quot;❗ Keep in mind all session timings are displayed in 🕤
-                  Pacific Time Zone (PDT) 🕛 ❗&quot;{" "}
-                </s.KeepInMindText>
-              </s.TabContent>
-            </Tabs>
-          </s.TabsWrapper>
-        </s.SectionAgenda>
+        {eventDetails.sessions && (
+          <s.SectionAgenda>
+            <h1>See The Agenda</h1>
+            <s.TabsWrapper>
+              <Tabs>
+                <TabList>
+                  {Object.keys(sessionDays).map((dayNum) => (
+                    <Tab key={dayNum}>Day {dayNum}</Tab>
+                  ))}
+                </TabList>
+                <s.TabContent>
+                  {Object.entries(sessionDays).map(
+                    ([dayNum, sortedSessions]) => (
+                      <TabPanel key={dayNum}>
+                        <s.EventTime>
+                          <h2>
+                            DAY {dayNum} Opening -{" "}
+                            {util.getHourDate(sortedSessions[0])}
+                          </h2>
+                        </s.EventTime>
+                        {sortedSessions.map((session: Session) => (
+                          <s.PanelDiscussion key={session.id}>
+                            <s.topic>
+                              <Link to={`/sessions/${session.id}`}>
+                                {session.name}
+                              </Link>
+                              <s.PanelImages>
+                                {session.speakers &&
+                                  session.speakers.map((speaker) => (
+                                    <Link
+                                      key={speaker.id}
+                                      to={`/speakers/${speaker.id}`}
+                                    >
+                                      <img
+                                        key={speaker.id}
+                                        src={speaker.photo}
+                                        alt={speaker.name}
+                                      />
+                                    </Link>
+                                  ))}
+                              </s.PanelImages>
+                            </s.topic>
+                            <s.TimeLimit>
+                              {util.getHourRangeString(
+                                session.startDate,
+                                session.endDate,
+                              )}
+                            </s.TimeLimit>
+                          </s.PanelDiscussion>
+                        ))}
+                      </TabPanel>
+                    ),
+                  )}
+                  <s.KeepInMindText>
+                    &quot;❗ Keep in mind all session timings are displayed in
+                    🕤 Pacific Time Zone (PDT) 🕛 ❗&quot;{" "}
+                  </s.KeepInMindText>
+                </s.TabContent>
+              </Tabs>
+            </s.TabsWrapper>
+          </s.SectionAgenda>
+        )}
         <s.SectionIsThisForMe>
           <s.ContentSubTitle>Is this for me?</s.ContentSubTitle>
           <h3>Remote Future Summit 2020 is made for</h3>

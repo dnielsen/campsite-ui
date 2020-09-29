@@ -45,14 +45,44 @@ function getUniqueSpeakers(speakers: SpeakerPreview[]) {
 // For example: `06/27/2020 5:06 PM`. We need this function
 // because `react-datetime` library requires the date formatted this way.
 function getDateFormValue(date: string | Date) {
-  return moment(date).format("MM/DD/yyyy hh:mm a");
+  return moment(date).tz(TIMEZONE).format("MM/DD/yyyy hh:mm a");
+}
+
+function getDayDiff(date1: string, date2: string) {
+  return Math.abs(new Date(date1).getDate() - new Date(date2).getDate());
+}
+
+function getDateRangeString(startDate: string, endDate: string) {
+  // Actually, if the event was at least a month long it wouldn't work properly,
+  // but we assume such events don't take place.
+  const isEventOneDayLong = getDayDiff(startDate, endDate) === 0;
+
+  // Remove the month and day from the start time if the event is single day long
+  // (starts and ends on the same day).
+  // For example, when single day:
+  // `04:30am - 12:30pm Sep 29th 2020`
+  // When several days long:
+  // `05:15am May 20th - 12:00pm May 23th 2020`
+  const startTime = isEventOneDayLong
+    ? moment(startDate).tz(TIMEZONE).format("hh:mma")
+    : moment(startDate).tz(TIMEZONE).format("hh:mma MMM Do");
+
+  const endTime = moment(endDate).tz(TIMEZONE).format("hh:mma MMM Do YYYY");
+  return `${startTime} - ${endTime}`;
+}
+
+function getHourDate(date: string) {
+  return moment(date).tz(TIMEZONE).format("hh:mma");
 }
 
 export default {
   getTimezoneHourRangeString,
   getHourRangeString,
   getFullDateString,
+  getDayDiff,
+  getHourDate,
   getUniqueElementsFromMultidimensionalArray,
+  getDateRangeString,
   getUniqueSpeakers,
   getDateFormValue,
 };

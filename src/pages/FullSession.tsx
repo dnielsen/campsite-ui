@@ -1,27 +1,18 @@
 import React from "react";
 import useAPI from "../hooks/useAPI";
 import { Session } from "../common/interfaces";
-import { Link, useHistory, useParams } from "react-router-dom";
-import { BASE_SESSION_API_URL } from "../common/constants";
+import { Link, useParams } from "react-router-dom";
+import util from "../common/util";
 // import styled component
 import * as s from "../styled/sessionStyles";
 import * as g from "../styled/globalStyles";
-import util from "../common/util";
 
 function FullSession() {
   const { id } = useParams<{ id: string }>();
-  const history = useHistory();
-
   const { data: session, loading, error } = useAPI<Session>(`/sessions/${id}`);
 
   if (loading) return <div>loading...</div>;
   if (error) return <div>something went wrong: {error.message}</div>;
-
-  async function handleClick() {
-    await fetch(`${BASE_SESSION_API_URL}/${id}`, { method: "DELETE" });
-    // Redirect to the home page after deleting the speaker.
-    history.push("/");
-  }
 
   return (
     <g.Container>
@@ -54,7 +45,7 @@ function FullSession() {
             </s.SpeakerSessionScheduleWrapper>
             <s.VideoWrapper>
               <iframe
-                title={"Session video"}
+                title={session.name}
                 width="560"
                 height="315"
                 src="https://www.youtube.com/embed/IZwdHxC3my0"
