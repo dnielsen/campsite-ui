@@ -3,7 +3,6 @@ import { EventDetails, Session } from "../common/interfaces";
 import useAPI from "../hooks/useAPI";
 import util from "../common/util";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { BASE_EVENT_API_URL } from "../common/constants";
 import * as s from "../styled/homeStyles";
 import * as g from "../styled/globalStyles";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -14,7 +13,6 @@ interface SessionDays {
 
 function FullEvent() {
   const { id } = useParams<{ id: string }>();
-  const history = useHistory();
   const { data: eventDetails, loading, error } = useAPI<EventDetails>(
     `/events/${id}`,
   );
@@ -41,14 +39,6 @@ function FullEvent() {
           new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
       );
     });
-  }
-
-  // There was a delete button but for now there isn't. We'll keep this unused code for now.
-  async function handleDelete() {
-    // Send a request to delete the event.
-    await fetch(`${BASE_EVENT_API_URL}/${id}`, { method: "DELETE" });
-    // Redirect to the home page after deleting the speaker.
-    history.push("/");
   }
 
   // TODO: do it on the backend side
