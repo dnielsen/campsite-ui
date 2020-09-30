@@ -20,7 +20,7 @@ function SpeakerForm(props: Props) {
           </section>
           <section>
             <StyledLabel htmlFor="bio">Bio</StyledLabel>
-            <Field type={"text"} name={"bio"} />
+            <Field type={"text"} name={"bio"} as={"textarea"} rows={3} />
           </section>
           <section>
             <StyledLabel htmlFor="headline">Headline</StyledLabel>

@@ -30,7 +30,12 @@ function SessionForm(props: Props) {
           </section>
           <section>
             <StyledLabel htmlFor={"description"}>Description</StyledLabel>
-            <Field type={"text"} name={"description"} />
+            <Field
+              type={"text"}
+              name={"description"}
+              as={"textarea"}
+              rows={8}
+            />
           </section>
           <section>
             <StyledLabel htmlFor={"url"}>Url</StyledLabel>
