@@ -2,7 +2,7 @@ import React from "react";
 import { EventDetails, Session } from "../common/interfaces";
 import useAPI from "../hooks/useAPI";
 import util from "../common/util";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import * as s from "../styled/homeStyles";
 import * as g from "../styled/globalStyles";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -44,7 +44,7 @@ function FullEvent() {
   // TODO: do it on the backend side
   if (eventDetails.sessions) {
     const eventSpeakersWithDuplicates = eventDetails.sessions
-      .map((session) => session.speakers)
+      .map((session) => session.speakers || [])
       .flat();
 
     eventDetails.speakers = util.getUniqueSpeakers(eventSpeakersWithDuplicates);
@@ -188,7 +188,7 @@ function FullEvent() {
                     <s.EventTime>
                       <h2>
                         DAY {dayNum} Opening -{" "}
-                        {util.getHourDate(sortedSessions[0])}
+                        {util.getHourDate(sortedSessions[0].startDate)}
                       </h2>
                     </s.EventTime>
                     {sortedSessions.map((session: Session) => (

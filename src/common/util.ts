@@ -52,6 +52,9 @@ function getDayDiff(date1: string, date2: string) {
   return Math.abs(new Date(date1).getDate() - new Date(date2).getDate());
 }
 
+// Example:
+// - when event is single day long: `04:30am - 12:30pm Sep 29th 2020`
+// - when several days long: `05:15am May 20th - 12:00pm May 23th 2020`
 function getDateRangeString(startDate: string, endDate: string) {
   // Actually, if the event was at least a month long it wouldn't work properly,
   // but we assume such events don't take place.

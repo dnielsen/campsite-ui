@@ -8,6 +8,18 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     background: #ffffff;
   }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  a:visited {
+    color: inherit;
+  }
 `;
 
 export const Container = styled.div`

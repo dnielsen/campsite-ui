@@ -30,7 +30,9 @@ function Home() {
         <s.FlexWrapper>
           {events.map((eventDetails) => (
             <s.Event key={eventDetails.id}>
-              <img src={eventDetails.photo} alt={eventDetails.name} />
+              <Link to={`/events/${eventDetails.id}`}>
+                <img src={eventDetails.photo} alt={eventDetails.name} />
+              </Link>
               <s.EventContent>
                 <s.EventHeading>
                   <Link to={`/events/${eventDetails.id}`}>

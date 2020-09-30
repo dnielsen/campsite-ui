@@ -52,7 +52,9 @@ export default function useEditSessionFormProps(
         url: session.url,
         startDate: util.getDateFormValue(session.startDate),
         endDate: util.getDateFormValue(session.endDate),
-        speakerIds: session.speakers.map((speaker) => speaker.id),
+        speakerIds: session.speakers
+          ? session.speakers.map((speaker) => speaker.id)
+          : [],
         eventId: session.eventId,
       }
     : {

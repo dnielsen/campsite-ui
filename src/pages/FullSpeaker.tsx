@@ -63,11 +63,13 @@ function FullSpeaker() {
           </s.SpeakerInfoWrapper>
           {speaker.sessions && (
             <s.SpeakerSessionWrapper>
-              <h2>Session(s)</h2>
+              <h2>Sessions</h2>
               {speaker.sessions.map((session) => (
                 <Fragment key={session.id}>
                   <s.SpeakerSessionScheduleWrapper>
-                    <s.SessionName>{session.name}</s.SessionName>
+                    <s.SessionName>
+                      <Link to={`/sessions/${session.id}`}>{session.name}</Link>
+                    </s.SessionName>
                     <s.SessionDate>
                       {util.getFullDateString(session.startDate)}
                     </s.SessionDate>

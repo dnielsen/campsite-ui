@@ -3,7 +3,6 @@ import useAPI from "../hooks/useAPI";
 import { Session } from "../common/interfaces";
 import { Link, useParams } from "react-router-dom";
 import util from "../common/util";
-// import styled component
 import * as s from "../styled/sessionStyles";
 import * as g from "../styled/globalStyles";
 
@@ -19,7 +18,11 @@ function FullSession() {
       <s.SessionWrapper>
         <s.FlexWrapper>
           <s.SessionListWrapper>
-            <h2>Session(s)</h2>
+            <h5>
+              <Link to={`/events/${session.event.id}`}>
+                {session.event.name}
+              </Link>
+            </h5>
             <ul>
               {session.event.sessions &&
                 session.event.sessions.map((s) => (
@@ -38,7 +41,9 @@ function FullSession() {
               <s.SessionDate>
                 {util.getFullDateString(session.startDate)}
               </s.SessionDate>
-              <s.SessionRegister>Registration</s.SessionRegister>
+              <s.SessionRegister>
+                <Link to={session.event.registrationUrl}>Registration</Link>
+              </s.SessionRegister>
               <s.SessionWatch>
                 <Link to={`/sessions/${session.id}`}>Watch</Link>
               </s.SessionWatch>
@@ -63,13 +68,19 @@ function FullSession() {
                   {session.speakers.map((speaker) => (
                     <s.SpeakerContent key={speaker.id}>
                       <s.SpeakerPhoto>
-                        <img
-                          src={speaker.photo}
-                          alt="speaker-img"
-                          className="img-fluid"
-                        />
+                        <Link to={`/speakers/${speaker.id}`}>
+                          <img
+                            src={speaker.photo}
+                            alt="speaker-img"
+                            className="img-fluid"
+                          />
+                        </Link>
                       </s.SpeakerPhoto>
-                      <s.SpeakerName>{speaker.name}</s.SpeakerName>
+                      <s.SpeakerName>
+                        <Link to={`speakers/${speaker.id}`}>
+                          {speaker.name}
+                        </Link>
+                      </s.SpeakerName>
                       <s.SpeakerTitle>{speaker.headline}</s.SpeakerTitle>
                       <s.SpeakerSocialMedia>
                         <a href={"https://twitter.com/elonmusk"}>
