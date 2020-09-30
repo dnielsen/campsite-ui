@@ -1,16 +1,13 @@
-import React, { Fragment } from "react";
-import { Link, Redirect } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import useAPI from "../hooks/useAPI";
 import { EventDetails } from "../common/interfaces";
 import * as g from "../styled/globalStyles";
 import * as s from "../styled/eventStyles";
 import util from "../common/util";
+import { StyledAnchorButton } from "../styled/eventStyles";
 
 function Home() {
-  // For dev we're just grabbing whatever event id from the database since there's
-  // no <EventList /> for now and redirecting to this event. It's hardcoded in the backend
-  // that when it's run, it's creating a sample event.
-  // ------
   const { data: events, loading, error } = useAPI<EventDetails[]>("/events");
   if (loading) return <div>loading...</div>;
   if (error) return <div>error: {error.message}</div>;
@@ -24,9 +21,6 @@ function Home() {
   return (
     <g.Container>
       <s.EventWrapper>
-        <s.EventMainTitle>
-          <h1>Events</h1>
-        </s.EventMainTitle>
         <s.FlexWrapper>
           {events.map((eventDetails) => (
             <s.Event key={eventDetails.id}>
@@ -34,29 +28,34 @@ function Home() {
                 <img src={eventDetails.photo} alt={eventDetails.name} />
               </Link>
               <s.EventContent>
-                <s.EventHeading>
-                  <Link to={`/events/${eventDetails.id}`}>
-                    {eventDetails.name}
-                  </Link>
-                </s.EventHeading>
-                <s.EventTime>
-                  <i className="fa fa-calendar mr-2" aria-hidden="true" />
-                  {util.getFullDateString(eventDetails.startDate)}
-                </s.EventTime>
-                <s.EventLocation>
-                  <i className="fa fa-map-marker mr-2" aria-hidden="true" />
-                  {eventDetails.address}
-                </s.EventLocation>
-                <s.EventOrganizer>
-                  <i className="fa fa-user mr-2" aria-hidden="true" />
-                  {eventDetails.organizerName}
-                </s.EventOrganizer>
-                <s.EventDescription>
-                  {eventDetails.description}
-                </s.EventDescription>
-                <s.EventRegister>
-                  <a href={"/"}>Register Now</a>
-                </s.EventRegister>{" "}
+                <div>
+                  <s.EventHeading>
+                    <Link to={`/events/${eventDetails.id}`}>
+                      {eventDetails.name}
+                    </Link>
+                  </s.EventHeading>
+                  <p>
+                    <i className="fa fa-calendar mr-2" aria-hidden="true" />
+                    {util.getFullDateString(eventDetails.startDate)}
+                  </p>
+                  <p>
+                    <i className="fa fa-map-marker mr-2" aria-hidden="true" />
+                    {eventDetails.address}
+                  </p>
+                  <p>
+                    <i className="fa fa-user mr-2" aria-hidden="true" />
+                    {eventDetails.organizerName}
+                  </p>
+                  <s.EventDescription>
+                    {/*Temporarily we're doing it this way, we'll later clean it up*/}
+                    {eventDetails.description.length > 200
+                      ? eventDetails.description.slice(0, 200) + "..."
+                      : eventDetails.description}
+                  </s.EventDescription>
+                </div>
+                <div>
+                  <StyledAnchorButton href={"/"}>Register</StyledAnchorButton>
+                </div>
               </s.EventContent>
             </s.Event>
           ))}

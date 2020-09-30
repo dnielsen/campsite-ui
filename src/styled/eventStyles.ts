@@ -8,102 +8,85 @@ export const FlexWrapper = styled.div`
 `;
 
 export const EventWrapper = styled.div`
-  margin: 30px 0px;
-`;
-
-export const EventMainTitle = styled.div`
-  text-align: center;
-  padding-bottom: 30px;
-
-  h1 {
-    color: #282828;
-    line-height: 42px;
-    font-weight: 700;
-    font-size: 32px;
-    margin: 0;
-  }
+  margin: 30px 0;
 `;
 
 export const Event = styled.div`
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
   width: 30%;
-  margin: 0px 15px;
   border: 1px solid #ccc;
-  margin-bottom: 30px;
+  margin: 1em;
+  -webkit-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.06);
+  -moz-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.06);
 
   @media (max-width: 767px) {
     width: 50%;
   }
 
   img {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 375px;
+    object-fit: cover;
   }
 `;
 
 export const EventContent = styled.div`
-  padding: 20px 10px;
+  height: 100%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  i {
+    width: 30px;
+    font-size: 1.5em;
+    margin: 0 auto;
+    padding: 0 0.2em;
+  }
+
+  & > * {
+    font-size: 1.1em;
+    color: #777777;
+    font-weight: 500;
+  }
 `;
 
 export const EventHeading = styled.h1`
   color: #2faad9;
-  font-size: 1.4rem;
+  font-size: 1.5em;
   font-weight: 600;
   margin: 0;
 `;
 
-export const EventTime = styled.p`
-  font-size: 12px;
-  color: #777777;
-  font-weight: 500;
-
-  i {
-    font-size: 18px;
-    margin-right: 15px;
-  }
-`;
-
-export const EventOrganizer = styled.p`
-  font-size: 12px;
-  color: #777777;
-  font-weight: 500;
-  margin-bottom: 10px;
-
-  i {
-    font-size: 18px;
-    margin-right: 15px;
-  }
-`;
-
-export const EventLocation = styled.p`
-  font-size: 12px;
-  color: #777777;
-  font-weight: 500;
-  margin-bottom: 10px;
-
-  i {
-    font-size: 18px;
-    margin-right: 15px;
-  }
-`;
-
 export const EventDescription = styled.p`
-  font-size: 14px;
+  font-size: 1em;
+  line-height: 1.5em;
   color: #777777;
   font-weight: 500;
   padding-bottom: 20px;
 `;
 
-export const EventRegister = styled.div`
-  margin: 15px 0px;
-  a {
-    background: #2faad9;
-    color: #fff;
-    text-transform: uppercase;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 600;
-    box-shadow: 4px 4px 14px 0 rgba(0, 0, 0, 0.2);
+export const StyledAnchorButton = styled.a`
+  color: white !important;
+  display: flex;
+  height: 2em;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
+  background: #7cf;
+  text-transform: uppercase;
+  padding: 1em 0.5em;
+  margin: 0 auto 0.3em;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  &:hover {
     text-decoration: none;
+    background: #7bf;
   }
+  -webkit-box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.06);
+  -moz-box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.06);
 `;

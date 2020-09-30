@@ -1,71 +1,79 @@
 import React, { useState } from "react";
-import * as g from "../styled/globalStyles";
 import { Link } from "react-router-dom";
+import {
+  StyledBurgerButton,
+  StyledHeader,
+  StyledMobileItem,
+  StyledMobileNav,
+  StyledMobileUl,
+  StyledNav,
+  StyledNavItem,
+  StyledNavItemsWrapper,
+  StyledNavLogoWrapper,
+  StyledUl,
+} from "../styled/styledHeader";
 
-function LinkList() {
-  return (
-    <ul>
-      <li>
-        <Link to={`/`}>Home</Link>
-      </li>
-      <li>
-        <Link to={`/speakers`}>All Speakers</Link>
-      </li>
-      <li>
-        <Link to={`/sessions/create`}>Create Session</Link>
-      </li>
-      <li>
-        <Link to={`/events/create`}>Create Event</Link>
-      </li>
-      <li>
-        <Link to={`/speakers/create`}>Create Speaker</Link>
-      </li>
-    </ul>
-  );
-}
+const ROUTES: { text: string; href: string }[] = [
+  {
+    text: "All Speakers",
+    href: "/speakers",
+  },
+  {
+    text: "Create session",
+    href: "/sessions/create",
+  },
+  {
+    text: "Create event",
+    href: "/events/create",
+  },
+  {
+    text: "Create speaker",
+    href: "/speakers/create",
+  },
+];
 
 function Header() {
-  const [isMobile, setIsMobile] = useState(false);
-
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
-    <g.HeaderWrapperContainer>
-      <g.Container>
-        <g.Nav>
-          <g.Logo>
-            <Link to={`/`}>
-              <img
-                src="http://www.campsite.org/bundles/spoutlet/images/logo-campsite.png?v=dev"
-                className="img-fluid"
-                width="150"
-                alt={"Campsite"}
-              />
-            </Link>
-          </g.Logo>
-          <LinkList />
-        </g.Nav>
-        <g.Toggle>
-          <g.Logo>
-            <Link to={`/`}>
-              <img
-                src="http://www.campsite.org/bundles/spoutlet/images/logo-campsite.png?v=dev"
-                className="img-fluid"
-                width="150"
-              />
-            </Link>
-          </g.Logo>
-          <i
-            onClick={() => setIsMobile(!isMobile)}
-            className={isMobile ? "fa fa-times" : "fa fa-bars"}
-            aria-hidden="true"
-          />
-        </g.Toggle>
-        {isMobile && (
-          <g.NavMobile>
-            <LinkList />
-          </g.NavMobile>
-        )}
-      </g.Container>
-    </g.HeaderWrapperContainer>
+    <StyledHeader>
+      <StyledNav>
+        <StyledUl>
+          <StyledNavLogoWrapper>
+            <li>
+              <Link to={`/`}>
+                <img
+                  src="http://www.campsite.org/bundles/spoutlet/images/logo-campsite.png?v=dev"
+                  alt={"Campsite"}
+                />
+              </Link>
+            </li>
+          </StyledNavLogoWrapper>
+          <StyledNavItemsWrapper>
+            {ROUTES.map((r) => (
+              <StyledNavItem>
+                <Link to={r.href}>{r.text}</Link>
+              </StyledNavItem>
+            ))}
+          </StyledNavItemsWrapper>
+        </StyledUl>
+        <StyledBurgerButton
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <i className={`fa ${isMobileMenuOpen ? "fa-times" : "fa-bars"}`} />
+        </StyledBurgerButton>
+      </StyledNav>
+      {isMobileMenuOpen && (
+        <StyledMobileNav>
+          <StyledMobileUl>
+            {ROUTES.map((r) => (
+              <StyledMobileItem key={r.href}>
+                <Link to={r.href}>{r.text}</Link>
+              </StyledMobileItem>
+            ))}
+          </StyledMobileUl>
+        </StyledMobileNav>
+      )}
+    </StyledHeader>
   );
 }
 
