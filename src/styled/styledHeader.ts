@@ -63,6 +63,8 @@ export const StyledBurgerButton = styled.button`
     height: 3.5em;
     i {
       font-size: 1.5em;
+      width: 1em;
+      height: 1em;
       color: white;
     }
     margin-right: 1.5em;
