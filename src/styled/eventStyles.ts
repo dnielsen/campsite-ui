@@ -8,7 +8,7 @@ export const FlexWrapper = styled.div`
 `;
 
 export const EventWrapper = styled.div`
-  margin: 30px 0;
+  margin: 10px 0;
 `;
 
 export const Event = styled.div`
