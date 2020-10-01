@@ -577,24 +577,3 @@ export const SectionAboutOrganizer = styled.div`
     flex-direction: column-reverse;
   }
 `;
-
-export const PoweredBy = styled.div`
-  font-size: 14px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-
-  a {
-    color: #2faad9;
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .privacy-policy {
-    display: flex;
-    flex-direction: column;
-    font-size: 10px;
-    line-height: 12px;
-    font-weight: 500;
-    text-decoration: underline;
-  }
-`;

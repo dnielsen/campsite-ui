@@ -21,3 +21,13 @@ export const StyledFooter = styled.footer`
 export const StyledH2 = styled.h2`
   text-align: center;
 `;
+
+export const StyledH3 = styled.h3`
+  padding: 0 1em;
+`;
+
+export const StyledMobilePaddingWrapper = styled.div`
+  @media (max-width: 767px) {
+    padding: 0.5em;
+  }
+`;

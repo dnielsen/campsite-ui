@@ -19,7 +19,6 @@ export default function useCreateSessionFormProps(
   const history = useHistory();
 
   async function onSubmit(input: FormSessionInput) {
-    console.log(input);
     // Replace speakerOptions property with speakerIds.
     const fetchInput: FetchSessionInput = {
       ...input,
