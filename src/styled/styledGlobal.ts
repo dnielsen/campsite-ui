@@ -32,6 +32,7 @@ export default createGlobalStyle`
     flex-direction: column;
     margin: 0 auto;
     padding: 1em;
+    box-sizing: border-box;
     & > * {
     box-sizing: border-box;
     }

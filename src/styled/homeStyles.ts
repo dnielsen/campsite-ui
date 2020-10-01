@@ -417,15 +417,15 @@ export const SectionIsThisForMe = styled.div`
 
 export const FounderAndCeo = styled.div`
   flex: 1;
-  padding: 0px 36px;
-
+  padding: 0 1em;
   h4 {
+    font-size: 1.2em;
     color: #282828;
   }
 
   p {
     color: rgba(40, 40, 40, 0.81);
-    font-size: 16px;
+    font-size: 1.1em;
     line-height: 26px;
   }
 `;
@@ -480,6 +480,7 @@ export const ButtonSaveYourSeatNow = styled.div`
 
 export const AboutOrganizer = styled.div`
   flex: 1;
+  padding: 0.5em;
 
   h3 {
     color: #282828;
@@ -492,6 +493,7 @@ export const AboutOrganizer = styled.div`
   p {
     color: rgba(40, 40, 40, 0.73);
     line-height: 26px;
+    font-size: 1.2em;
   }
 `;
 
