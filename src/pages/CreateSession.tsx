@@ -3,6 +3,7 @@ import SessionForm from "../components/SessionForm";
 import useAPI from "../hooks/useAPI";
 import { EventDetails, SpeakerPreview } from "../common/interfaces";
 import useCreateSessionFormProps from "../hooks/useCreateSessionFormProps";
+import { StyledH2 } from "../styled/styledCommon";
 
 function CreateSession() {
   // A temporary solution, later we might load just the speaker/event ids and names,
@@ -29,7 +30,7 @@ function CreateSession() {
 
   return (
     <div>
-      <h3>Create a session</h3>
+      <StyledH2>Create a session</StyledH2>
       <SessionForm speakers={speakers} events={events} formProps={formProps} />
     </div>
   );

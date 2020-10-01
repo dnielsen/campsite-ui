@@ -1,18 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import * as g from "../styled/globalStyles";
+import { StyledContainer, StyledFooter } from "../styled/styledCommon";
 
 function Footer() {
   return (
-    <g.Container>
-      <footer>
+    <StyledContainer>
+      <StyledFooter>
         <p>
           {"Copyright © "}
           <Link to="/">Campsite.org</Link> {new Date().getFullYear()}
           {"."}
         </p>
-      </footer>
-    </g.Container>
+      </StyledFooter>
+    </StyledContainer>
   );
 }
 

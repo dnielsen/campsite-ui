@@ -13,47 +13,50 @@ import FullEvent from "./pages/FullEvent";
 import EditEvent from "./pages/EditEvent";
 import EditSpeaker from "./pages/EditSpeaker";
 import EditSession from "./pages/EditSession";
+import { StyledContainer } from "./styled/styledCommon";
 
 function App() {
   return (
     <div>
       <Header />
       <main>
-        <Switch>
-          <Route exact path="/speakers">
-            <Speakers />
-          </Route>
-          <Route exact path="/speakers/create">
-            <CreateSpeaker />
-          </Route>
-          <Route exact path="/speakers/:id">
-            <FullSpeaker />
-          </Route>
-          <Route exact path="/speakers/:id/edit">
-            <EditSpeaker />
-          </Route>
-          <Route exact path="/sessions/create">
-            <CreateSession />
-          </Route>
-          <Route exact path="/sessions/:id">
-            <FullSession />
-          </Route>
-          <Route exact path="/sessions/:id/edit">
-            <EditSession />
-          </Route>
-          <Route exact path="/events/create">
-            <CreateEvent />
-          </Route>
-          <Route exact path="/events/:id">
-            <FullEvent />
-          </Route>
-          <Route exact path="/events/:id/edit">
-            <EditEvent />
-          </Route>
-          <Route exact path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <StyledContainer>
+          <Switch>
+            <Route exact path="/speakers">
+              <Speakers />
+            </Route>
+            <Route exact path="/speakers/create">
+              <CreateSpeaker />
+            </Route>
+            <Route exact path="/speakers/:id">
+              <FullSpeaker />
+            </Route>
+            <Route exact path="/speakers/:id/edit">
+              <EditSpeaker />
+            </Route>
+            <Route exact path="/sessions/create">
+              <CreateSession />
+            </Route>
+            <Route exact path="/sessions/:id">
+              <FullSession />
+            </Route>
+            <Route exact path="/sessions/:id/edit">
+              <EditSession />
+            </Route>
+            <Route exact path="/events/create">
+              <CreateEvent />
+            </Route>
+            <Route exact path="/events/:id">
+              <FullEvent />
+            </Route>
+            <Route exact path="/events/:id/edit">
+              <EditEvent />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </StyledContainer>
       </main>
       <Footer />
     </div>

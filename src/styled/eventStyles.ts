@@ -8,7 +8,7 @@ export const FlexWrapper = styled.div`
 `;
 
 export const EventWrapper = styled.div`
-  margin: 10px 0;
+  margin-top: 1em;
 `;
 
 export const Event = styled.div`
@@ -89,4 +89,10 @@ export const StyledAnchorButton = styled.a`
   -webkit-box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.06);
   -moz-box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.06);
   box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.06);
+`;
+
+export const StyledEventSessionSpeakerWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;

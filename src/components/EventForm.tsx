@@ -3,8 +3,14 @@ import { Field, Form, Formik, FormikState, FormikValues } from "formik";
 import { FormProps, FormEventInput } from "../common/interfaces";
 import DateTimeField from "./DateTimeField";
 import ImageUploadField from "./ImageUploadField";
-import { StyledButton, StyledForm, StyledLabel } from "../styled/styled";
-import CustomField from "./CustomField";
+import {
+  StyledButton,
+  StyledCameraButton,
+  StyledInput,
+  StyledLabel,
+  StyledSection,
+  StyledTextarea,
+} from "../styled/styledForm";
 
 interface Props {
   formProps: FormProps<FormEventInput>;
@@ -15,39 +21,46 @@ function EventForm(props: Props) {
     <Formik {...props.formProps}>
       {({ isSubmitting }: FormikState<FormikValues>) => (
         <Form noValidate>
-          <section>
+          <StyledSection>
             <StyledLabel htmlFor={"name"}>Name</StyledLabel>
-            <Field type={"text"} name={"name"} />
-          </section>
-          <section>
+            <Field type={"text"} name={"name"} as={StyledInput} />
+          </StyledSection>
+
+          <StyledSection>
+            <StyledLabel htmlFor={"organizerName"}>Organizer name</StyledLabel>
+            <Field type={"text"} name={"organizerName"} as={StyledInput} />
+          </StyledSection>
+          <StyledSection>
+            <StyledLabel htmlFor={"address"}>Address</StyledLabel>
+            <Field type={"text"} name={"address"} as={StyledInput} />
+          </StyledSection>
+          <StyledSection>
             <StyledLabel htmlFor={"description"}>Description</StyledLabel>
             <Field
               type={"text"}
               name={"description"}
-              as={"textarea"}
-              rows={8}
+              as={StyledTextarea}
+              rows={6}
             />
-          </section>
-          <section>
-            <StyledLabel htmlFor={"photo"}>Photo</StyledLabel>
-            <ImageUploadField name={"photo"} />
-          </section>
-          <section>
-            <StyledLabel htmlFor={"organizerName"}>Organizer name</StyledLabel>
-            <Field type={"text"} name={"organizerName"} />
-          </section>
-          <section>
-            <StyledLabel htmlFor={"address"}>Address</StyledLabel>
-            <Field type={"text"} name={"address"} />
-          </section>
-          <section>
+          </StyledSection>
+          <StyledSection>
             <StyledLabel htmlFor={"startDate"}>Start date</StyledLabel>
             <DateTimeField name={"startDate"} />
-          </section>
-          <section>
+          </StyledSection>
+          <StyledSection>
             <StyledLabel htmlFor={"endDate"}>End date</StyledLabel>
             <DateTimeField name={"endDate"} />
-          </section>
+          </StyledSection>
+          <StyledSection>
+            <StyledLabel htmlFor={"photo"}>Photo</StyledLabel>
+            <StyledLabel htmlFor={"photo"}>
+              <StyledCameraButton>
+                <i className={"fa fa-camera"} />
+                Upload
+              </StyledCameraButton>
+            </StyledLabel>
+            <ImageUploadField name={"photo"} />
+          </StyledSection>
           <StyledButton type={"submit"} disabled={isSubmitting}>
             Submit
           </StyledButton>

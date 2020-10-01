@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useAPI from "../hooks/useAPI";
 import { EventDetails } from "../common/interfaces";
-import * as g from "../styled/globalStyles";
 import * as s from "../styled/eventStyles";
 import util from "../common/util";
 import { StyledAnchorButton } from "../styled/eventStyles";
+import { StyledContainer } from "../styled/styledCommon";
 
 function Home() {
   const { data: events, loading, error } = useAPI<EventDetails[]>("/events");
@@ -19,7 +19,7 @@ function Home() {
     );
   // ----
   return (
-    <g.Container>
+    <StyledContainer>
       <s.EventWrapper>
         <s.FlexWrapper>
           {events.map((eventDetails) => (
@@ -61,7 +61,7 @@ function Home() {
           ))}
         </s.FlexWrapper>
       </s.EventWrapper>
-    </g.Container>
+    </StyledContainer>
   );
 }
 

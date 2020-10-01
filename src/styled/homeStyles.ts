@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 export const BannerSection = styled.div`
-  padding: 70px 0px;
+  padding-top: 5em;
   p {
     color: #2faad9;
     font-size: 20px;
@@ -11,12 +11,12 @@ export const BannerSection = styled.div`
   }
 
   h1 {
-    font-size: 72px;
+    font-size: 3em;
     color: #282828;
     font-weight: 700;
     line-height: 1;
-    margin: 0;
-    margin-bottom: 30px;
+    margin: 0 0 2em;
+    overflow-wrap: break-word;
   }
 
   h3 {
@@ -31,6 +31,7 @@ export const BannerSection = styled.div`
 `;
 
 export const SelectSeatButton = styled.div`
+  margin-top: 10em;
   margin-bottom: 50px;
   @media (max-width: 767px) {
     text-align: center;
@@ -38,13 +39,13 @@ export const SelectSeatButton = styled.div`
 
   a {
     background: #2faad9;
-    padding: 20px 50px;
+    padding: 1em 2em;
     box-shadow: inset 0 0 20px 20px transparent;
     transition: box-shadow 0.2s ease;
     font-size: 20px;
     text-align: center;
     border-radius: 8px;
-    color: #fff;
+    color: #fff !important;
     text-decoration: none;
     font-weight: 600;
   }
@@ -74,7 +75,7 @@ export const BrandImages = styled.div`
     display: block;
     margin: 12px 10px;
     opacity: 0.5;
-    width: 100px;
+    width: 150px;
   }
 `;
 
@@ -373,10 +374,6 @@ export const TabContent = styled.div`
   color: #fff;
 `;
 
-export const EventTitle = styled.div``;
-
-export const EventTime = styled.div``;
-
 export const PanelDiscussion = styled.div`
   display: flex;
   justify-content: space-between;
@@ -388,6 +385,10 @@ export const PanelDiscussion = styled.div`
 
 export const topic = styled.div`
   font-weight: 500;
+  width: 100%;
+  a {
+    color: white;
+  }
 `;
 
 export const PanelImages = styled.div`
@@ -395,6 +396,7 @@ export const PanelImages = styled.div`
   img {
     width: 50px;
     height: 50px;
+    margin-right: 0.5em;
     border-radius: 60px;
   }
 `;
@@ -544,6 +546,7 @@ export const Answer = styled.div`
 
 export const KeepInMindText = styled.p`
   font-weight: 600;
+  font-style: italic;
   margin: 0;
 `;
 

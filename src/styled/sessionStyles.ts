@@ -6,10 +6,10 @@ export const SessionWrapper = styled.div`
   padding: 30px 20px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  margin: 50px 0px;
+  margin: 50px 0;
 
   @media (max-width: 767px) {
-    padding: 0px;
+    padding: 0;
     border: none;
   }
 `;
@@ -32,8 +32,6 @@ export const FlexWrapperSpeakers = styled.div`
 export const SessionListWrapper = styled.div`
   background: #fff;
   padding: 15px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
   box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.18);
   position: relative;
   margin-right: 15px;
@@ -178,14 +176,9 @@ export const SpeakerContent = styled.div`
   text-align: center;
 
   @media (max-width: 767px) {
-    margin: 0px 20px;
+    margin: 0 20px;
   }
 `;
-
-export const SessionName = styled.div``;
-export const SessionDate = styled.div``;
-export const SessionRegister = styled.div``;
-export const SessionWatch = styled.div``;
 
 export const VideoWrapper = styled.div`
   position: relative;

@@ -15,8 +15,10 @@ export const StyledNavItemsWrapper = styled.div`
 `;
 
 export const StyledNavItem = styled.li`
-  margin-right: 1em;
-  font-weight: 500;
+  font-weight: 600;
+  a {
+    padding: 1em;
+  }
 `;
 
 export const StyledUl = styled.ul`
@@ -86,7 +88,7 @@ export const StyledMobileItem = styled.li`
   width: 100%;
   text-align: center;
   text-transform: capitalize;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.3em;
   margin: 0 auto 0.7em;
   a {

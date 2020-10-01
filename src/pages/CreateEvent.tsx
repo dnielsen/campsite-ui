@@ -1,13 +1,14 @@
 import React from "react";
 import EventForm from "../components/EventForm";
 import useCreateEventFormProps from "../hooks/useCreateEventFormProps";
+import { StyledH2 } from "../styled/styledCommon";
 
 function CreateEvent() {
   const formProps = useCreateEventFormProps();
 
   return (
     <div>
-      <h3>Create an event</h3>
+      <StyledH2>Create an event</StyledH2>
       <EventForm formProps={formProps} />
     </div>
   );

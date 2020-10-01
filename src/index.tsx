@@ -2,11 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import * as g from "./styled/globalStyles";
+import GlobalStyle from "./styled/styledGlobal";
 
 ReactDOM.render(
   <BrowserRouter>
-    <g.GlobalStyle />
+    <GlobalStyle />
     <App />
   </BrowserRouter>,
   document.getElementById("root"),

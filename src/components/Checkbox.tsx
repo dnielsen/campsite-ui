@@ -1,5 +1,6 @@
 import React from "react";
 import { Field, FieldProps, FormikProps } from "formik";
+import { StyledCheckboxWrapper } from "../styled/styledForm";
 
 interface Props {
   value: string;
@@ -20,15 +21,17 @@ function Checkbox(props: Props) {
   return (
     <Field name={props.name}>
       {(fieldProps: FieldProps) => (
-        <label>
-          <input
-            type="checkbox"
-            {...props}
-            checked={fieldProps.field.value.includes(props.value)}
-            onChange={() => handleChange(fieldProps)}
-          />
-          {props.label}
-        </label>
+        <StyledCheckboxWrapper>
+          <label>
+            <input
+              type="checkbox"
+              {...props}
+              checked={fieldProps.field.value.includes(props.value)}
+              onChange={() => handleChange(fieldProps)}
+            />{" "}
+            {props.label}
+          </label>
+        </StyledCheckboxWrapper>
       )}
     </Field>
   );

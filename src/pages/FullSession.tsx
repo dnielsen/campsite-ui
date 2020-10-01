@@ -4,7 +4,7 @@ import { Session } from "../common/interfaces";
 import { Link, useParams } from "react-router-dom";
 import util from "../common/util";
 import * as s from "../styled/sessionStyles";
-import * as g from "../styled/globalStyles";
+import { StyledContainer } from "../styled/styledCommon";
 
 function FullSession() {
   const { id } = useParams<{ id: string }>();
@@ -14,7 +14,7 @@ function FullSession() {
   if (error) return <div>something went wrong: {error.message}</div>;
 
   return (
-    <g.Container>
+    <StyledContainer>
       <s.SessionWrapper>
         <s.FlexWrapper>
           <s.SessionListWrapper>
@@ -37,16 +37,14 @@ function FullSession() {
           </s.SessionListWrapper>
           <s.SessionDetailWrapper>
             <s.SpeakerSessionScheduleWrapper>
-              <s.SessionName>{session.name}</s.SessionName>
-              <s.SessionDate>
-                {util.getFullDateString(session.startDate)}
-              </s.SessionDate>
-              <s.SessionRegister>
+              <div>{session.name}</div>
+              <div>{util.getFullDateString(session.startDate)}</div>
+              <div>
                 <Link to={session.event.registrationUrl}>Registration</Link>
-              </s.SessionRegister>
-              <s.SessionWatch>
+              </div>
+              <div>
                 <Link to={`/sessions/${session.id}`}>Watch</Link>
-              </s.SessionWatch>
+              </div>
             </s.SpeakerSessionScheduleWrapper>
             <s.VideoWrapper>
               <iframe
@@ -104,7 +102,7 @@ function FullSession() {
           </s.SessionDetailWrapper>
         </s.FlexWrapper>
       </s.SessionWrapper>
-    </g.Container>
+    </StyledContainer>
   );
 }
 

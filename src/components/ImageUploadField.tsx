@@ -38,11 +38,18 @@ function ImageUploadField(props: Props) {
   return (
     <Field name={props.name}>
       {({ form }: FieldProps) => (
-        <input
-          type={"file"}
-          accept={"image/*"}
-          onChange={(event) => handleChange(event, form)}
-        />
+        <>
+          <input
+            type={"file"}
+            accept={"image/*"}
+            onChange={(event) => handleChange(event, form)}
+            style={{ display: "none" }}
+            name={props.name}
+            id={props.name}
+          />
+          {/*Temporarily we're showing just the image url*/}
+          {form.getFieldMeta(props.name).value}
+        </>
       )}
     </Field>
   );

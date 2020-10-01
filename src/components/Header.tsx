@@ -12,10 +12,11 @@ import {
   StyledNavLogoWrapper,
   StyledUl,
 } from "../styled/styledHeader";
+import { StyledContainer } from "../styled/styledCommon";
 
 const ROUTES: { text: string; href: string }[] = [
   {
-    text: "All Speakers",
+    text: "Speakers",
     href: "/speakers",
   },
   {
@@ -50,7 +51,7 @@ function Header() {
           </StyledNavLogoWrapper>
           <StyledNavItemsWrapper>
             {ROUTES.map((r) => (
-              <StyledNavItem>
+              <StyledNavItem key={r.href}>
                 <Link to={r.href}>{r.text}</Link>
               </StyledNavItem>
             ))}

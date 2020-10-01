@@ -4,8 +4,8 @@ import useAPI from "../hooks/useAPI";
 import util from "../common/util";
 import { Link, useParams } from "react-router-dom";
 import * as s from "../styled/homeStyles";
-import * as g from "../styled/globalStyles";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { StyledEventSessionSpeakerWrapper } from "../styled/eventStyles";
 
 interface SessionDays {
   [key: number]: Session[];
@@ -43,6 +43,7 @@ function FullEvent() {
 
   // TODO: do it on the backend side
   if (eventDetails.sessions) {
+    console.log(eventDetails.sessions);
     const eventSpeakersWithDuplicates = eventDetails.sessions
       .map((session) => session.speakers || [])
       .flat();
@@ -51,7 +52,7 @@ function FullEvent() {
   }
 
   return (
-    <g.Container>
+    <div>
       <s.BannerSection>
         <p>
           {util.getDateRangeString(
@@ -68,10 +69,16 @@ function FullEvent() {
         <s.LearnFromBestLogos>
           <p>Learn from the best:</p>
           <s.BrandImages>
-            {eventDetails.speakers.map((speaker) => (
-              <Link key={speaker.id} to={`/speakers/${speaker.id}`}>
-                <img key={speaker.id} src={speaker.photo} alt={speaker.name} />
-              </Link>
+            {/*For dev: generate 5 the exact same elements*/}
+            {[...Array(5).keys()].map((i) => (
+              <div key={i}>
+                <img
+                  src={
+                    "https://uploads-ssl.webflow.com/5f329fb0017255d9d0baddec/5f354394d9a1463ff9f2f0ff_SmartRecruiters.png"
+                  }
+                  alt={"SmartRecruiters"}
+                />
+              </div>
             ))}
           </s.BrandImages>
         </s.LearnFromBestLogos>
@@ -185,47 +192,49 @@ function FullEvent() {
               <s.TabContent>
                 {Object.entries(sessionDays).map(([dayNum, sortedSessions]) => (
                   <TabPanel key={dayNum}>
-                    <s.EventTime>
+                    <div>
                       <h2>
                         DAY {dayNum} Opening -{" "}
                         {util.getHourDate(sortedSessions[0].startDate)}
                       </h2>
-                    </s.EventTime>
+                    </div>
                     {sortedSessions.map((session: Session) => (
                       <s.PanelDiscussion key={session.id}>
                         <s.topic>
                           <Link to={`/sessions/${session.id}`}>
                             {session.name}
                           </Link>
-                          <s.PanelImages>
-                            {session.speakers &&
-                              session.speakers.map((speaker) => (
-                                <Link
-                                  key={speaker.id}
-                                  to={`/speakers/${speaker.id}`}
-                                >
-                                  <img
+                          <StyledEventSessionSpeakerWrapper>
+                            <s.PanelImages>
+                              {session.speakers &&
+                                session.speakers.map((speaker) => (
+                                  <Link
                                     key={speaker.id}
-                                    src={speaker.photo}
-                                    alt={speaker.name}
-                                  />
-                                </Link>
-                              ))}
-                          </s.PanelImages>
+                                    to={`/speakers/${speaker.id}`}
+                                  >
+                                    <img
+                                      key={speaker.id}
+                                      src={speaker.photo}
+                                      alt={speaker.name}
+                                    />
+                                  </Link>
+                                ))}
+                            </s.PanelImages>
+                            <s.TimeLimit>
+                              {util.getHourRangeString(
+                                session.startDate,
+                                session.endDate,
+                              )}
+                            </s.TimeLimit>
+                          </StyledEventSessionSpeakerWrapper>
                         </s.topic>
-                        <s.TimeLimit>
-                          {util.getHourRangeString(
-                            session.startDate,
-                            session.endDate,
-                          )}
-                        </s.TimeLimit>
                       </s.PanelDiscussion>
                     ))}
                   </TabPanel>
                 ))}
                 <s.KeepInMindText>
-                  &quot;❗ Keep in mind all session timings are displayed in 🕤
-                  Pacific Time Zone (PDT) 🕛 ❗&quot;{" "}
+                  &quot;❗ All timings are displayed in 🕤 Pacific Time Zone
+                  (PDT) 🕛 ❗&quot;{" "}
                 </s.KeepInMindText>
               </s.TabContent>
             </Tabs>
@@ -316,15 +325,8 @@ function FullEvent() {
       <s.Footer>
         <h3>Contact Us</h3>
         <p>support@campsite.org</p>
-        <s.PoweredBy>
-          Powered by <a href={"https://campsite.com"}>Campsite</a>
-          <div className="privacy-policy">
-            <a href={"https://campsite.org/terms"}>Terms of Use</a>
-            <a href={"https://campsite.org/privacy"}>Privacy Policy</a>
-          </div>
-        </s.PoweredBy>
       </s.Footer>
-    </g.Container>
+    </div>
   );
 }
 
