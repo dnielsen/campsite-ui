@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import * as s from "../styled/homeStyles";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { StyledEventSessionSpeakerWrapper } from "../styled/eventStyles";
-import { StyledMobilePaddingWrapper } from "src/styled/styledCommon";
+import { StyledH4, StyledMobilePaddingWrapper } from "src/styled/styledCommon";
 
 interface SessionDays {
   [key: number]: Session[];
@@ -167,7 +167,7 @@ function FullEvent() {
                     <img src={speaker.photo} alt={speaker.name} />
                   </Link>
                   <Link to={`/speakers/${speaker.id}`}>
-                    <h4>{speaker.name}</h4>
+                    <StyledH4>{speaker.name}</StyledH4>
                   </Link>
                   <s.TextLead>{speaker.headline}</s.TextLead>
                   <s.SpeakerSocialMedia>

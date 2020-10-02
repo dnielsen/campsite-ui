@@ -7,7 +7,12 @@ import * as s from "../styled/speakerStyles";
 import util from "../common/util";
 import { SpeakerDataWrapper } from "../styled/speakerStyles";
 import { StyledContainer } from "../styled/styledCommon";
-import { StyledSpeakerSessionDescription } from "../styled/styledSpeaker";
+import {
+  StyledSpeakerSessionDescription,
+  StyledSpeakerSessionName,
+  StyledSpeakerSessionStartDate,
+  StyledWatch,
+} from "../styled/styledSpeaker";
 
 function FullSpeaker() {
   const { id } = useParams<{ id: string }>();
@@ -39,15 +44,12 @@ function FullSpeaker() {
                 <s.SpeakerSocialMedia>
                   <a href={"https://twitter.com/elonmusk"}>
                     <i className="fa fa-twitter twitter" aria-hidden="true" />
-                    Twitter
                   </a>
                   <a href={"https://linkedin.com"}>
                     <i className="fa fa-linkedin linkedin" aria-hidden="true" />
-                    LinkedIn
                   </a>
                 </s.SpeakerSocialMedia>
                 <s.SpeakerBio>
-                  <h3>About Me</h3>
                   <p>{speaker.bio}</p>
                 </s.SpeakerBio>
               </s.SpeakerContent>
@@ -57,21 +59,22 @@ function FullSpeaker() {
             <s.SpeakerSessionWrapper>
               <h2>Sessions</h2>
               {speaker.sessions.map((session) => (
-                <Fragment key={session.id}>
+                <div key={session.id}>
                   <s.SpeakerSessionScheduleWrapper>
-                    <div>
+                    <StyledSpeakerSessionName>
                       <Link to={`/sessions/${session.id}`}>{session.name}</Link>
-                    </div>
-                    <div>{util.getFullDateString(session.startDate)}</div>
-                    <div>Registration</div>
-                    <div>
+                    </StyledSpeakerSessionName>
+                    <StyledSpeakerSessionStartDate>
+                      {util.getFullDateString(session.startDate)}
+                    </StyledSpeakerSessionStartDate>
+                    <StyledWatch>
                       <Link to={`/sessions/${session.id}`}>Watch</Link>
-                    </div>
+                    </StyledWatch>
                   </s.SpeakerSessionScheduleWrapper>
                   <StyledSpeakerSessionDescription>
                     {session.description}
                   </StyledSpeakerSessionDescription>
-                </Fragment>
+                </div>
               ))}
             </s.SpeakerSessionWrapper>
           )}

@@ -292,29 +292,30 @@ export const Speaker = styled.div`
   flex: 0 0 20%;
 
   img {
-    width: 120px;
     border: 1px solid lightgray;
-    height: 120px;
+    height: 150px;
     object-fit: cover;
     border-radius: 50%;
   }
 
   h4 {
-    font-size: 1em;
+    font-size: 1.3em;
     line-height: 30px;
     color: #282828;
-    margin: 10px 0;
+    margin: 0.2em;
   }
 `;
 
-export const TextLead = styled.div`
+export const TextLead = styled.p`
   color: rgba(40, 40, 40, 0.73);
-  font-size: 14px;
+  font-size: 1.1em;
   font-weight: 600;
-}`;
+  margin: 0;
+  padding: 0;
+`;
 
 export const SpeakerSocialMedia = styled.div`
-  margin: 20px 0px;
+  margin-top: 1em;
 
   a {
     text-decoration: none;
@@ -325,16 +326,19 @@ export const SpeakerSocialMedia = styled.div`
     margin-right: 15px;
   }
 
+  i {
+    font-size: 2em;
+
+    // We need 0.1em so that the icons aren't slightly shifted to the left.
+    padding: 0.2em 0.2em 0.2em 0.1em;
+  }
+
   i.twitter {
     color: #34c4f2;
-    font-size: 20px;
-    margin-right: 7px;
   }
 
   i.linkedin {
     color: #0274b3;
-    font-size: 20px;
-    margin-right: 7px;
   }
 `;
 
@@ -365,9 +369,10 @@ export const TabsWrapper = styled.div`
     padding: 10px 15px;
     border-radius: 8px;
     font-weight: 600;
+    font-size: 1.1em;
     outline: none;
-    margin-right: 12px;
-    margin-bottom: 12px;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
     cursor: pointer;
   }
 `;
@@ -392,7 +397,7 @@ export const PanelDiscussion = styled.div`
 export const topic = styled.div`
   font-weight: 500;
   width: 100%;
-  font-size: 1.1em;
+  font-size: 1.2em;
   a {
     color: white;
   }

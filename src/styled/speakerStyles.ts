@@ -115,20 +115,20 @@ export const SpeakerPhoto = styled.div`
 
 export const SpeakerName = styled.p`
   color: #2faad9;
-  font-size: 1.3em;
+  font-size: 1.5em;
   font-weight: 600;
-  margin: 0;
+  margin: 0 0 0.2em;
 `;
 
 export const SpeakerTitle = styled.p`
   color: #414141;
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: 500;
   margin: 0;
 `;
 
 export const SpeakerSocialMedia = styled.div`
-  margin: 20px 0px;
+  margin: 20px 0;
 
   a {
     text-decoration: none;
@@ -139,16 +139,17 @@ export const SpeakerSocialMedia = styled.div`
     margin-right: 15px;
   }
 
+  i {
+    font-size: 2em;
+    padding: 0.2em 0.2em 0.2em 0.1em;
+  }
+
   i.twitter {
     color: #34c4f2;
-    font-size: 20px;
-    margin-right: 7px;
   }
 
   i.linkedin {
     color: #0274b3;
-    font-size: 20px;
-    margin-right: 7px;
   }
 `;
 
@@ -160,14 +161,23 @@ export const SpeakerBio = styled.div`
 export const SpeakerSessionScheduleWrapper = styled.div`
   background: #f5f5f5;
   display: flex;
-  justify-content: center;
+  padding: 0 1em;
+  justify-content: space-between;
   color: #414141;
-  font-size: 0.9em;
   border: 1px solid #e3e3e3;
   font-weight: 600;
   border-radius: 8px;
 
-  @media (max-width: 767px) {
+  p {
+    font-size: 0.9em;
+  }
+
+  & > * {
+    display: flex;
+    align-self: center;
+  }
+
+  @media (max-width: 991px) {
     flex-direction: column;
   }
 

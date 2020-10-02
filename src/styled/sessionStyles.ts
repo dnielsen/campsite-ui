@@ -32,7 +32,7 @@ export const FlexWrapperSpeakers = styled.div`
 export const SessionListWrapper = styled.div`
   background: #fff;
   padding: 15px;
-  box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.18);
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.18);
   position: relative;
   margin-right: 15px;
   border: 1px solid #e3e3e3;
@@ -77,10 +77,10 @@ export const SessionDetailWrapper = styled.div`
   padding: 15px;
   border-radius: 8px;
   border: 1px solid #e3e3e3;
-  box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.18);
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.18);
 
   @media (max-width: 991px) {
-    margin: 15px 0px;
+    margin: 15px 0;
     text-align: center;
   }
 
@@ -98,7 +98,7 @@ export const SpeakerSessionScheduleWrapper = styled.div`
   background: #f5f5f5;
   display: flex;
   justify-content: center;
-  padding: 0px 15px;
+  padding: 0 15px;
   color: #414141;
   font-size: 14px;
   border: 1px solid #e3e3e3;
@@ -133,18 +133,18 @@ export const SpeakerName = styled.p`
   color: #2faad9;
   font-size: 16px;
   font-weight: 600;
-  margin: 5px 0px;
+  margin: 5px 0;
 `;
 
 export const SpeakerTitle = styled.p`
   color: #414141;
   font-size: 14px;
   font-weight: 600;
-  margin: 5px 0px;
+  margin: 5px 0;
 `;
 
 export const SpeakerSocialMedia = styled.div`
-  margin: 20px 0px;
+  margin: 20px 0;
 
   a {
     text-decoration: none;
