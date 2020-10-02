@@ -20,6 +20,8 @@ export const StyledFooter = styled.footer`
 
 export const StyledH2 = styled.h2`
   text-align: center;
+  font-size: 2em;
+  margin-bottom: 1.5em;
 `;
 
 export const StyledH3 = styled.h3`
