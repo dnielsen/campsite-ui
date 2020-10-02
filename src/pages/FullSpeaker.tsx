@@ -1,8 +1,7 @@
-import React, { Fragment } from "react";
+import React from "react";
 import useAPI from "../hooks/useAPI";
 import { Speaker } from "../common/interfaces";
-import { Link, useHistory, useParams } from "react-router-dom";
-import { BASE_SPEAKER_API_URL } from "../common/constants";
+import { Link, useParams } from "react-router-dom";
 import * as s from "../styled/speakerStyles";
 import util from "../common/util";
 import { SpeakerDataWrapper } from "../styled/speakerStyles";

@@ -3,10 +3,10 @@ import styled from "styled-components";
 
 export const SessionWrapper = styled.div`
   background: #f5f5f5;
-  padding: 30px 20px;
+  padding: 1em;
+  margin-top: 2em;
   border-radius: 8px;
   border: 1px solid #ccc;
-  margin: 50px 0;
 
   @media (max-width: 767px) {
     padding: 0;
@@ -96,6 +96,7 @@ export const SessionDetailWrapper = styled.div`
 
 export const SpeakerSessionScheduleWrapper = styled.div`
   background: #f5f5f5;
+  font-size: 1em;
   display: flex;
   justify-content: center;
   padding: 0 15px;
@@ -131,41 +132,16 @@ export const SpeakerPhoto = styled.div`
 
 export const SpeakerName = styled.p`
   color: #2faad9;
-  font-size: 16px;
+  font-size: 1.2em !important;
   font-weight: 600;
   margin: 5px 0;
 `;
 
 export const SpeakerTitle = styled.p`
   color: #414141;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 1em !important;
+  font-weight: 500;
   margin: 5px 0;
-`;
-
-export const SpeakerSocialMedia = styled.div`
-  margin: 20px 0;
-
-  a {
-    text-decoration: none;
-    font-size: 14px;
-    margin-bottom: 10px;
-    color: #414141;
-    font-weight: 500;
-    margin-right: 15px;
-  }
-
-  i.twitter {
-    color: #34c4f2;
-    font-size: 20px;
-    margin-right: 7px;
-  }
-
-  i.linkedin {
-    color: #0274b3;
-    font-size: 20px;
-    margin-right: 7px;
-  }
 `;
 
 export const SpeakerContent = styled.div`
