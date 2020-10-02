@@ -18,11 +18,11 @@ function FullSession() {
       <s.SessionWrapper>
         <s.FlexWrapper>
           <s.SessionListWrapper>
-            <h5>
+            <h3>
               <Link to={`/events/${session.event.id}`}>
                 {session.event.name}
               </Link>
-            </h5>
+            </h3>
             <ul>
               {session.event.sessions &&
                 session.event.sessions.map((s) => (

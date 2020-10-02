@@ -75,8 +75,6 @@ export const SpeakerInfoWrapper = styled.div`
   border: 1px solid #e3e3e3;
   border-radius: 8px;
   flex-basis: 210px;
-  //position: relative;
-  //top: -100px;
 
   @media (max-width: 991px) {
     margin: 15px 0;

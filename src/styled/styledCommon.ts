@@ -26,6 +26,10 @@ export const StyledH3 = styled.h3`
   padding: 0 1em;
 `;
 
+export const StyledH4 = styled.h4`
+  padding: 0 1em;
+`;
+
 export const StyledMobilePaddingWrapper = styled.div`
   @media (max-width: 767px) {
     padding: 0.5em;

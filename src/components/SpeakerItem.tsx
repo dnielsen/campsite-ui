@@ -1,6 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { SpeakerPreview } from "../common/interfaces";
 import { Link } from "react-router-dom";
+import {
+  StyledHeadline,
+  StyledSpeakerImg,
+  StyledSpeakerInfoWrapper,
+  StyledSpeakerName,
+} from "../styled/styledAllSpeakers";
+import { StyledH3 } from "../styled/styledCommon";
 
 interface Props {
   speaker: SpeakerPreview;
@@ -8,16 +15,17 @@ interface Props {
 
 function SpeakerItem(props: Props) {
   return (
-    <Link to={`/speakers/${props.speaker.id}`}>
-      <img
-        src={props.speaker.photo}
-        alt={props.speaker.name}
-        // We're setting the height temporarily until there's css
-        height={200}
-      />
-      <h5>{props.speaker.name}</h5>
-      <h6>{props.speaker.headline}</h6>
-    </Link>
+    <div>
+      <Link to={`/speakers/${props.speaker.id}`}>
+        <StyledSpeakerImg src={props.speaker.photo} alt={props.speaker.name} />
+      </Link>
+      <StyledSpeakerInfoWrapper>
+        <StyledSpeakerName>
+          <Link to={`/speakers/${props.speaker.id}`}>{props.speaker.name}</Link>
+        </StyledSpeakerName>
+        <StyledHeadline>{props.speaker.headline}</StyledHeadline>
+      </StyledSpeakerInfoWrapper>
+    </div>
   );
 }
 

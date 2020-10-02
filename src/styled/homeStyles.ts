@@ -92,6 +92,7 @@ export const SectionFutureSummit = styled.div`
 
 export const ContentLeftWrapper = styled.div`
   flex: 1;
+  font-size: 1em;
 
   h3 {
     color: #282828;
@@ -112,10 +113,10 @@ export const ContentLeftWrapper = styled.div`
     background: #2faad9;
     border: none;
     color: #fff;
-    padding: 15px 20px;
+    padding: 1em 2em;
     font-weight: 600;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 1.2em;
     outline: none;
   }
 `;
@@ -177,6 +178,9 @@ export const Boxes = styled.div`
   display: flex;
   margin-top: 40px;
   flex-wrap: wrap;
+  p {
+    font-size: 1em !important;
+  }
 
   @media (max-width: 767px) {
     flex-direction: column;
@@ -288,18 +292,18 @@ export const Speaker = styled.div`
   flex: 0 0 20%;
 
   img {
-    width: 100px;
-    height: 100px;
-    border-style: 1px solid rgba(0, 0, 0, 0.08);
-    object-fit: fill;
-    border-radius: 60px;
+    width: 120px;
+    border: 1px solid lightgray;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
   }
 
   h4 {
-    font-size: 20px;
+    font-size: 1em;
     line-height: 30px;
     color: #282828;
-    margin: 10px 0px;
+    margin: 10px 0;
   }
 `;
 
@@ -347,7 +351,7 @@ export const SectionAgenda = styled.div`
 
 export const TabsWrapper = styled.div`
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 991px;
   ul {
     display: flex;
     padding: 0;
@@ -397,10 +401,12 @@ export const topic = styled.div`
 export const PanelImages = styled.div`
   margin-top: 10px;
   img {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
+    border: 1px solid lightgray;
+
     margin-right: 0.5em;
-    border-radius: 60px;
+    border-radius: 50%;
   }
 `;
 

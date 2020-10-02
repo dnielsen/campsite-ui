@@ -4,7 +4,7 @@ import FullSpeaker from "./pages/FullSpeaker";
 import FullSession from "./pages/FullSession";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Speakers from "./pages/Speakers";
+import AllSpeakers from "./pages/AllSpeakers";
 import CreateSpeaker from "./pages/CreateSpeaker";
 import CreateSession from "./pages/CreateSession";
 import CreateEvent from "./pages/CreateEvent";
@@ -23,7 +23,7 @@ function App() {
         <StyledContainer>
           <Switch>
             <Route exact path="/speakers">
-              <Speakers />
+              <AllSpeakers />
             </Route>
             <Route exact path="/speakers/create">
               <CreateSpeaker />

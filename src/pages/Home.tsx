@@ -49,7 +49,7 @@ function Home() {
                   <s.EventDescription>
                     {/*Temporarily we're doing it this way, we'll later clean it up*/}
                     {eventDetails.description.length > 200
-                      ? eventDetails.description.slice(0, 200) + "..."
+                      ? eventDetails.description.slice(0, 250) + "..."
                       : eventDetails.description}
                   </s.EventDescription>
                 </div>
