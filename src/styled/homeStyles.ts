@@ -388,6 +388,7 @@ export const PanelDiscussion = styled.div`
 export const topic = styled.div`
   font-weight: 500;
   width: 100%;
+  font-size: 1.1em;
   a {
     color: white;
   }
@@ -405,6 +406,7 @@ export const PanelImages = styled.div`
 
 export const TimeLimit = styled.div`
   font-weight: 500;
+  align-self: flex-end;
 `;
 
 export const SectionIsThisForMe = styled.div`
