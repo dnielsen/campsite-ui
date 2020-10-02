@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   body {
-    font-family: 'San Francisco', 'Raleway', 'Helvetica', sans-serif;
+    font-family: -apple-system, 'Raleway', 'Helvetica', sans-serif;
     margin: 0;
     background: #ffffff;
   }

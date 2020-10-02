@@ -44,7 +44,6 @@ function FullEvent() {
 
   // TODO: do it on the backend side
   if (eventDetails.sessions) {
-    console.log(eventDetails.sessions);
     const eventSpeakersWithDuplicates = eventDetails.sessions
       .map((session) => session.speakers || [])
       .flat();

@@ -49,7 +49,9 @@ function getDateFormValue(date: string | Date) {
 }
 
 function getDayDiff(date1: string, date2: string) {
-  return Math.abs(new Date(date1).getDate() - new Date(date2).getDate());
+  return Math.abs(
+    moment(date1).tz(TIMEZONE).date() - moment(date2).tz(TIMEZONE).date(),
+  );
 }
 
 // Example:

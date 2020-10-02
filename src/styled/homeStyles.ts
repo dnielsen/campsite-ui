@@ -346,6 +346,8 @@ export const SectionAgenda = styled.div`
 `;
 
 export const TabsWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 900px;
   ul {
     display: flex;
     padding: 0;
