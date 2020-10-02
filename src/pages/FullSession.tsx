@@ -26,12 +26,11 @@ function FullSession() {
             <ul>
               {session.event.sessions &&
                 session.event.sessions.map((s) => (
-                  <li
-                    key={s.id}
-                    className={s.id === session.id ? "active" : undefined}
-                  >
-                    <Link to={`/sessions/${s.id}`}>{s.name}</Link>
-                  </li>
+                  <Link to={`/sessions/${s.id}`} key={s.id}>
+                    <li className={s.id === session.id ? "active" : undefined}>
+                      {s.name}
+                    </li>
+                  </Link>
                 ))}
             </ul>
           </s.SessionListWrapper>

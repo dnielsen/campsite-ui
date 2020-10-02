@@ -53,24 +53,20 @@ export const SessionListWrapper = styled.div`
 
   ul {
     padding: 0;
-    margin: 0;
     list-style: none;
-    margin-top: 20px;
+    margin: 20px 0 0;
   }
 
-  ul li {
-    margin-bottom: 20px;
+  li {
     border-bottom: 1px solid #ccc;
-    padding-bottom: 12px;
-    font-size: 14px;
+    padding: 0.8em;
+    font-size: 0.9em;
     color: #414141;
     font-weight: 500;
   }
 
-  ul li.active {
+  .active {
     background: #f5f5f5;
-    padding: 10px 5px;
-    border: 1px solid #ccc;
   }
 `;
 
