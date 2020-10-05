@@ -67,7 +67,7 @@ function FullSession() {
                       </Link>
                     </s.SpeakerPhoto>
                     <s.SpeakerName>
-                      <Link to={`speakers/${speaker.id}`}>{speaker.name}</Link>
+                      <Link to={`/speakers/${speaker.id}`}>{speaker.name}</Link>
                     </s.SpeakerName>
                     <s.SpeakerTitle>{speaker.headline}</s.SpeakerTitle>
                     <spkStyles.SpeakerSocialMedia>
