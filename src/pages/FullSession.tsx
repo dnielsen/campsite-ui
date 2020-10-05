@@ -6,6 +6,11 @@ import util from "../common/util";
 import * as s from "../styled/sessionStyles";
 import * as spkStyles from "../styled/speakerStyles";
 import { StyledSessionDescription } from "../styled/styledSession";
+import {
+  FlexWrapper,
+  SpeakerFlexWrapper,
+  SpeakerWrapper,
+} from "../styled/sessionStyles";
 
 function FullSession() {
   const { id } = useParams<{ id: string }>();
@@ -56,9 +61,9 @@ function FullSession() {
             <p>{session.description}</p>
           </StyledSessionDescription>
           {session.speakers && (
-            <>
-              <h2>Speaker(s)</h2>
-              <s.FlexWrapperSpeakers>
+            <SpeakerWrapper>
+              <h2>Speakers</h2>
+              <SpeakerFlexWrapper>
                 {session.speakers.map((speaker) => (
                   <s.SpeakerContent key={speaker.id}>
                     <s.SpeakerPhoto>
@@ -86,8 +91,8 @@ function FullSession() {
                     </spkStyles.SpeakerSocialMedia>
                   </s.SpeakerContent>
                 ))}
-              </s.FlexWrapperSpeakers>
-            </>
+              </SpeakerFlexWrapper>
+            </SpeakerWrapper>
           )}
         </s.SessionDetailWrapper>
       </s.FlexWrapper>

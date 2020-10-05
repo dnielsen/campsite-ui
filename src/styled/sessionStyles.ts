@@ -19,14 +19,15 @@ export const FlexWrapper = styled.div`
   flex-wrap: wrap;
 
   @media (max-width: 991px) {
-    flex-direction: column;
+    display: block;
   }
 `;
 
-export const FlexWrapperSpeakers = styled.div`
+export const SpeakerFlexWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  height: 50%;
 `;
 
 export const SessionListWrapper = styled.div`
@@ -70,11 +71,13 @@ export const SessionListWrapper = styled.div`
   }
 `;
 
+export const SpeakerWrapper = styled.div``;
+
 export const SessionDetailWrapper = styled.div`
   flex: 1;
   position: relative;
   background: #fff;
-  padding: 15px;
+  padding: 0.6em;
   border-radius: 8px;
   border: 1px solid #e3e3e3;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.18);
@@ -89,7 +92,7 @@ export const SessionDetailWrapper = styled.div`
   }
 
   p {
-    font-size: 14px;
+    font-size: 1em;
     color: #414141;
   }
 `;
