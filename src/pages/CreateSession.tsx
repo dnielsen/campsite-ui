@@ -22,8 +22,10 @@ function CreateSession() {
   });
 
   if (speakersLoading || eventsLoading) return <div>loading...</div>;
-  if (speakersError) return <div>error: {speakersError.message}</div>;
-  if (eventsError) return <div>error: {eventsError.message}</div>;
+  if (speakersError)
+    return <div>something went wrong: {speakersError.message}</div>;
+  if (eventsError)
+    return <div>something went wrong: {eventsError.message}</div>;
 
   if (events.length === 0) return <div>Create an event first.</div>;
   if (speakers.length === 0) return <div>Create a speaker first.</div>;

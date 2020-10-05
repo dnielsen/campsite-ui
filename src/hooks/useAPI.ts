@@ -14,13 +14,12 @@ export default function useAPI<T>(route: string): UseResource<T> {
 
   useEffect(() => {
     async function fetchData() {
-      try {
-        const jsonData = await fetch(`${BASE_API_URL}${route}`).then((res) =>
-          res.json(),
-        );
+      const res = await fetch(`${BASE_API_URL}${route}`);
+      if (!res.ok) {
+        setError(new Error(res.statusText));
+      } else {
+        const jsonData = await res.json();
         setData(jsonData);
-      } catch (e) {
-        setError(e);
       }
       setLoading(false);
     }
