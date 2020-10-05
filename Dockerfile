@@ -1,18 +1,32 @@
-FROM node:12-alpine
+# Stage 1
+FROM node:12.16.2-alpine AS builder
 
-# Update packages.
 RUN apk update
 
-# Create the app directory.
-WORKDIR /code
+WORKDIR /usr/src/app
 
-# Copy configs.
-COPY . .
+COPY package.json ./
+COPY yarn.lock ./
+COPY tsconfig.json ./
 
-RUN yarn && \
-  yarn build:microservice && \
+RUN yarn install
+
+COPY ./src ./src
+COPY ./public ./public
+
+RUN yarn build:dev
+
+# Stage 2
+FROM node:12.16.2-alpine
+
+WORKDIR /usr/src/app
+
+RUN yarn init -y && \
+  yarn add serve && \
   yarn cache clean
+
+COPY --from=builder /usr/src/app/build ./build
 
 EXPOSE 3000
 
-CMD ["yarn", "serve"]
+CMD ["yarn", "serve", "-s", "build", "-l", "3000"]
