@@ -12,7 +12,6 @@ import {
   StyledNavLogoWrapper,
   StyledUl,
 } from "../styled/styledHeader";
-import { StyledContainer } from "../styled/styledCommon";
 
 const ROUTES: { text: string; href: string }[] = [
   {
@@ -30,6 +29,10 @@ const ROUTES: { text: string; href: string }[] = [
   {
     text: "Create speaker",
     href: "/speakers/create",
+  },
+  {
+    text: "Sign in",
+    href: "/auth/sign-in",
   },
 ];
 

@@ -13,11 +13,15 @@ export default function useCreateSpeakerFormProps(): FormProps<
   const history = useHistory();
 
   async function onSubmit(input: FormSpeakerInput) {
+    const token = localStorage.getItem("token");
     // Send a request to create the speaker.
-    console.log(input);
     const createdSpeaker = (await fetch(BASE_SPEAKER_API_URL, {
       method: "POST",
       body: JSON.stringify(input),
+      // @ts-ignore
+      headers: {
+        Authorization: token,
+      },
     }).then((res) => res.json())) as SpeakerPreview;
     // Redirect to the created speaker page.
     history.push(`/speakers/${createdSpeaker.id}`);

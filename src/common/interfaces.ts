@@ -103,3 +103,8 @@ export interface FormProps<T> {
 export interface Upload {
   url: string;
 }
+
+export interface FormSignInInput {
+  email: string;
+  password: string;
+}
