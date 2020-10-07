@@ -6,9 +6,9 @@ import {
   Session,
 } from "../common/interfaces";
 import { BASE_SESSION_API_URL } from "../common/constants";
-import util from "../common/util";
 import useAPI from "./useAPI";
 import { useHistory } from "react-router-dom";
+import dateUtil from "../common/dateUtil";
 
 interface Props {
   id: string;
@@ -47,8 +47,8 @@ export default function useEditSessionFormProps(
         name: session.name,
         description: session.description,
         url: session.url,
-        startDate: util.getDateFormValue(session.startDate),
-        endDate: util.getDateFormValue(session.endDate),
+        startDate: dateUtil.getDateFormValue(session.startDate),
+        endDate: dateUtil.getDateFormValue(session.endDate),
         speakerIds: session.speakers
           ? session.speakers.map((speaker) => speaker.id)
           : [],

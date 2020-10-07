@@ -6,9 +6,9 @@ import {
   FormProps,
 } from "../common/interfaces";
 import { BASE_EVENT_API_URL } from "../common/constants";
-import util from "../common/util";
 import useAPI from "./useAPI";
 import { useHistory } from "react-router-dom";
+import dateUtil from "../common/dateUtil";
 
 interface Props {
   id: string;
@@ -49,8 +49,8 @@ export default function useEditEventFormProps(
         address: eventDetails.address,
         organizerName: eventDetails.organizerName,
         photo: eventDetails.photo,
-        startDate: util.getDateFormValue(eventDetails.startDate),
-        endDate: util.getDateFormValue(eventDetails.endDate),
+        startDate: dateUtil.getDateFormValue(eventDetails.startDate),
+        endDate: dateUtil.getDateFormValue(eventDetails.endDate),
       }
     : {
         name: "",

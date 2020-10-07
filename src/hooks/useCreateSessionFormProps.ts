@@ -7,7 +7,7 @@ import {
 } from "../common/interfaces";
 import { BASE_SESSION_API_URL } from "../common/constants";
 import { useHistory } from "react-router-dom";
-import util from "../common/util";
+import dateUtil from "../common/dateUtil";
 
 interface Props {
   eventId: string;
@@ -41,8 +41,8 @@ export default function useCreateSessionFormProps(
     name: "",
     description: "",
     url: "",
-    startDate: util.getDateFormValue(now),
-    endDate: util.getDateFormValue(now),
+    startDate: dateUtil.getDateFormValue(now),
+    endDate: dateUtil.getDateFormValue(now),
     eventId: props.eventId ?? "",
     speakerIds: [],
   };

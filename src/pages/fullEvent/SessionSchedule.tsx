@@ -1,7 +1,7 @@
 import React from "react";
 import { Session } from "../../common/interfaces";
-import util from "../../common/util";
 import { Link } from "react-router-dom";
+import dateUtil from "../../common/dateUtil";
 
 interface Props {
   sessions: Session[];
@@ -26,7 +26,10 @@ function SessionSchedule(props: Props) {
                 <Link to={`/sessions/${session.id}`}>{session.name}</Link>
               </td>
               <td>
-                {util.getHourRangeString(session.startDate, session.endDate)}{" "}
+                {dateUtil.getHourRangeString(
+                  session.startDate,
+                  session.endDate,
+                )}{" "}
               </td>
               <td>
                 {session.speakers.map((speaker) => (

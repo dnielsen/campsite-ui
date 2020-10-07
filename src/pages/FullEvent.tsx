@@ -1,12 +1,12 @@
 import React from "react";
 import { EventDetails, Session } from "../common/interfaces";
 import useAPI from "../hooks/useAPI";
-import util from "../common/util";
 import { Link, useParams } from "react-router-dom";
 import * as s from "../styled/homeStyles";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { StyledEventSessionSpeakerWrapper } from "../styled/eventStyles";
 import { StyledH4, StyledMobilePaddingWrapper } from "src/styled/styledCommon";
+import dateUtil from "../common/dateUtil";
 
 interface SessionDays {
   [key: number]: Session[];
@@ -24,38 +24,29 @@ function FullEvent() {
   // TODO: clean it up/refactor
   const sessionDays: SessionDays = {};
   if (eventDetails.sessions) {
+    // We could make it slightly more performant by utilizing the classic for loop
+    // and just taking slices whenever day diff between points A and B is >= 1,
+    // but we'll skip it for now.
     eventDetails.sessions.forEach((session) => {
-      const dayNum = util.getDayDiff(session.startDate, eventDetails.startDate);
-      if (sessionDays[dayNum]) {
-        sessionDays[dayNum] = [...sessionDays[dayNum], session];
-      } else {
-        sessionDays[dayNum] = [session];
-      }
-    });
-
-    // Sort the sessions by date, the earliest come first.
-    Object.entries(sessionDays).forEach(([dayNum, sessions]) => {
-      sessionDays[parseInt(dayNum)] = sessions.sort(
-        (a: Session, b: Session) =>
-          new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
+      const dayNum = dateUtil.getDayDiff(
+        session.startDate,
+        eventDetails.startDate,
       );
+
+      sessionDays[dayNum] = sessionDays[dayNum]
+        ? // When session on such day already exist, concat it to the existing array.
+          [...sessionDays[dayNum], session]
+        : // When undefined (this day num occurs for the first time),
+          // create a new array with a session.
+          [session];
     });
-  }
-
-  // TODO: do it on the backend side
-  if (eventDetails.sessions) {
-    const eventSpeakersWithDuplicates = eventDetails.sessions
-      .map((session) => session.speakers || [])
-      .flat();
-
-    eventDetails.speakers = util.getUniqueSpeakers(eventSpeakersWithDuplicates);
   }
 
   return (
     <div>
       <s.BannerSection>
         <p>
-          {util.getDateRangeString(
+          {dateUtil.getDateRangeString(
             eventDetails.startDate,
             eventDetails.endDate,
           )}
@@ -65,7 +56,6 @@ function FullEvent() {
       <s.SelectSeatButton>
         <a href={eventDetails.registrationUrl}>Save your seat!</a>
       </s.SelectSeatButton>
-
       <s.LearnFromBestLogos>
         <p>Learn from the best:</p>
         <s.BrandImages>
@@ -206,7 +196,7 @@ function FullEvent() {
                         <div>
                           <h2>
                             DAY {dayNum} Opening -{" "}
-                            {util.getHourDate(sortedSessions[0].startDate)}
+                            {dateUtil.getHourDate(sortedSessions[0].startDate)}
                           </h2>
                         </div>
                         {sortedSessions.map((session: Session) => (
@@ -232,7 +222,7 @@ function FullEvent() {
                                     ))}
                                 </s.PanelImages>
                                 <s.TimeLimit>
-                                  {util.getHourRangeString(
+                                  {dateUtil.getHourRangeString(
                                     session.startDate,
                                     session.endDate,
                                   )}

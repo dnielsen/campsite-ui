@@ -7,7 +7,7 @@ import {
   FormProps,
 } from "../common/interfaces";
 import { BASE_EVENT_API_URL } from "../common/constants";
-import util from "../common/util";
+import dateUtil from "../common/dateUtil";
 
 export default function useCreateEventFormProps(): FormProps<FormEventInput> {
   const history = useHistory();
@@ -39,8 +39,8 @@ export default function useCreateEventFormProps(): FormProps<FormEventInput> {
     address: "",
     organizerName: "",
     photo: "",
-    startDate: util.getDateFormValue(now),
-    endDate: util.getDateFormValue(now),
+    startDate: dateUtil.getDateFormValue(now),
+    endDate: dateUtil.getDateFormValue(now),
   };
 
   const validationSchema = Yup.object().shape({

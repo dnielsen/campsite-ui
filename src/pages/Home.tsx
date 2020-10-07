@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import useAPI from "../hooks/useAPI";
 import { EventDetails } from "../common/interfaces";
 import * as s from "../styled/eventStyles";
-import util from "../common/util";
 import { StyledAnchorButton } from "../styled/eventStyles";
 import { StyledContainer } from "../styled/styledCommon";
+import dateUtil from "../common/dateUtil";
 
 function Home() {
   const { data: events, loading, error } = useAPI<EventDetails[]>("/events");
@@ -36,7 +36,7 @@ function Home() {
                   </s.EventHeading>
                   <p>
                     <i className="fa fa-calendar mr-2" aria-hidden="true" />
-                    {util.getFullDateString(eventDetails.startDate)}
+                    {dateUtil.getFullDateString(eventDetails.startDate)}
                   </p>
                   <p>
                     <i className="fa fa-map-marker mr-2" aria-hidden="true" />

@@ -3,7 +3,6 @@ import useAPI from "../hooks/useAPI";
 import { Speaker } from "../common/interfaces";
 import { Link, useParams } from "react-router-dom";
 import * as s from "../styled/speakerStyles";
-import util from "../common/util";
 import { SpeakerDataWrapper } from "../styled/speakerStyles";
 import { StyledContainer } from "../styled/styledCommon";
 import {
@@ -12,6 +11,7 @@ import {
   StyledSpeakerSessionStartDate,
   StyledWatch,
 } from "../styled/styledSpeaker";
+import dateUtil from "../common/dateUtil";
 
 function FullSpeaker() {
   const { id } = useParams<{ id: string }>();
@@ -64,7 +64,7 @@ function FullSpeaker() {
                       <Link to={`/sessions/${session.id}`}>{session.name}</Link>
                     </StyledSpeakerSessionName>
                     <StyledSpeakerSessionStartDate>
-                      {util.getFullDateString(session.startDate)}
+                      {dateUtil.getFullDateString(session.startDate)}
                     </StyledSpeakerSessionStartDate>
                     <StyledWatch>
                       <Link to={`/sessions/${session.id}`}>Watch</Link>

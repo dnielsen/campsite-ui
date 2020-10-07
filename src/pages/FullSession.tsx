@@ -2,11 +2,11 @@ import React from "react";
 import useAPI from "../hooks/useAPI";
 import { Session } from "../common/interfaces";
 import { Link, useParams } from "react-router-dom";
-import util from "../common/util";
 import * as s from "../styled/sessionStyles";
 import * as spkStyles from "../styled/speakerStyles";
 import { StyledSessionDescription } from "../styled/styledSession";
 import { SpeakerFlexWrapper, SpeakerWrapper } from "../styled/sessionStyles";
+import dateUtil from "../common/dateUtil";
 
 function FullSession() {
   const { id } = useParams<{ id: string }>();
@@ -36,7 +36,7 @@ function FullSession() {
         <s.SessionDetailWrapper>
           <spkStyles.SpeakerSessionScheduleWrapper>
             <p>{session.name}</p>
-            <p>{util.getFullDateString(session.startDate)}</p>
+            <p>{dateUtil.getFullDateString(session.startDate)}</p>
             <p>
               <Link to={`/sessions/${session.id}`}>Watch</Link>
             </p>
