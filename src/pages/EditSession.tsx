@@ -4,6 +4,7 @@ import SessionForm from "../components/SessionForm";
 import useEditSessionFormProps from "../hooks/useEditSessionFormProps";
 import useAPI from "../hooks/useAPI";
 import { EventDetails, SpeakerPreview } from "../common/interfaces";
+import { StyledH2 } from "../styled/styledCommon";
 
 function EditSession() {
   const { id } = useParams<{ id: string }>();
@@ -24,7 +25,7 @@ function EditSession() {
   if (eventsError) return <div>error: {eventsError.message}</div>;
   return (
     <div>
-      <h3>Edit Session</h3>
+      <StyledH2>Edit Session</StyledH2>
       <SessionForm speakers={speakers} events={events} formProps={formProps} />
     </div>
   );

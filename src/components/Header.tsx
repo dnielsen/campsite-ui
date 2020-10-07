@@ -12,7 +12,6 @@ import {
   StyledNavLogoWrapper,
   StyledUl,
 } from "../styled/styledHeader";
-import { StyledContainer } from "../styled/styledCommon";
 
 const ROUTES: { text: string; href: string }[] = [
   {

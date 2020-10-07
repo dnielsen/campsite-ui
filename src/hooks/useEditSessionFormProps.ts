@@ -1,14 +1,11 @@
 import * as Yup from "yup";
 import {
-  EventDetails,
-  FetchEventInput,
   FetchSessionInput,
-  FormEventInput,
   FormProps,
   FormSessionInput,
   Session,
 } from "../common/interfaces";
-import { BASE_EVENT_API_URL, BASE_SESSION_API_URL } from "../common/constants";
+import { BASE_SESSION_API_URL } from "../common/constants";
 import util from "../common/util";
 import useAPI from "./useAPI";
 import { useHistory } from "react-router-dom";

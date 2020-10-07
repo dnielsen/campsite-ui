@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, FieldProps, FormikProps } from "formik";
+import { Field, FieldProps } from "formik";
 import { StyledCheckboxWrapper } from "../styled/styledForm";
 
 interface Props {

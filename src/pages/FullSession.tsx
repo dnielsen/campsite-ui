@@ -6,11 +6,7 @@ import util from "../common/util";
 import * as s from "../styled/sessionStyles";
 import * as spkStyles from "../styled/speakerStyles";
 import { StyledSessionDescription } from "../styled/styledSession";
-import {
-  FlexWrapper,
-  SpeakerFlexWrapper,
-  SpeakerWrapper,
-} from "../styled/sessionStyles";
+import { SpeakerFlexWrapper, SpeakerWrapper } from "../styled/sessionStyles";
 
 function FullSession() {
   const { id } = useParams<{ id: string }>();

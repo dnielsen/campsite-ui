@@ -1,5 +1,5 @@
 import moment from "moment-timezone";
-import { Option, SpeakerPreview } from "./interfaces";
+import { SpeakerPreview } from "./interfaces";
 
 const TIMEZONE = "America/Los_Angeles";
 

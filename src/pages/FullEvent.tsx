@@ -21,10 +21,10 @@ function FullEvent() {
   if (loading) return <div>loading...</div>;
   if (error) return <div>something went wrong: {error.message}</div>;
 
-  // TODO: clean it up
+  // TODO: clean it up/refactor
   const sessionDays: SessionDays = {};
   if (eventDetails.sessions) {
-    eventDetails.sessions.map((session) => {
+    eventDetails.sessions.forEach((session) => {
       const dayNum = util.getDayDiff(session.startDate, eventDetails.startDate);
       if (sessionDays[dayNum]) {
         sessionDays[dayNum] = [...sessionDays[dayNum], session];
@@ -124,6 +124,7 @@ function FullEvent() {
                 <img
                   width="44"
                   src="https://uploads-ssl.webflow.com/5f329fb0017255d9d0baddec/5f329fb1fd8a91959a5cd40b_smartphone-tablet.svg"
+                  alt="100% live"
                 />
               </s.CircleImageWrapper>
               <h4>100% live</h4>
@@ -136,6 +137,7 @@ function FullEvent() {
                 <img
                   width="44"
                   src="https://uploads-ssl.webflow.com/5f329fb0017255d9d0baddec/5f329fb1fd8a9157e55cd435_icon-heart.svg"
+                  alt="Good Vibes"
                 />
               </s.CircleImageWrapper>
               <h4>Good vibes only</h4>
@@ -146,6 +148,7 @@ function FullEvent() {
                 <img
                   width="44"
                   src="https://uploads-ssl.webflow.com/5f329fb0017255d9d0baddec/5f329fb1fd8a9157ca5cd433_icon-x.svg"
+                  alt="No Bullshit"
                 />
               </s.CircleImageWrapper>
               <h4>No bullsh*t</h4>
@@ -242,8 +245,22 @@ function FullEvent() {
                     ),
                   )}
                   <s.KeepInMindText>
-                    &quot;❗ All timings are displayed in 🕤 Pacific Time Zone
-                    (PDT) 🕛 ❗&quot;{" "}
+                    &quot;
+                    <span role="img" aria-label={"Warning"}>
+                      ❗
+                    </span>{" "}
+                    All timings are displayed in{" "}
+                    <span role="img" aria-label="Clock">
+                      🕛
+                    </span>{" "}
+                    Pacific Time Zone (PDT){" "}
+                    <span role="img" aria-label="Clock">
+                      🕛
+                    </span>{" "}
+                    <span role="img" aria-label="Warning">
+                      ❗
+                    </span>
+                    &quot;{" "}
                   </s.KeepInMindText>
                 </s.TabContent>
               </Tabs>
@@ -314,7 +331,7 @@ function FullEvent() {
             {" "}
             <img
               src="https://uploads-ssl.webflow.com/5f329fb0017255d9d0baddec/5f3a7e64ecda612e4c4ab82e_Jerome_Remote%20Future%20Summit.jpg"
-              alt="speaker-image"
+              alt="organizer"
             />
           </s.OrganizerImage>
         </s.SectionAboutOrganizer>
