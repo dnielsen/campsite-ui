@@ -15,7 +15,18 @@ const tracer = new Tracer({
   localServiceName: "ui", // name of this application
 });
 
-//@ts-ignore
-const zipkinFetch = wrapFetch(fetch, { tracer, remoteServiceName: "server" });
+export function zipkinFetch() {
+  //@ts-ignore
+  return wrapFetch(fetch, { tracer, remoteServiceName: "server" });
+}
+
+export function authFetch(input: Request | string, init?: RequestInit) {
+  const token = localStorage.getItem("token") ?? "";
+  // @ts-ignore
+  return fetch(input, {
+    ...init,
+    headers: { ...init?.headers, Authorization: token },
+  });
+}
 
 export default zipkinFetch;

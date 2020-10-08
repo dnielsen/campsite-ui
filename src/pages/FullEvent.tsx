@@ -93,7 +93,7 @@ function FullEvent() {
               we want Remote Future Summit 2020 to be an event to connect with
               each other, be sincere about struggles, and discuss our
               relationships with remote teams, decreased visibility, and
-              wellbeing.
+              well-being.
             </p>
             {/*temporary solution, there should be just an anchor tag but then the styling would change*/}
             <a href={eventDetails.registrationUrl}>

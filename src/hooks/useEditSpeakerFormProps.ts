@@ -7,6 +7,7 @@ import {
 import { BASE_SPEAKER_API_URL } from "../common/constants";
 import useAPI from "./useAPI";
 import { useHistory } from "react-router-dom";
+import { authFetch } from "../common/fetch";
 
 interface Props {
   id: string;
@@ -20,10 +21,15 @@ export default function useEditSpeakerFormProps(
 
   async function onSubmit(input: FormSpeakerInput) {
     // Send a request to edit the speaker with the input.
-    await fetch(`${BASE_SPEAKER_API_URL}/${props.id}`, {
+    const res = await authFetch(`${BASE_SPEAKER_API_URL}/${props.id}`, {
       method: "PUT",
       body: JSON.stringify(input),
     });
+
+    if (!res.ok) {
+      history.push("/auth/sign-in");
+      return;
+    }
 
     // Redirect to the edited speaker page.
     history.push(`/speakers/${props.id}`);

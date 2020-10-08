@@ -8,6 +8,7 @@ import {
 } from "../common/interfaces";
 import { BASE_EVENT_API_URL } from "../common/constants";
 import util from "../common/util";
+import { authFetch } from "../common/fetch";
 
 export default function useCreateEventFormProps(): FormProps<FormEventInput> {
   const history = useHistory();
@@ -23,11 +24,17 @@ export default function useCreateEventFormProps(): FormProps<FormEventInput> {
     };
 
     // Send a request to create the event with the input.
-    const createdEvent = (await fetch(BASE_EVENT_API_URL, {
+    const res = await authFetch(BASE_EVENT_API_URL, {
       method: "POST",
       body: JSON.stringify(fetchInput),
-    }).then((res) => res.json())) as EventDetails;
+    });
 
+    if (!res.ok) {
+      history.push("/auth/sign-in");
+      return;
+    }
+
+    const createdEvent = (await res.json()) as EventDetails;
     // Redirect to the created session page.
     history.push(`/events/${createdEvent.id}`);
   }

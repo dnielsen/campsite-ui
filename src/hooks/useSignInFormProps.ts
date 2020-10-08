@@ -1,9 +1,5 @@
 import * as Yup from "yup";
-import {
-  FormEventInput,
-  FormProps,
-  FormSignInInput,
-} from "../common/interfaces";
+import { FormProps, FormSignInInput } from "../common/interfaces";
 import { BASE_AUTH_API_URL } from "../common/constants";
 import { useHistory } from "react-router-dom";
 
@@ -25,7 +21,6 @@ export default function useSignInFormProps(): FormProps<FormSignInInput> {
     } else {
       const token = await res.text();
       localStorage.setItem("token", token);
-
       // Redirect to the homepage.
       history.push("/");
     }

@@ -53,9 +53,6 @@ function Home() {
                       : eventDetails.description}
                   </s.EventDescription>
                 </div>
-                <div>
-                  <StyledAnchorButton href={"/"}>Register</StyledAnchorButton>
-                </div>
               </s.EventContent>
             </s.Event>
           ))}

@@ -9,6 +9,7 @@ import { BASE_EVENT_API_URL } from "../common/constants";
 import util from "../common/util";
 import useAPI from "./useAPI";
 import { useHistory } from "react-router-dom";
+import { authFetch } from "../common/fetch";
 
 interface Props {
   id: string;
@@ -31,10 +32,15 @@ export default function useEditEventFormProps(
     };
 
     // Send a request to edit the event with the input.
-    await fetch(`${BASE_EVENT_API_URL}/${props.id}`, {
+    const res = await authFetch(`${BASE_EVENT_API_URL}/${props.id}`, {
       method: "PUT",
       body: JSON.stringify(fetchInput),
     });
+
+    if (!res.ok) {
+      history.push("/auth/sign-in");
+      return;
+    }
 
     // Redirect to the edited event page.
     history.push(`/events/${props.id}`);

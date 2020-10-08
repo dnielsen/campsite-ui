@@ -8,6 +8,7 @@ import {
 import { BASE_SESSION_API_URL } from "../common/constants";
 import { useHistory } from "react-router-dom";
 import util from "../common/util";
+import { authFetch } from "../common/fetch";
 
 interface Props {
   eventId: string;
@@ -27,10 +28,17 @@ export default function useCreateSessionFormProps(
     };
 
     // Send a request to create the session.
-    const createdSession = (await fetch(`${BASE_SESSION_API_URL}`, {
+    const res = await authFetch(`${BASE_SESSION_API_URL}`, {
       method: "POST",
       body: JSON.stringify(fetchInput),
-    }).then((res) => res.json())) as SessionPreview;
+    });
+
+    if (!res.ok) {
+      history.push("/auth/sign-in");
+      return;
+    }
+
+    const createdSession = (await res.json()) as SessionPreview;
     // Redirect to the created session page.
     history.push(`/sessions/${createdSession.id}`);
   }
