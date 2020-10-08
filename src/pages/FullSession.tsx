@@ -1,6 +1,4 @@
 import React from "react";
-import useAPI from "../hooks/useAPI";
-import { Session } from "../common/interfaces";
 import { Link, useParams } from "react-router-dom";
 import util from "../common/util";
 import * as s from "../styled/sessionStyles";
@@ -8,6 +6,8 @@ import * as spkStyles from "../styled/speakerStyles";
 import { StyledSessionDescription } from "../styled/styledSession";
 import { SpeakerFlexWrapper, SpeakerWrapper } from "../styled/sessionStyles";
 import Comments from "./fullSession/Comments";
+import useAPI from "../hooks/useAPI";
+import { Session } from "../common/interfaces";
 
 function FullSession() {
   const { id } = useParams<{ id: string }>();
@@ -53,7 +53,7 @@ function FullSession() {
               allowFullScreen
             />
           </s.VideoWrapper>
-          <Comments comments={session.comments} />
+          <Comments comments={session.comments || []} />
           <StyledSessionDescription>
             <h2>Description</h2>
             <p>{session.description}</p>

@@ -1,23 +1,16 @@
 import * as Yup from "yup";
 import { useHistory, useParams } from "react-router-dom";
-import { FormCommentInput } from "../common/interfaces";
+import { FormCommentInput, FormProps } from "../common/interfaces";
 import { BASE_SESSION_API_URL } from "../common/constants";
 import { authFetch } from "../common/fetch";
-import { useState } from "react";
-import { Comment } from "../common/interfaces";
 
-export default function useComments(
-  fetchedComments: Comment[] | undefined,
-): {
-  comments: Comment[] | undefined;
-  // TODO: remove any
-  formProps: any;
-} {
-  const [comments, setComments] = useState(fetchedComments);
+export default function useCreateCommentFormProps(): FormProps<
+  FormCommentInput
+> {
   const history = useHistory();
   const { id: sessionId } = useParams<{ id: string }>();
 
-  async function onSubmit(input: FormCommentInput, { resetForm }: any) {
+  async function onSubmit(input: FormCommentInput) {
     // Send a request to create the speaker.
     const res = await authFetch(
       `${BASE_SESSION_API_URL}/${sessionId}/comments`,
@@ -29,11 +22,10 @@ export default function useComments(
 
     if (!res.ok) {
       history.push("/auth/sign-in");
-    } else {
-      const createdComment = (await res.json()) as Comment;
-      setComments(comments ? [...comments, createdComment] : [createdComment]);
-      resetForm();
+      return;
     }
+
+    history.go(0);
   }
 
   const initialValues: FormCommentInput = {
@@ -42,14 +34,9 @@ export default function useComments(
 
   const validationSchema = Yup.object().shape({});
 
-  const formProps = {
-    initialValues,
-    onSubmit,
-    validationSchema,
-  };
-
   return {
-    comments,
-    formProps,
+    onSubmit,
+    initialValues,
+    validationSchema,
   };
 }
