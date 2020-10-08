@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import { useHistory, useParams } from "react-router-dom";
-import { FormCommentInput, FormProps } from "../common/interfaces";
+import { FormCommentInput } from "../common/interfaces";
 import { BASE_SESSION_API_URL } from "../common/constants";
 import { authFetch } from "../common/fetch";
 import { useState } from "react";
@@ -10,6 +10,7 @@ export default function useComments(
   fetchedComments: Comment[] | undefined,
 ): {
   comments: Comment[] | undefined;
+  // TODO: remove any
   formProps: any;
 } {
   const [comments, setComments] = useState(fetchedComments);
