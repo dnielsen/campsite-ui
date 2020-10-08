@@ -21,34 +21,22 @@ function FullEvent() {
   if (loading) return <div>loading...</div>;
   if (error) return <div>something went wrong: {error.message}</div>;
 
-  // TODO: clean it up
+  // TODO: clean it up/refactor
   const sessionDays: SessionDays = {};
   if (eventDetails.sessions) {
-    eventDetails.sessions.map((session) => {
+    // We could make it slightly more performant by utilizing the classic for loop
+    // and just taking slices whenever day diff between points A and B is >= 1,
+    // but we'll skip it for now.
+    eventDetails.sessions.forEach((session) => {
       const dayNum = util.getDayDiff(session.startDate, eventDetails.startDate);
-      if (sessionDays[dayNum]) {
-        sessionDays[dayNum] = [...sessionDays[dayNum], session];
-      } else {
-        sessionDays[dayNum] = [session];
-      }
+
+      sessionDays[dayNum] = sessionDays[dayNum]
+        ? // When session on such day already exist, concat it to the existing array.
+          [...sessionDays[dayNum], session]
+        : // When undefined (this day num occurs for the first time),
+          // create a new array with a session.
+          [session];
     });
-
-    // Sort the sessions by date, the earliest come first.
-    Object.entries(sessionDays).forEach(([dayNum, sessions]) => {
-      sessionDays[parseInt(dayNum)] = sessions.sort(
-        (a: Session, b: Session) =>
-          new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
-      );
-    });
-  }
-
-  // TODO: do it on the backend side
-  if (eventDetails.sessions) {
-    const eventSpeakersWithDuplicates = eventDetails.sessions
-      .map((session) => session.speakers || [])
-      .flat();
-
-    eventDetails.speakers = util.getUniqueSpeakers(eventSpeakersWithDuplicates);
   }
 
   return (
@@ -124,6 +112,7 @@ function FullEvent() {
                 <img
                   width="44"
                   src="https://uploads-ssl.webflow.com/5f329fb0017255d9d0baddec/5f329fb1fd8a91959a5cd40b_smartphone-tablet.svg"
+                  alt=""
                 />
               </s.CircleImageWrapper>
               <h4>100% live</h4>
@@ -136,6 +125,7 @@ function FullEvent() {
                 <img
                   width="44"
                   src="https://uploads-ssl.webflow.com/5f329fb0017255d9d0baddec/5f329fb1fd8a9157e55cd435_icon-heart.svg"
+                  alt=""
                 />
               </s.CircleImageWrapper>
               <h4>Good vibes only</h4>
@@ -146,6 +136,7 @@ function FullEvent() {
                 <img
                   width="44"
                   src="https://uploads-ssl.webflow.com/5f329fb0017255d9d0baddec/5f329fb1fd8a9157ca5cd433_icon-x.svg"
+                  alt=""
                 />
               </s.CircleImageWrapper>
               <h4>No bullsh*t</h4>

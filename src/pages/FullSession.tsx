@@ -6,11 +6,8 @@ import util from "../common/util";
 import * as s from "../styled/sessionStyles";
 import * as spkStyles from "../styled/speakerStyles";
 import { StyledSessionDescription } from "../styled/styledSession";
-import {
-  FlexWrapper,
-  SpeakerFlexWrapper,
-  SpeakerWrapper,
-} from "../styled/sessionStyles";
+import { SpeakerFlexWrapper, SpeakerWrapper } from "../styled/sessionStyles";
+import Comments from "./fullSession/Comments";
 
 function FullSession() {
   const { id } = useParams<{ id: string }>();
@@ -56,6 +53,7 @@ function FullSession() {
               allowFullScreen
             />
           </s.VideoWrapper>
+          <Comments comments={session.comments} />
           <StyledSessionDescription>
             <h2>Description</h2>
             <p>{session.description}</p>

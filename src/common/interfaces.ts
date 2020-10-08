@@ -34,6 +34,7 @@ export interface Session extends SessionPreview {
   speakers: SpeakerPreview[];
   eventId: string;
   event: EventDetails;
+  comments?: Comment[];
 }
 
 export interface SessionPreview {
@@ -107,4 +108,14 @@ export interface Upload {
 export interface FormSignInInput {
   email: string;
   password: string;
+}
+
+export interface Comment {
+  id: string;
+  content: string;
+  createdAt: Date;
+}
+
+export interface FormCommentInput {
+  content: string;
 }

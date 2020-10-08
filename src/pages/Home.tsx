@@ -4,7 +4,6 @@ import useAPI from "../hooks/useAPI";
 import { EventDetails } from "../common/interfaces";
 import * as s from "../styled/eventStyles";
 import util from "../common/util";
-import { StyledAnchorButton } from "../styled/eventStyles";
 import { StyledContainer } from "../styled/styledCommon";
 
 function Home() {
@@ -17,7 +16,7 @@ function Home() {
         No events in the database. Restart the server to create a sample event.
       </div>
     );
-  // ----
+
   return (
     <StyledContainer>
       <s.EventWrapper>

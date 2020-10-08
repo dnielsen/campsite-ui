@@ -1,5 +1,4 @@
 import moment from "moment-timezone";
-import { Option, SpeakerPreview } from "./interfaces";
 
 const TIMEZONE = "America/Los_Angeles";
 
@@ -20,26 +19,8 @@ function getHourRangeString(startDate: string, endDate: string) {
   return `${startTime} - ${endTime}`;
 }
 
-function getFullDateString(date: string) {
+function getFullDateString(date: string | Date) {
   return moment(date).tz(TIMEZONE).format("MM/DD/YYYY h:mma z");
-}
-
-function getUniqueElementsFromMultidimensionalArray(arr: any[]) {
-  return [...new Set(arr.flat())];
-}
-
-function getUniqueSpeakers(speakers: SpeakerPreview[]) {
-  return speakers.reduce((uniqueSpeakers, currSpeaker: SpeakerPreview) => {
-    if (
-      uniqueSpeakers
-        .map((speaker: SpeakerPreview) => speaker.id)
-        .includes(currSpeaker.id)
-    ) {
-      return uniqueSpeakers;
-    } else {
-      return uniqueSpeakers.concat(currSpeaker);
-    }
-  }, [] as SpeakerPreview[]);
 }
 
 // For example: `06/27/2020 5:06 PM`. We need this function
@@ -76,7 +57,7 @@ function getDateRangeString(startDate: string, endDate: string) {
   return `${startTime} - ${endTime}`;
 }
 
-function getHourDate(date: string) {
+function getHourDate(date: string | Date) {
   return moment(date).tz(TIMEZONE).format("hh:mma");
 }
 
@@ -86,8 +67,6 @@ export default {
   getFullDateString,
   getDayDiff,
   getHourDate,
-  getUniqueElementsFromMultidimensionalArray,
   getDateRangeString,
-  getUniqueSpeakers,
   getDateFormValue,
 };
