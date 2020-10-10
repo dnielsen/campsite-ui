@@ -1,53 +1,40 @@
-import React from "react";
-import { Field, Form, Formik, FormikState, FormikValues } from "formik";
+import React, { useEffect } from "react";
+import CommentList from "./comments/CommentList";
+import CreateCommentForm from "./comments/CreateCommentForm";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import {
-  StyledButton,
-  StyledInput,
-  StyledLabel,
-  StyledSection,
-  StyledTextarea,
-} from "../../styled/styledForm";
-import { Comment } from "../../common/interfaces";
-import util from "../../common/util";
-import {
-  StyledCommentContainer,
-  StyledCommentContent,
-  StyledCommentCreatedAt,
-} from "../../styled/styledSession";
-import useCreateCommentFormProps from "../../hooks/useCreateCommentFormProps";
+  getCommentsBySessionId,
+  getMoreCommentsBySessionId,
+} from "../../store/comments/commentsActions";
+import { RootState } from "../../store";
 
-interface Props {
-  comments: Comment[];
-}
+function Comments() {
+  const { id: sessionId } = useParams<{ id: string }>();
+  const dispatch = useDispatch();
+  const {
+    data: { endCursor },
+    loading,
+  } = useSelector((state: RootState) => state.comments);
 
-function Comments(props: Props) {
-  const formProps = useCreateCommentFormProps();
+  useEffect(() => {
+    dispatch(getCommentsBySessionId(sessionId));
+  }, [dispatch, sessionId]);
+
+  function fetchMore() {
+    if (endCursor && !loading)
+      dispatch(getMoreCommentsBySessionId(sessionId, endCursor));
+  }
 
   return (
     <div>
-      {props.comments.map((c) => (
-        <StyledCommentContainer key={c.id}>
-          <StyledCommentContent>{c.content}</StyledCommentContent>
-          <StyledCommentCreatedAt>
-            {util.getFullDateString(c.createdAt)}
-          </StyledCommentCreatedAt>
-        </StyledCommentContainer>
-      ))}
-      <div>
-        <Formik {...formProps}>
-          {({ isSubmitting }: FormikState<FormikValues>) => (
-            <Form noValidate>
-              <StyledSection>
-                <StyledLabel htmlFor="content">Content</StyledLabel>
-                <Field type={"input"} name={"content"} as={StyledInput} />
-              </StyledSection>
-              <StyledButton type={"submit"} disabled={isSubmitting}>
-                Submit
-              </StyledButton>
-            </Form>
-          )}
-        </Formik>
-      </div>
+      <CreateCommentForm sessionId={sessionId} />
+      <CommentList />
+      {endCursor && (
+        <button disabled={loading} onClick={fetchMore}>
+          fetch more
+        </button>
+      )}
     </div>
   );
 }

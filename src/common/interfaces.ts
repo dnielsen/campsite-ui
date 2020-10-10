@@ -119,3 +119,7 @@ export interface Comment {
 export interface FormCommentInput {
   content: string;
 }
+
+export interface PaginatedDataBase {
+  endCursor: string | null;
+}

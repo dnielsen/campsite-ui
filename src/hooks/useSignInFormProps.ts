@@ -1,33 +1,17 @@
 import * as Yup from "yup";
 import { FormProps, FormSignInInput } from "../common/interfaces";
-import { BASE_AUTH_API_URL } from "../common/constants";
+import { signIn } from "../store/auth/authActions";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 export default function useSignInFormProps(): FormProps<FormSignInInput> {
+  const dispatch = useDispatch();
   const history = useHistory();
-
   async function onSubmit(input: FormSignInInput) {
-    // Send a request to edit the event with the input.
-    const res = await fetch(`${BASE_AUTH_API_URL}/sign-in`, {
-      method: "POST",
-      body: JSON.stringify(input),
-      credentials: "include",
-    });
-
-    if (!res.ok) {
-      // It's gonna reload the page when unauthorized.
-      // It's a temporary solution.
-      history.go(0);
-    } else {
-      const token = await res.text();
-      localStorage.setItem("token", token);
-      // Redirect to the homepage.
-      history.push("/");
-    }
+    await dispatch(signIn(input));
+    history.push(`/`);
   }
 
-  // If event details have been fetched then put them in,
-  // else leave the properties empty.
   const initialValues: FormSignInInput = {
     email: "",
     password: "",

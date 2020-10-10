@@ -15,6 +15,7 @@ import EditSpeaker from "./pages/EditSpeaker";
 import EditSession from "./pages/EditSession";
 import { StyledContainer } from "./styled/styledCommon";
 import SignIn from "./pages/SignIn";
+import SignOut from "./pages/SignOut";
 
 function App() {
   return (
@@ -55,6 +56,9 @@ function App() {
             </Route>
             <Route exact path="/auth/sign-in">
               <SignIn />
+            </Route>
+            <Route exact path="/auth/sign-out">
+              <SignOut />
             </Route>
             <Route exact path="/">
               <Home />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import util from "../common/util";
 import * as s from "../styled/sessionStyles";
@@ -6,15 +6,24 @@ import * as spkStyles from "../styled/speakerStyles";
 import { StyledSessionDescription } from "../styled/styledSession";
 import { SpeakerFlexWrapper, SpeakerWrapper } from "../styled/sessionStyles";
 import Comments from "./fullSession/Comments";
-import useAPI from "../hooks/useAPI";
-import { Session } from "../common/interfaces";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store";
+import { getSessionById } from "../store/session/sessionActions";
 
 function FullSession() {
   const { id } = useParams<{ id: string }>();
-  const { data: session, loading, error } = useAPI<Session>(`/sessions/${id}`);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getSessionById(id));
+  }, [dispatch, id]);
+
+  const { data: session, loading, error } = useSelector(
+    (state: RootState) => state.session,
+  );
 
   if (loading) return <div>loading...</div>;
   if (error) return <div>something went wrong: {error.message}</div>;
+  if (!session) return <div>something went wrong</div>;
 
   return (
     <s.SessionWrapper>
@@ -53,7 +62,7 @@ function FullSession() {
               allowFullScreen
             />
           </s.VideoWrapper>
-          <Comments comments={session.comments || []} />
+          <Comments />
           <StyledSessionDescription>
             <h2>Description</h2>
             <p>{session.description}</p>

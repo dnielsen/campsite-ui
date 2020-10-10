@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   StyledBurgerButton,
@@ -12,8 +12,19 @@ import {
   StyledNavLogoWrapper,
   StyledUl,
 } from "../styled/styledHeader";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
-const ROUTES: { text: string; href: string }[] = [
+interface Route {
+  text: string;
+  href: string;
+  // true: visible only when authenticated
+  // false: visible only when unauthenticated
+  // null: visible always
+  auth?: boolean;
+}
+
+const ROUTES: Route[] = [
   {
     text: "Speakers",
     href: "/speakers",
@@ -33,10 +44,32 @@ const ROUTES: { text: string; href: string }[] = [
   {
     text: "Sign in",
     href: "/auth/sign-in",
+    auth: false,
+  },
+  {
+    text: "Sign out",
+    href: "/auth/sign-out",
+    auth: true,
   },
 ];
 
 function Header() {
+  const [routes, setRoutes] = useState<Route[]>(ROUTES);
+  const {
+    data: { token },
+  } = useSelector((state: RootState) => state.auth);
+
+  // TODO: refactor, currently there are 2 navigations for styling purposes,
+  // although there should be just 1. We don't know how to style the navigation
+  // in CSS correctly so that it's responsive.
+  useEffect(() => {
+    setRoutes(
+      ROUTES.filter(
+        (r) => r.auth === undefined || (r.auth && token) || (!r.auth && !token),
+      ),
+    );
+  }, [token]);
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <StyledHeader>
@@ -53,7 +86,7 @@ function Header() {
             </li>
           </StyledNavLogoWrapper>
           <StyledNavItemsWrapper>
-            {ROUTES.map((r) => (
+            {routes.map((r) => (
               <StyledNavItem key={r.href}>
                 <Link to={r.href}>{r.text}</Link>
               </StyledNavItem>
@@ -69,7 +102,7 @@ function Header() {
       {isMobileMenuOpen && (
         <StyledMobileNav>
           <StyledMobileUl>
-            {ROUTES.map((r) => (
+            {routes.map((r) => (
               <StyledMobileItem key={r.href}>
                 <Link to={r.href}>{r.text}</Link>
               </StyledMobileItem>

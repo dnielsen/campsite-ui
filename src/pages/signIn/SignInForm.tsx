@@ -7,16 +7,12 @@ import {
   StyledLabel,
   StyledSection,
 } from "../../styled/styledForm";
+import useSignInFormProps from "../../hooks/useSignInFormProps";
 
-// A temporary solution, later we might load speakers and events asynchronously,
-// and fetch less data.
-interface Props {
-  formProps: FormProps<FormSignInInput>;
-}
-
-function SignInForm(props: Props) {
+function SignInForm() {
+  const formProps = useSignInFormProps();
   return (
-    <Formik {...props.formProps}>
+    <Formik {...formProps}>
       {({ isSubmitting }: FormikState<FormikValues>) => (
         <Form noValidate>
           <StyledSection>
