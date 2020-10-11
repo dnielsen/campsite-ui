@@ -14,6 +14,7 @@ import EditEvent from "./pages/EditEvent";
 import EditSpeaker from "./pages/EditSpeaker";
 import EditSession from "./pages/EditSession";
 import { StyledContainer } from "./styled/styledCommon";
+import EditSessionRedirect from "./pages/EditSessionRedirect";
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
             </Route>
             <Route exact path="/events/:eventId/sessions/:sessionId">
               <FullSession />
+            </Route>
+            <Route exact path="/events/:eventId/sessions/:sessionId/edit">
+              <EditSessionRedirect />
             </Route>
             <Route exact path="/sessions/:id/edit">
               <EditSession />
