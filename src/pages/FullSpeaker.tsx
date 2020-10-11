@@ -61,13 +61,21 @@ function FullSpeaker() {
                 <div key={session.id}>
                   <s.SpeakerSessionScheduleWrapper>
                     <StyledSpeakerSessionName>
-                      <Link to={`/sessions/${session.id}`}>{session.name}</Link>
+                      <Link
+                        to={`/events/${session.eventId}/sessions/${session.id}`}
+                      >
+                        {session.name}
+                      </Link>
                     </StyledSpeakerSessionName>
                     <StyledSpeakerSessionStartDate>
                       {dateUtil.getFullDateString(session.startDate)}
                     </StyledSpeakerSessionStartDate>
                     <StyledWatch>
-                      <Link to={`/sessions/${session.id}`}>Watch</Link>
+                      <Link
+                        to={`/events/${session.eventId}/sessions/${session.id}`}
+                      >
+                        Watch
+                      </Link>
                     </StyledWatch>
                   </s.SpeakerSessionScheduleWrapper>
                   <StyledSpeakerSessionDescription>

@@ -202,7 +202,9 @@ function FullEvent() {
                         {sortedSessions.map((session: Session) => (
                           <s.PanelDiscussion key={session.id}>
                             <s.topic>
-                              <Link to={`/sessions/${session.id}`}>
+                              <Link
+                                to={`/events/${eventDetails.id}/sessions/${session.id}`}
+                              >
                                 {session.name}
                               </Link>
                               <StyledEventSessionSpeakerWrapper>

@@ -32,7 +32,7 @@ export default function useCreateSessionFormProps(
       body: JSON.stringify(fetchInput),
     }).then((res) => res.json())) as SessionPreview;
     // Redirect to the created session page.
-    history.push(`/sessions/${createdSession.id}`);
+    history.push(`/events/${props.eventId}/sessions/${createdSession.id}`);
   }
 
   // For example: `06/27/2020 5:06 PM`

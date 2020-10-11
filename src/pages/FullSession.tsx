@@ -1,6 +1,6 @@
 import React from "react";
 import useAPI from "../hooks/useAPI";
-import { Session } from "../common/interfaces";
+import { FullSessionParams, Session } from "../common/interfaces";
 import { Link, useParams } from "react-router-dom";
 import * as s from "../styled/sessionStyles";
 import * as spkStyles from "../styled/speakerStyles";
@@ -9,8 +9,10 @@ import { SpeakerFlexWrapper, SpeakerWrapper } from "../styled/sessionStyles";
 import dateUtil from "../common/dateUtil";
 
 function FullSession() {
-  const { id } = useParams<{ id: string }>();
-  const { data: session, loading, error } = useAPI<Session>(`/sessions/${id}`);
+  const { sessionId } = useParams<FullSessionParams>();
+  const { data: session, loading, error } = useAPI<Session>(
+    `/sessions/${sessionId}`,
+  );
 
   if (loading) return <div>loading...</div>;
   if (error) return <div>something went wrong: {error.message}</div>;
@@ -25,7 +27,10 @@ function FullSession() {
           <ul>
             {session.event.sessions &&
               session.event.sessions.map((s) => (
-                <Link to={`/sessions/${s.id}`} key={s.id}>
+                <Link
+                  to={`/events/${session.event.id}/sessions/${s.id}`}
+                  key={s.id}
+                >
                   <li className={s.id === session.id ? "active" : undefined}>
                     {s.name}
                   </li>

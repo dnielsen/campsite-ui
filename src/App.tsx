@@ -37,7 +37,7 @@ function App() {
             <Route exact path="/sessions/create">
               <CreateSession />
             </Route>
-            <Route exact path="/sessions/:id">
+            <Route exact path="/events/:eventId/sessions/:sessionId">
               <FullSession />
             </Route>
             <Route exact path="/sessions/:id/edit">

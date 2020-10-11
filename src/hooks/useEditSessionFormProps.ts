@@ -37,7 +37,7 @@ export default function useEditSessionFormProps(
     });
 
     // Redirect to the edited event page.
-    history.push(`/sessions/${props.id}`);
+    history.push(`/events/${input.eventId}/sessions/${props.id}`);
   }
 
   // If event details have been fetched then put them in,

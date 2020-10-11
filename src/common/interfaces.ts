@@ -103,3 +103,8 @@ export interface FormProps<T> {
 export interface Upload {
   url: string;
 }
+
+export interface FullSessionParams {
+  sessionId: string;
+  eventId: string;
+}
