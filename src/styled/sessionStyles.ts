@@ -31,6 +31,7 @@ export const SpeakerFlexWrapper = styled.div`
 `;
 
 export const SessionListWrapper = styled.div`
+  min-height: 100%;
   background: #fff;
   padding: 15px;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.18);

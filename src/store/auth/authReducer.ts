@@ -3,15 +3,13 @@ import { AuthAction, AuthActionType } from "./authActions";
 export interface AuthState {
   data: {
     token: string | null;
-  };
+  } | null;
   loading: boolean;
   error: Error | null;
 }
 
 export const initialState: AuthState = {
-  data: {
-    token: null,
-  },
+  data: null,
   loading: false,
   error: null,
 };

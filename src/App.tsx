@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import FullSpeaker from "./pages/FullSpeaker";
 import FullSession from "./pages/FullSession";
@@ -16,14 +16,26 @@ import EditSession from "./pages/EditSession";
 import { StyledContainer } from "./styled/styledCommon";
 import SignIn from "./pages/SignIn";
 import SignOut from "./pages/SignOut";
+import { useDispatch, useSelector } from "react-redux";
+import { authenticate } from "./store/auth/authActions";
+import { RootState } from "./store";
 
 function App() {
+  const { loading } = useSelector((state: RootState) => state.auth);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(authenticate());
+  }, [dispatch]);
+
+  if (loading) return null;
   return (
     <div>
       <Header />
       <main>
         <StyledContainer>
           <Switch>
+            {/* TODO: add private routes */}
             <Route exact path="/speakers">
               <AllSpeakers />
             </Route>
@@ -39,10 +51,10 @@ function App() {
             <Route exact path="/sessions/create">
               <CreateSession />
             </Route>
-            <Route exact path="/sessions/:id">
+            <Route exact path="/events/:eventId/sessions/:sessionId">
               <FullSession />
             </Route>
-            <Route exact path="/sessions/:id/edit">
+            <Route exact path="/events/:eventId/sessions/:sessionId/edit">
               <EditSession />
             </Route>
             <Route exact path="/events/create">

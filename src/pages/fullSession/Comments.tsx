@@ -8,9 +8,10 @@ import {
   getMoreCommentsBySessionId,
 } from "../../store/comments/commentsActions";
 import { RootState } from "../../store";
+import { FullSessionParams } from "../../common/interfaces";
 
 function Comments() {
-  const { id: sessionId } = useParams<{ id: string }>();
+  const { sessionId } = useParams<FullSessionParams>();
   const dispatch = useDispatch();
   const {
     data: { endCursor },
@@ -28,7 +29,7 @@ function Comments() {
 
   return (
     <div>
-      <CreateCommentForm sessionId={sessionId} />
+      <CreateCommentForm />
       <CommentList />
       {endCursor && (
         <button disabled={loading} onClick={fetchMore}>

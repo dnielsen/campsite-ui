@@ -73,13 +73,9 @@ export function signIn(input: FormSignInInput) {
   return async function (dispatch: Dispatch): Promise<void> {
     dispatch(fetchTokenRequest());
     try {
-      console.log("hello");
       const token = await authService.signIn(input);
-      console.log("hello");
       localStorage.setItem("token", token);
-      console.log("hello1");
       dispatch(fetchTokenSuccess(token));
-      console.log("hello1");
     } catch (e) {
       dispatch(fetchTokenFailure(e));
     }
@@ -90,5 +86,21 @@ export function signOut() {
   return async function (dispatch: Dispatch): Promise<void> {
     localStorage.clear();
     dispatch(resetAuth());
+  };
+}
+
+export function authenticate() {
+  return async function (dispatch: Dispatch): Promise<void> {
+    // TODO: refactor, (this code makes no sense, it's a temporary solution,
+    // later we're gonna use cookies)
+    dispatch(fetchTokenRequest());
+    const token = localStorage.getItem("token");
+    try {
+      // Temporary solution, for explanation see the comment above.
+      if (!token) throw new Error("Not authenticated");
+      dispatch(fetchTokenSuccess(token));
+    } catch (e) {
+      dispatch(fetchTokenFailure(e));
+    }
   };
 }

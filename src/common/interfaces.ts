@@ -123,3 +123,8 @@ export interface FormCommentInput {
 export interface PaginatedDataBase {
   endCursor: string | null;
 }
+
+export interface FullSessionParams {
+  eventId: string;
+  sessionId: string;
+}

@@ -7,13 +7,11 @@ import {
   StyledSection,
 } from "../../../styled/styledForm";
 import useCreateCommentFormProps from "../../../hooks/useCreateCommentFormProps";
+import { useParams } from "react-router-dom";
 
-interface Props {
-  sessionId: string;
-}
-
-function CreateCommentForm(props: Props) {
-  const formProps = useCreateCommentFormProps(props.sessionId);
+function CreateCommentForm() {
+  const { sessionId } = useParams<{ sessionId: string; eventId: string }>();
+  const formProps = useCreateCommentFormProps(sessionId);
 
   return (
     <Formik {...formProps}>

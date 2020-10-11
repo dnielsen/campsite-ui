@@ -55,9 +55,7 @@ const ROUTES: Route[] = [
 
 function Header() {
   const [routes, setRoutes] = useState<Route[]>(ROUTES);
-  const {
-    data: { token },
-  } = useSelector((state: RootState) => state.auth);
+  const { data: authData } = useSelector((state: RootState) => state.auth);
 
   // TODO: refactor, currently there are 2 navigations for styling purposes,
   // although there should be just 1. We don't know how to style the navigation
@@ -65,10 +63,13 @@ function Header() {
   useEffect(() => {
     setRoutes(
       ROUTES.filter(
-        (r) => r.auth === undefined || (r.auth && token) || (!r.auth && !token),
+        (r) =>
+          r.auth === undefined ||
+          (r.auth && authData) ||
+          (!r.auth && !authData),
       ),
     );
-  }, [token]);
+  }, [authData]);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
