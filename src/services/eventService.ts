@@ -20,4 +20,12 @@ async function editById(id: string, input: FetchEventInput) {
   return event;
 }
 
-export default { getById, editById };
+// Later we might add pagination or filtering there.
+// Currently we could also call it `getAll`
+async function getMany() {
+  const { data: events } = await Axios.get<Event[]>(BASE_EVENT_API_URL);
+
+  return events;
+}
+
+export default { getById, editById, getMany };

@@ -3,12 +3,11 @@ import {
   FetchSessionInput,
   FormProps,
   FormSessionInput,
-  SessionPreview,
 } from "../common/interfaces";
-import { BASE_SESSION_API_URL } from "../common/constants";
 import { useHistory } from "react-router-dom";
 import util from "../common/util";
-import { authFetch } from "../common/fetch";
+import { useDispatch } from "react-redux";
+import { createSession } from "../store/session/sessionActions";
 
 interface Props {
   eventId: string;
@@ -18,6 +17,7 @@ export default function useCreateSessionFormProps(
   props: Props,
 ): FormProps<FormSessionInput> {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   async function onSubmit(input: FormSessionInput) {
     // Replace speakerOptions property with speakerIds.
@@ -27,20 +27,7 @@ export default function useCreateSessionFormProps(
       endDate: new Date(input.endDate),
     };
 
-    // Send a request to create the session.
-    const res = await authFetch(`${BASE_SESSION_API_URL}`, {
-      method: "POST",
-      body: JSON.stringify(fetchInput),
-    });
-
-    if (!res.ok) {
-      history.push("/auth/sign-in");
-      return;
-    }
-
-    const createdSession = (await res.json()) as SessionPreview;
-    // Redirect to the created session page.
-    history.push(`/sessions/${createdSession.id}`);
+    dispatch(createSession(fetchInput, history));
   }
 
   // For example: `06/27/2020 5:06 PM`

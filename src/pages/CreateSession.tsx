@@ -1,39 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SessionForm from "../components/SessionForm";
-import useAPI from "../hooks/useAPI";
-import { Event, SpeakerPreview } from "../common/interfaces";
 import useCreateSessionFormProps from "../hooks/useCreateSessionFormProps";
 import { StyledH2 } from "../styled/styledCommon";
+import { BASE_EVENT_API_URL } from "../common/constants";
+import { Event } from "../common/interfaces";
 
 function CreateSession() {
-  // A temporary solution, later we might load just the speaker/event ids and names,
-  // and do it asynchronously, that is after having loaded the rest of the form.
-  const {
-    data: speakers,
-    loading: speakersLoading,
-    error: speakersError,
-  } = useAPI<SpeakerPreview[]>("/speakers");
-  const { data: events, loading: eventsLoading, error: eventsError } = useAPI<
-    Event[]
-  >("/events");
+  // TODO: refactor, currently we're fetching the events here and in the the SelectEventsSection.
+  // The following 18 lines are duplicate of `<SelectEventsSection />`
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  // Fetch the events.
+  useEffect(() => {
+    (async function () {
+      setLoading(true);
+      const res = await fetch(BASE_EVENT_API_URL);
+      if (!res.ok) {
+        setError(new Error(res.statusText));
+      } else {
+        const data = await res.json();
+        setEvents(data);
+      }
+      setLoading(false);
+    })();
+  }, []);
 
   const formProps = useCreateSessionFormProps({
-    eventId: events ? events[0].id : "",
+    eventId: events.length > 0 && !loading ? events[0].id : "",
   });
-
-  if (speakersLoading || eventsLoading) return <div>loading...</div>;
-  if (speakersError)
-    return <div>something went wrong: {speakersError.message}</div>;
-  if (eventsError)
-    return <div>something went wrong: {eventsError.message}</div>;
-
-  if (events.length === 0) return <div>Create an event first.</div>;
-  if (speakers.length === 0) return <div>Create a speaker first.</div>;
 
   return (
     <div>
       <StyledH2>Create a session</StyledH2>
-      <SessionForm speakers={speakers} events={events} formProps={formProps} />
+      <SessionForm formProps={formProps} />
     </div>
   );
 }

@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { Link } from "react-router-dom";
 import util from "../../common/util";
-import * as s from "../../styled/homeStyles";
 import {
   StyledH4,
   StyledMobilePaddingWrapper,
@@ -11,6 +10,53 @@ import {
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { Session } from "../../common/interfaces";
 import { StyledEventSessionSpeakerWrapper } from "../../styled/eventStyles";
+import {
+  StyledAboutOrganizer,
+  StyledAnswer,
+  StyledBadge,
+  StyledBadges,
+  StyledBannerSection,
+  StyledBoxes,
+  StyledBrandImages,
+  StyledButtonSaveYourSeatNow,
+  StyledCircleImageWrapper,
+  StyledContentIsThisForMe,
+  StyledContentLeftWrapper,
+  StyledContentSubTitle,
+  StyledFooter,
+  StyledFounderAndCeo,
+  StyledFrequentlyQA,
+  StyledGoodVibes,
+  StyledHundredPercentLive,
+  StyledKeepInMindText,
+  StyledLearnFromBestLogos,
+  StyledNoBullshit,
+  StyledOrganizerImage,
+  StyledPanelDiscussion,
+  StyledPanelImages,
+  StyledPartners,
+  StyledQuestion,
+  StyledSectionAboutOrganizer,
+  StyledSectionAgenda,
+  StyledSectionFutureSummit,
+  StyledSectionIsThisForMe,
+  StyledSectionLargeText,
+  StyledSectionSpeakersContainer,
+  StyledSectionWhatYouWillGet,
+  StyledSelectSeatButton,
+  StyledSpeaker,
+  StyledSpeakersContainer,
+  StyledSpeakerSocialMedia,
+  StyledTabContent,
+  StyledTabsWrapper,
+  StyledTextBlack,
+  StyledTextBlue,
+  StyledTextGray,
+  StyledTextLead,
+  StyledTimeLimit,
+  StyledTopic,
+  StyledVideoContainer,
+} from "../../styled/homeStyles";
 
 interface SessionDays {
   [key: number]: Session[];
@@ -45,7 +91,7 @@ function EventItem() {
 
   return (
     <div>
-      <s.StyledBannerSection>
+      <StyledBannerSection>
         <p>
           {util.getDateRangeString(
             eventDetails.startDate,
@@ -53,14 +99,14 @@ function EventItem() {
           )}
         </p>
         <h1>{eventDetails.name}</h1>
-      </s.StyledBannerSection>
-      <s.StyledSelectSeatButton>
+      </StyledBannerSection>
+      <StyledSelectSeatButton>
         <a href={eventDetails.registrationUrl}>Save your seat!</a>
-      </s.StyledSelectSeatButton>
+      </StyledSelectSeatButton>
 
-      <s.StyledLearnFromBestLogos>
+      <StyledLearnFromBestLogos>
         <p>Learn from the best:</p>
-        <s.StyledBrandImages>
+        <StyledBrandImages>
           {/*For dev: generate 5 the exact same elements*/}
           {[...Array(5).keys()].map((i) => (
             <div key={i}>
@@ -72,14 +118,12 @@ function EventItem() {
               />
             </div>
           ))}
-        </s.StyledBrandImages>
-      </s.StyledLearnFromBestLogos>
+        </StyledBrandImages>
+      </StyledLearnFromBestLogos>
       <StyledMobilePaddingWrapper>
-        <s.StyledSectionFutureSummit>
-          <s.StyledContentLeftWrapper>
-            <s.StyledContentSubTitle>
-              Remote Future Summit
-            </s.StyledContentSubTitle>
+        <StyledSectionFutureSummit>
+          <StyledContentLeftWrapper>
+            <StyledContentSubTitle>Remote Future Summit</StyledContentSubTitle>
             <h3>Not just another virtual conference.</h3>
             <p>
               We live in a time filled with seemingly hundreds of digital
@@ -93,87 +137,83 @@ function EventItem() {
             <a href={eventDetails.registrationUrl}>
               <button>Register Now</button>
             </a>
-          </s.StyledContentLeftWrapper>
-          <s.StyledVideoContainer>
+          </StyledContentLeftWrapper>
+          <StyledVideoContainer>
             <h1>Video Here</h1>
-          </s.StyledVideoContainer>
-        </s.StyledSectionFutureSummit>
-        <s.StyledSectionLargeText>
-          <s.StyledTextBlack>
+          </StyledVideoContainer>
+        </StyledSectionFutureSummit>
+        <StyledSectionLargeText>
+          <StyledTextBlack>
             Over the past years different studies have always pointed to these
             struggles among remote workers:{" "}
-          </s.StyledTextBlack>
-          <s.StyledTextBlue>
+          </StyledTextBlack>
+          <StyledTextBlue>
             overworking, difficulties with building relationships, and with
             loneliness.
-          </s.StyledTextBlue>
-          <s.StyledTextGray>
+          </StyledTextBlue>
+          <StyledTextGray>
             We will help you overcome these challenges.
-          </s.StyledTextGray>
-        </s.StyledSectionLargeText>
-        <s.StyledSectionWhatYouWillGet>
-          <s.StyledContentSubTitle>
-            Remote Future Summit
-          </s.StyledContentSubTitle>
+          </StyledTextGray>
+        </StyledSectionLargeText>
+        <StyledSectionWhatYouWillGet>
+          <StyledContentSubTitle>Remote Future Summit</StyledContentSubTitle>
           <h3>What you will get?</h3>
-          <s.StyledBoxes>
-            <s.StyledHundredPercentLive>
-              <s.StyledCircleImageWrapper>
+          <StyledBoxes>
+            <StyledHundredPercentLive>
+              <StyledCircleImageWrapper>
                 <img
                   width="44"
                   src="https://uploads-ssl.webflow.com/5f329fb0017255d9d0baddec/5f329fb1fd8a91959a5cd40b_smartphone-tablet.svg"
                   alt=""
                 />
-              </s.StyledCircleImageWrapper>
+              </StyledCircleImageWrapper>
               <h4>100% live</h4>
               <p>
                 Live-streamed and interactive sessions for two days in a row!
               </p>
-            </s.StyledHundredPercentLive>
-            <s.StyledGoodVibes>
-              <s.StyledCircleImageWrapper>
+            </StyledHundredPercentLive>
+            <StyledGoodVibes>
+              <StyledCircleImageWrapper>
                 <img
                   width="44"
                   src="https://uploads-ssl.webflow.com/5f329fb0017255d9d0baddec/5f329fb1fd8a9157e55cd435_icon-heart.svg"
                   alt=""
                 />
-              </s.StyledCircleImageWrapper>
+              </StyledCircleImageWrapper>
               <h4>Good vibes only</h4>
               <p>Yoga and coffee breaks where we recharge our batteries</p>
-            </s.StyledGoodVibes>
-            <s.StyledNoBullshit>
-              <s.StyledCircleImageWrapper>
+            </StyledGoodVibes>
+            <StyledNoBullshit>
+              <StyledCircleImageWrapper>
                 <img
                   width="44"
                   src="https://uploads-ssl.webflow.com/5f329fb0017255d9d0baddec/5f329fb1fd8a9157ca5cd433_icon-x.svg"
                   alt=""
                 />
-              </s.StyledCircleImageWrapper>
+              </StyledCircleImageWrapper>
               <h4>No bullsh*t</h4>
               <p>
                 Industry experts sharing openly about their challenges &
                 failures
               </p>
-            </s.StyledNoBullshit>
-          </s.StyledBoxes>
-        </s.StyledSectionWhatYouWillGet>
+            </StyledNoBullshit>
+          </StyledBoxes>
+        </StyledSectionWhatYouWillGet>
         {eventDetails.speakers && (
-          <s.StyledSectionSpeakersContainer>
-            <s.StyledContentSubTitle>
-              They will guide you
-            </s.StyledContentSubTitle>
+          <StyledSectionSpeakersContainer>
+            <StyledContentSubTitle>They will guide you</StyledContentSubTitle>
             <h3>Meet the Speakers</h3>
-            <s.StyledSpeakersContainer>
+            <StyledSpeakersContainer>
               {eventDetails.speakers.map((speaker) => (
-                <s.StyledSpeaker key={speaker.id}>
+                <StyledSpeaker key={speaker.id}>
                   <Link to={`/speakers/${speaker.id}`}>
                     <img src={speaker.photo} alt={speaker.name} />
                   </Link>
                   <Link to={`/speakers/${speaker.id}`}>
                     <StyledH4>{speaker.name}</StyledH4>
                   </Link>
-                  <s.StyledTextLead>{speaker.headline}</s.StyledTextLead>
-                  <s.StyledSpeakerSocialMedia>
+                  <StyledTextLead>{speaker.headline}</StyledTextLead>
+                  <StyledSpeakerSocialMedia>
                     <a href={"https://twitter.com/elonmusk"}>
                       <i className="fa fa-twitter twitter" aria-hidden="true" />
                     </a>
@@ -183,23 +223,23 @@ function EventItem() {
                         aria-hidden="true"
                       />
                     </a>
-                  </s.StyledSpeakerSocialMedia>
-                </s.StyledSpeaker>
+                  </StyledSpeakerSocialMedia>
+                </StyledSpeaker>
               ))}
-            </s.StyledSpeakersContainer>
-          </s.StyledSectionSpeakersContainer>
+            </StyledSpeakersContainer>
+          </StyledSectionSpeakersContainer>
         )}
         {eventDetails.sessions && (
-          <s.StyledSectionAgenda>
+          <StyledSectionAgenda>
             <h1>See The Agenda</h1>
-            <s.StyledTabsWrapper>
+            <StyledTabsWrapper>
               <Tabs>
                 <TabList>
                   {Object.keys(sessionDays).map((dayNum) => (
                     <Tab key={dayNum}>Day {dayNum}</Tab>
                   ))}
                 </TabList>
-                <s.StyledTabContent>
+                <StyledTabContent>
                   {Object.entries(sessionDays).map(
                     ([dayNum, sortedSessions]) => (
                       <TabPanel key={dayNum}>
@@ -210,15 +250,15 @@ function EventItem() {
                           </h2>
                         </div>
                         {sortedSessions.map((session: Session) => (
-                          <s.StyledPanelDiscussion key={session.id}>
-                            <s.StyledTopic>
+                          <StyledPanelDiscussion key={session.id}>
+                            <StyledTopic>
                               <Link
                                 to={`/events/${eventDetails.id}/sessions/${session.id}`}
                               >
                                 {session.name}
                               </Link>
                               <StyledEventSessionSpeakerWrapper>
-                                <s.StyledPanelImages>
+                                <StyledPanelImages>
                                   {session.speakers &&
                                     session.speakers.map((speaker) => (
                                       <Link
@@ -232,80 +272,80 @@ function EventItem() {
                                         />
                                       </Link>
                                     ))}
-                                </s.StyledPanelImages>
-                                <s.StyledTimeLimit>
+                                </StyledPanelImages>
+                                <StyledTimeLimit>
                                   {util.getHourRangeString(
                                     session.startDate,
                                     session.endDate,
                                   )}
-                                </s.StyledTimeLimit>
+                                </StyledTimeLimit>
                               </StyledEventSessionSpeakerWrapper>
-                            </s.StyledTopic>
-                          </s.StyledPanelDiscussion>
+                            </StyledTopic>
+                          </StyledPanelDiscussion>
                         ))}
                       </TabPanel>
                     ),
                   )}
-                  <s.StyledKeepInMindText>
+                  <StyledKeepInMindText>
                     &quot;❗ All timings are displayed in 🕤 Pacific Time Zone
                     (PDT) 🕛 ❗&quot;{" "}
-                  </s.StyledKeepInMindText>
-                </s.StyledTabContent>
+                  </StyledKeepInMindText>
+                </StyledTabContent>
               </Tabs>
-            </s.StyledTabsWrapper>
-          </s.StyledSectionAgenda>
+            </StyledTabsWrapper>
+          </StyledSectionAgenda>
         )}
-        <s.StyledSectionIsThisForMe>
-          <s.StyledContentSubTitle>Is this for me?</s.StyledContentSubTitle>
+        <StyledSectionIsThisForMe>
+          <StyledContentSubTitle>Is this for me?</StyledContentSubTitle>
           <h3>Remote Future Summit 2020 is made for</h3>
-        </s.StyledSectionIsThisForMe>
-        <s.StyledContentIsThisForMe>
-          <s.StyledFounderAndCeo>
+        </StyledSectionIsThisForMe>
+        <StyledContentIsThisForMe>
+          <StyledFounderAndCeo>
             <h4>Founders & CEOs of remote companies</h4>
-            <s.StyledBadges>
-              <s.StyledBadge>Day 1</s.StyledBadge>
-              <s.StyledBadge>Day 2</s.StyledBadge>
-            </s.StyledBadges>
+            <StyledBadges>
+              <StyledBadge>Day 1</StyledBadge>
+              <StyledBadge>Day 2</StyledBadge>
+            </StyledBadges>
             <p>
               Learn valuable insights and get answers on the reality of working
               remotely and leading virtual teams directly from invited leaders
               and seasoned executives.{" "}
             </p>
-          </s.StyledFounderAndCeo>
-          <s.StyledFounderAndCeo>
+          </StyledFounderAndCeo>
+          <StyledFounderAndCeo>
             <h4>Founders & CEOs of remote companies</h4>
-            <s.StyledBadges>
-              <s.StyledBadge>Day 1</s.StyledBadge>
-              <s.StyledBadge>Day 2</s.StyledBadge>
-            </s.StyledBadges>
+            <StyledBadges>
+              <StyledBadge>Day 1</StyledBadge>
+              <StyledBadge>Day 2</StyledBadge>
+            </StyledBadges>
             <p>
               Learn valuable insights and get answers on the reality of working
               remotely and leading virtual teams directly from invited leaders
               and seasoned executives.{" "}
             </p>
-          </s.StyledFounderAndCeo>
-          <s.StyledFounderAndCeo>
+          </StyledFounderAndCeo>
+          <StyledFounderAndCeo>
             <h4>Founders & CEOs of remote companies</h4>
-            <s.StyledBadges>
-              <s.StyledBadge>Day 1</s.StyledBadge>
-              <s.StyledBadge>Day 2</s.StyledBadge>
-            </s.StyledBadges>
+            <StyledBadges>
+              <StyledBadge>Day 1</StyledBadge>
+              <StyledBadge>Day 2</StyledBadge>
+            </StyledBadges>
             <p>
               Learn valuable insights and get answers on the reality of working
               remotely and leading virtual teams directly from invited leaders
               and seasoned executives.{" "}
             </p>
-          </s.StyledFounderAndCeo>
-        </s.StyledContentIsThisForMe>
-        <s.StyledButtonSaveYourSeatNow>
+          </StyledFounderAndCeo>
+        </StyledContentIsThisForMe>
+        <StyledButtonSaveYourSeatNow>
           {/*Temporary solution, it should be an anchor tag instead of a button but then styles would change*/}
           <a href={eventDetails.registrationUrl}>
             <button>Save your seat now</button>
           </a>
-        </s.StyledButtonSaveYourSeatNow>
-        <s.StyledSectionAboutOrganizer>
-          <s.StyledAboutOrganizer>
-            <s.StyledContentSubTitle>About organizers</s.StyledContentSubTitle>
+        </StyledButtonSaveYourSeatNow>
+        <StyledSectionAboutOrganizer>
+          <StyledAboutOrganizer>
+            <StyledContentSubTitle>About organizers</StyledContentSubTitle>
             <h3>We&apos;ve been in this since 2017&apos;</h3>
             <p>
               This will be the third edition of our virtual conference on remote
@@ -314,34 +354,34 @@ function EventItem() {
               Hubspot, Forbes, and Doist. Our goal is to help you learn how to
               build, scale, and lead distributed teams of remote workers.
             </p>
-          </s.StyledAboutOrganizer>
-          <s.StyledOrganizerImage>
+          </StyledAboutOrganizer>
+          <StyledOrganizerImage>
             {" "}
             <img
               src="https://uploads-ssl.webflow.com/5f329fb0017255d9d0baddec/5f3a7e64ecda612e4c4ab82e_Jerome_Remote%20Future%20Summit.jpg"
               alt="speaker-image"
             />
-          </s.StyledOrganizerImage>
-        </s.StyledSectionAboutOrganizer>
-        <s.StyledPartners>
+          </StyledOrganizerImage>
+        </StyledSectionAboutOrganizer>
+        <StyledPartners>
           <h3>Partners</h3>
           <p> We will show some partner logos here</p>
-        </s.StyledPartners>
-        <s.StyledFrequentlyQA>
+        </StyledPartners>
+        <StyledFrequentlyQA>
           <h3>Frequently asked questions</h3>
-          <s.StyledQuestion>
+          <StyledQuestion>
             Where and when is Remote Future Summit 2020?
-          </s.StyledQuestion>
-          <s.StyledAnswer>
+          </StyledQuestion>
+          <StyledAnswer>
             Remote Future Summit 2020 is a virtual conference. It’s happening
             online from September 23-24, 2020. You can join it from anywhere,
             literally.{" "}
-          </s.StyledAnswer>
-        </s.StyledFrequentlyQA>
-        <s.StyledFooter>
+          </StyledAnswer>
+        </StyledFrequentlyQA>
+        <StyledFooter>
           <h3>Contact Us</h3>
           <p>support@campsite.org</p>
-        </s.StyledFooter>
+        </StyledFooter>
       </StyledMobilePaddingWrapper>
     </div>
   );

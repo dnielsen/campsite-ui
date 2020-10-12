@@ -1,8 +1,8 @@
 import { CommentsAction, CommentsActionType } from "./commentsActions";
-import { FetchCommentsData } from "../../services/commentService";
+import { CommentsData } from "../../services/commentService";
 
 export interface CommentsState {
-  data: FetchCommentsData;
+  data: CommentsData;
   loading: boolean;
   error: Error | null;
 }

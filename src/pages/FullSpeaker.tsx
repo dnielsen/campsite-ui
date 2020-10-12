@@ -2,9 +2,20 @@ import React from "react";
 import useAPI from "../hooks/useAPI";
 import { Speaker } from "../common/interfaces";
 import { Link, useParams } from "react-router-dom";
-import * as s from "../styled/speakerStyles";
 import util from "../common/util";
-import { StyledSpeakerDataContainer } from "../styled/speakerStyles";
+import {
+  StyledFlexContainer,
+  StyledSpeakerBio,
+  StyledSpeakerDataContainer,
+  StyledSpeakerInfoWrapper,
+  StyledSpeakerName,
+  StyledSpeakerPhoto,
+  StyledSpeakerProfileWrapper,
+  StyledSpeakerSessionScheduleContainer,
+  StyledSpeakerSessionWrapper,
+  StyledSpeakerSocialMedia,
+  StyledSpeakerTitle,
+} from "../styled/speakerStyles";
 import { StyledContainer } from "../styled/styledCommon";
 import {
   StyledSpeakerBanner,
@@ -13,6 +24,7 @@ import {
   StyledSpeakerSessionStartDate,
   StyledWatch,
 } from "../styled/styledSpeaker";
+import { StyledSpeakerContent } from "src/styled/sessionStyles";
 
 function FullSpeaker() {
   const { id } = useParams<{ id: string }>();
@@ -23,7 +35,7 @@ function FullSpeaker() {
 
   return (
     <StyledContainer>
-      <s.StyledSpeakerProfileWrapper>
+      <StyledSpeakerProfileWrapper>
         <StyledSpeakerBanner>
           <img
             src={
@@ -32,54 +44,62 @@ function FullSpeaker() {
             alt={`${speaker.name}'s banner`}
           />
         </StyledSpeakerBanner>
-        <s.StyledFlexContainer>
-          <s.StyledSpeakerInfoWrapper>
+        <StyledFlexContainer>
+          <StyledSpeakerInfoWrapper>
             <StyledSpeakerDataContainer>
-              <s.StyledSpeakerPhoto>
+              <StyledSpeakerPhoto>
                 <img src={speaker.photo} alt={speaker.name} />
-              </s.StyledSpeakerPhoto>
-              <s.StyledSpeakerContent>
-                <s.StyledSpeakerName>{speaker.name}</s.StyledSpeakerName>
-                <s.StyledSpeakerTitle>{speaker.headline}</s.StyledSpeakerTitle>
-                <s.StyledSpeakerSocialMedia>
+              </StyledSpeakerPhoto>
+              <StyledSpeakerContent>
+                <StyledSpeakerName>{speaker.name}</StyledSpeakerName>
+                <StyledSpeakerTitle>{speaker.headline}</StyledSpeakerTitle>
+                <StyledSpeakerSocialMedia>
                   <a href={"https://twitter.com/elonmusk"}>
                     <i className="fa fa-twitter twitter" aria-hidden="true" />
                   </a>
                   <a href={"https://linkedin.com"}>
                     <i className="fa fa-linkedin linkedin" aria-hidden="true" />
                   </a>
-                </s.StyledSpeakerSocialMedia>
-                <s.StyledSpeakerBio>
+                </StyledSpeakerSocialMedia>
+                <StyledSpeakerBio>
                   <p>{speaker.bio}</p>
-                </s.StyledSpeakerBio>
-              </s.StyledSpeakerContent>
+                </StyledSpeakerBio>
+              </StyledSpeakerContent>
             </StyledSpeakerDataContainer>
-          </s.StyledSpeakerInfoWrapper>
+          </StyledSpeakerInfoWrapper>
           {speaker.sessions && (
-            <s.StyledSpeakerSessionWrapper>
+            <StyledSpeakerSessionWrapper>
               <h2>Sessions</h2>
               {speaker.sessions.map((session) => (
                 <div key={session.id}>
-                  <s.StyledSpeakerSessionScheduleContainer>
+                  <StyledSpeakerSessionScheduleContainer>
                     <StyledSpeakerSessionName>
-                      <Link to={`/sessions/${session.id}`}>{session.name}</Link>
+                      <Link
+                        to={`/events/${session.eventId}/sessions/${session.id}`}
+                      >
+                        {session.name}
+                      </Link>
                     </StyledSpeakerSessionName>
                     <StyledSpeakerSessionStartDate>
                       {util.getFullDateString(session.startDate)}
                     </StyledSpeakerSessionStartDate>
                     <StyledWatch>
-                      <Link to={`/sessions/${session.id}`}>Watch</Link>
+                      <Link
+                        to={`/events/${session.eventId}/sessions/${session.id}`}
+                      >
+                        Watch
+                      </Link>
                     </StyledWatch>
-                  </s.StyledSpeakerSessionScheduleContainer>
+                  </StyledSpeakerSessionScheduleContainer>
                   <StyledSpeakerSessionDescription>
                     {session.description}
                   </StyledSpeakerSessionDescription>
                 </div>
               ))}
-            </s.StyledSpeakerSessionWrapper>
+            </StyledSpeakerSessionWrapper>
           )}
-        </s.StyledFlexContainer>
-      </s.StyledSpeakerProfileWrapper>
+        </StyledFlexContainer>
+      </StyledSpeakerProfileWrapper>
     </StyledContainer>
   );
 }

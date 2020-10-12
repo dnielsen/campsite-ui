@@ -3,12 +3,12 @@ import { FormCommentInput, PaginatedDataBase } from "../common/interfaces";
 import { BASE_SESSION_API_URL } from "../common/constants";
 import { Comment } from "../common/interfaces";
 
-export interface FetchCommentsData extends PaginatedDataBase {
+export interface CommentsData extends PaginatedDataBase {
   comments: Comment[];
 }
 
 async function getBySessionId(sessionId: string, cursor?: string) {
-  const { data } = await Axios.get<FetchCommentsData>(
+  const { data } = await Axios.get<CommentsData>(
     `${BASE_SESSION_API_URL}/${sessionId}/comments`,
     {
       params: {

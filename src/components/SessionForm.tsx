@@ -1,27 +1,20 @@
 import React from "react";
 import { Field, Form, Formik, FormikState, FormikValues } from "formik";
-import {
-  Event,
-  FormProps,
-  FormSessionInput,
-  SpeakerPreview,
-} from "../common/interfaces";
-import Checkbox from "./Checkbox";
+import { FormProps, FormSessionInput } from "../common/interfaces";
 import DateTimeField from "./DateTimeField";
 import {
   StyledButton,
   StyledInput,
   StyledLabel,
   StyledSection,
-  StyledSelect,
   StyledTextarea,
 } from "../styled/styledForm";
+import CheckboxSpeakersSection from "./CheckboxSpeakersSection";
+import SelectEventsSection from "./SelectEventsSection";
 
 // A temporary solution, later we might load speakers and events asynchronously,
 // and fetch less data.
 interface Props {
-  speakers: SpeakerPreview[];
-  events: Event[];
   formProps: FormProps<FormSessionInput>;
 }
 
@@ -55,27 +48,8 @@ function SessionForm(props: Props) {
             <StyledLabel htmlFor={"endDate"}>End date</StyledLabel>
             <DateTimeField name={"endDate"} />
           </StyledSection>
-          <StyledSection>
-            <StyledLabel htmlFor="eventId">Event</StyledLabel>
-            <Field name={"eventId"} as={StyledSelect}>
-              {props.events.map((event) => (
-                <option key={event.id} value={event.id}>
-                  {event.name}
-                </option>
-              ))}
-            </Field>
-          </StyledSection>
-          <StyledSection>
-            <StyledLabel htmlFor={"speakerIds"}>Speakers</StyledLabel>
-            {props.speakers.map((speaker) => (
-              <Checkbox
-                key={speaker.id}
-                name={"speakerIds"}
-                value={speaker.id}
-                label={speaker.name}
-              />
-            ))}
-          </StyledSection>
+          <SelectEventsSection />
+          <CheckboxSpeakersSection />
           <StyledButton type={"submit"} disabled={isSubmitting}>
             Submit
           </StyledButton>

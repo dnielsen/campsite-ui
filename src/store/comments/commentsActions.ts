@@ -1,6 +1,4 @@
-import commentService, {
-  FetchCommentsData,
-} from "../../services/commentService";
+import commentService, { CommentsData } from "../../services/commentService";
 import { Dispatch } from "redux";
 import { Comment, FormCommentInput } from "../../common/interfaces";
 
@@ -40,14 +38,14 @@ export interface FetchCommentsFailure {
 export interface FetchCommentsSuccess {
   type: CommentsActionType.FETCH_COMMENTS_SUCCESS;
   payload: {
-    data: FetchCommentsData;
+    data: CommentsData;
   };
 }
 
 export interface FetchMoreCommentsSuccess {
   type: CommentsActionType.FETCH_MORE_COMMENTS_SUCCESS;
   payload: {
-    data: FetchCommentsData;
+    data: CommentsData;
   };
 }
 
@@ -66,7 +64,7 @@ function fetchCommentsFailure(error: Error): FetchCommentsFailure {
   };
 }
 
-function fetchCommentsSuccess(data: FetchCommentsData): FetchCommentsSuccess {
+function fetchCommentsSuccess(data: CommentsData): FetchCommentsSuccess {
   return {
     type: CommentsActionType.FETCH_COMMENTS_SUCCESS,
     payload: {
@@ -85,7 +83,7 @@ function addComment(data: Comment): AddComment {
 }
 
 function fetchMoreCommentsSuccess(
-  data: FetchCommentsData,
+  data: CommentsData,
 ): FetchMoreCommentsSuccess {
   return {
     type: CommentsActionType.FETCH_MORE_COMMENTS_SUCCESS,

@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import sessionService from "../../services/sessionService";
-import { Session } from "../../common/interfaces";
+import { FetchSessionInput, Session } from "../../common/interfaces";
 
 export type SessionAction =
   | FetchSessionRequest
@@ -15,9 +15,6 @@ export enum SessionActionType {
 
 export interface FetchSessionRequest {
   type: SessionActionType.FETCH_SESSION_REQUEST;
-  payload: {
-    id: string;
-  };
 }
 
 export interface FetchSessionFailure {
@@ -34,12 +31,9 @@ export interface FetchSessionSuccess {
   };
 }
 
-function fetchSessionRequest(id: string): FetchSessionRequest {
+function fetchSessionRequest(): FetchSessionRequest {
   return {
     type: SessionActionType.FETCH_SESSION_REQUEST,
-    payload: {
-      id,
-    },
   };
 }
 
@@ -63,12 +57,35 @@ function fetchSessionFailure(error: Error): FetchSessionFailure {
 
 export function getSessionById(id: string) {
   return async function (dispatch: Dispatch): Promise<void> {
-    dispatch(fetchSessionRequest(id));
+    dispatch(fetchSessionRequest());
     try {
       const session = await sessionService.getById(id);
       dispatch(fetchSessionSuccess(session));
     } catch (e) {
       dispatch(fetchSessionFailure(e));
+    }
+  };
+}
+
+export function createSession(
+  input: FetchSessionInput,
+  // `history` is of type `History` from `react-router-dom` package.
+  // It doesn't export this type unfortunately so we're just
+  // declaring it as any.
+  history: any,
+) {
+  return async function (dispatch: Dispatch): Promise<void> {
+    dispatch(fetchSessionRequest());
+    try {
+      const createdSession = await sessionService.create(input);
+      dispatch(fetchSessionSuccess(createdSession));
+      console.log(createdSession);
+      history.push(
+        `/events/${createdSession.eventId}/session/${createdSession.id}`,
+      );
+    } catch (e) {
+      dispatch(fetchSessionFailure(e));
+      history.push("/auth/sign-in");
     }
   };
 }
