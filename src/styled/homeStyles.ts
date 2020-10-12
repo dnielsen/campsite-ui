@@ -1,7 +1,7 @@
 // import styled component
 import styled from "styled-components";
 
-export const BannerSection = styled.div`
+export const StyledBannerSection = styled.div`
   padding-top: 5em;
   p {
     color: #2faad9;
@@ -30,7 +30,7 @@ export const BannerSection = styled.div`
   }
 `;
 
-export const SelectSeatButton = styled.div`
+export const StyledSelectSeatButton = styled.div`
   margin-top: 10em;
   margin-bottom: 50px;
   @media (max-width: 767px) {
@@ -51,7 +51,7 @@ export const SelectSeatButton = styled.div`
   }
 `;
 
-export const LearnFromBestLogos = styled.div`
+export const StyledLearnFromBestLogos = styled.div`
   p {
     color: rgba(40, 40, 40, 0.73);
     font-size: 14px;
@@ -63,7 +63,7 @@ export const LearnFromBestLogos = styled.div`
   }
 `;
 
-export const BrandImages = styled.div`
+export const StyledBrandImages = styled.div`
   display: flex;
   flex-wrap: wrap;
 
@@ -79,7 +79,7 @@ export const BrandImages = styled.div`
   }
 `;
 
-export const SectionFutureSummit = styled.div`
+export const StyledSectionFutureSummit = styled.div`
   margin-top: 100px;
   margin-right: 40px;
   display: flex;
@@ -90,7 +90,7 @@ export const SectionFutureSummit = styled.div`
   }
 `;
 
-export const ContentLeftWrapper = styled.div`
+export const StyledContentLeftWrapper = styled.div`
   flex: 1;
   font-size: 1em;
 
@@ -121,18 +121,18 @@ export const ContentLeftWrapper = styled.div`
   }
 `;
 
-export const ContentSubTitle = styled.p`
+export const StyledContentSubTitle = styled.p`
   color: #2faad9 !important;
   font-size: 20px;
   font-weight: 700 !important;
   margin: 0;
 `;
 
-export const VideoWrapper = styled.div`
+export const StyledVideoContainer = styled.div`
   flex: 1;
 `;
 
-export const SectionLargeText = styled.div`
+export const StyledSectionLargeText = styled.div`
   margin-top: 120px;
   margin-bottom: 120px;
   width: 100%;
@@ -141,28 +141,28 @@ export const SectionLargeText = styled.div`
   margin-left: auto;
 `;
 
-export const TextBlack = styled.h3`
+export const StyledTextBlack = styled.h3`
   font-size: 34px;
   color: #12141d;
   margin: 0;
   font-weight: 700;
 `;
 
-export const TextBlue = styled.div`
+export const StyledTextBlue = styled.div`
   font-size: 34px;
   color: #2faad9;
   margin: 0;
   font-weight: 700;
 `;
 
-export const TextGrey = styled.div`
+export const StyledTextGray = styled.div`
   font-size: 34px;
   color: rgba(40, 40, 40, 0.7);
   margin: 0;
   font-weight: 700;
 `;
 
-export const SectionWhatYouWillGet = styled.div`
+export const StyledSectionWhatYouWillGet = styled.div`
   margin-top: 30px;
 
   h3 {
@@ -174,7 +174,7 @@ export const SectionWhatYouWillGet = styled.div`
   }
 `;
 
-export const Boxes = styled.div`
+export const StyledBoxes = styled.div`
   display: flex;
   margin-top: 40px;
   flex-wrap: wrap;
@@ -187,7 +187,7 @@ export const Boxes = styled.div`
   }
 `;
 
-export const HundredPercentLive = styled.div`
+export const StyledHundredPercentLive = styled.div`
   padding: 20px;
   justify-content: center;
   border-radius: 6px;
@@ -209,7 +209,7 @@ export const HundredPercentLive = styled.div`
   }
 `;
 
-export const GoodVibes = styled.div`
+export const StyledGoodVibes = styled.div`
   padding: 20px;
   justify-content: center;
   border-radius: 6px;
@@ -230,7 +230,7 @@ export const GoodVibes = styled.div`
   }
 `;
 
-export const NoBullShit = styled.div`
+export const StyledNoBullshit = styled.div`
   padding: 20px;
   justify-content: center;
   border-radius: 6px;
@@ -252,7 +252,7 @@ export const NoBullShit = styled.div`
   }
 `;
 
-export const CircleImageWrapper = styled.div`
+export const StyledCircleImageWrapper = styled.div`
   width: 96px;
   height: 96px;
   border-radius: 48px;
@@ -263,7 +263,7 @@ export const CircleImageWrapper = styled.div`
   justify-content: center;
 `;
 
-export const SectionSpeakersContainer = styled.div`
+export const StyledSectionSpeakersContainer = styled.div`
   margin-top: 40px;
 
   h3 {
@@ -275,7 +275,7 @@ export const SectionSpeakersContainer = styled.div`
   }
 `;
 
-export const SpeakersWrapper = styled.div`
+export const StyledSpeakersContainer = styled.div`
   margin-top: 60px;
   display: flex;
   flex-wrap: wrap;
@@ -286,7 +286,7 @@ export const SpeakersWrapper = styled.div`
   }
 `;
 
-export const Speaker = styled.div`
+export const StyledSpeaker = styled.div`
   padding: 20px;
   text-align: center;
   flex: 0 0 20%;
@@ -306,7 +306,7 @@ export const Speaker = styled.div`
   }
 `;
 
-export const TextLead = styled.p`
+export const StyledTextLead = styled.p`
   color: rgba(40, 40, 40, 0.73);
   font-size: 1.1em;
   font-weight: 600;
@@ -314,7 +314,7 @@ export const TextLead = styled.p`
   padding: 0;
 `;
 
-export const SpeakerSocialMedia = styled.div`
+export const StyledSpeakerSocialMedia = styled.div`
   margin-top: 1em;
 
   a {
@@ -342,7 +342,7 @@ export const SpeakerSocialMedia = styled.div`
   }
 `;
 
-export const SectionAgenda = styled.div`
+export const StyledSectionAgenda = styled.div`
   margin-top: 70px;
   text-align: center;
   margin-bottom: 70px;
@@ -353,7 +353,7 @@ export const SectionAgenda = styled.div`
   }
 `;
 
-export const TabsWrapper = styled.div`
+export const StyledTabsWrapper = styled.div`
   margin: 0 auto;
   max-width: 991px;
   ul {
@@ -377,7 +377,7 @@ export const TabsWrapper = styled.div`
   }
 `;
 
-export const TabContent = styled.div`
+export const StyledTabContent = styled.div`
   background: #2faad9;
   text-align: left;
   padding: 20px;
@@ -385,7 +385,7 @@ export const TabContent = styled.div`
   color: #fff;
 `;
 
-export const PanelDiscussion = styled.div`
+export const StyledPanelDiscussion = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -394,7 +394,7 @@ export const PanelDiscussion = styled.div`
   border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
 `;
 
-export const topic = styled.div`
+export const StyledTopic = styled.div`
   font-weight: 500;
   width: 100%;
   font-size: 1.2em;
@@ -403,7 +403,7 @@ export const topic = styled.div`
   }
 `;
 
-export const PanelImages = styled.div`
+export const StyledPanelImages = styled.div`
   margin-top: 10px;
   img {
     width: 60px;
@@ -415,12 +415,12 @@ export const PanelImages = styled.div`
   }
 `;
 
-export const TimeLimit = styled.div`
+export const StyledTimeLimit = styled.div`
   font-weight: 500;
   align-self: flex-end;
 `;
 
-export const SectionIsThisForMe = styled.div`
+export const StyledSectionIsThisForMe = styled.div`
   h3 {
     color: #282828;
     line-height: 42px;
@@ -430,7 +430,7 @@ export const SectionIsThisForMe = styled.div`
   }
 `;
 
-export const FounderAndCeo = styled.div`
+export const StyledFounderAndCeo = styled.div`
   flex: 1;
   padding: 0 1em;
   h4 {
@@ -445,12 +445,12 @@ export const FounderAndCeo = styled.div`
   }
 `;
 
-export const Badges = styled.div`
+export const StyledBadges = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
 
-export const Badge = styled.div`
+export const StyledBadge = styled.div`
   background: #282828;
   height: 32px;
   min-width: 32px;
@@ -465,7 +465,7 @@ export const Badge = styled.div`
   margin-right: 10px;
 `;
 
-export const ContentIsThisForMe = styled.div`
+export const StyledContentIsThisForMe = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
@@ -475,7 +475,7 @@ export const ContentIsThisForMe = styled.div`
   }
 `;
 
-export const ButtonSaveYourSeatNow = styled.div`
+export const StyledButtonSaveYourSeatNow = styled.div`
   text-align: center;
   button {
     background: #2faad9;
@@ -493,7 +493,7 @@ export const ButtonSaveYourSeatNow = styled.div`
   }
 `;
 
-export const AboutOrganizer = styled.div`
+export const StyledAboutOrganizer = styled.div`
   flex: 1;
   padding: 0.5em;
 
@@ -512,7 +512,7 @@ export const AboutOrganizer = styled.div`
   }
 `;
 
-export const Partners = styled.div`
+export const StyledPartners = styled.div`
   text-align: center;
 
   h3 {
@@ -524,7 +524,7 @@ export const Partners = styled.div`
   }
 `;
 
-export const Footer = styled.div`
+export const StyledFooter = styled.div`
   h3 {
     color: #2faad9;
   }
@@ -536,7 +536,7 @@ export const Footer = styled.div`
   }
 `;
 
-export const FrequentlyQA = styled.div`
+export const StyledFrequentlyQA = styled.div`
   text-align: center;
 
   h3 {
@@ -547,7 +547,7 @@ export const FrequentlyQA = styled.div`
   }
 `;
 
-export const Question = styled.div`
+export const StyledQuestion = styled.div`
   background: #f7f7f7;
   padding: 12px 24px;
   color: #414141;
@@ -555,19 +555,19 @@ export const Question = styled.div`
   border-radius: 12px;
 `;
 
-export const Answer = styled.div`
+export const StyledAnswer = styled.div`
   color: rgba(40, 40, 40, 0.73);
   line-height: 26px;
   margin-top: 20px;
 `;
 
-export const KeepInMindText = styled.p`
+export const StyledKeepInMindText = styled.p`
   font-weight: 600;
   font-style: italic;
   margin: 0;
 `;
 
-export const OrganizerImage = styled.div`
+export const StyledOrganizerImage = styled.div`
   flex: 1;
   display: flex;
   justify-content: center;
@@ -584,7 +584,7 @@ export const OrganizerImage = styled.div`
   }
 `;
 
-export const SectionAboutOrganizer = styled.div`
+export const StyledSectionAboutOrganizer = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-top: 100px;

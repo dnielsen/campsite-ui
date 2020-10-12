@@ -1,17 +1,17 @@
 // import styled component
 import styled from "styled-components";
 
-export const FlexWrapper = styled.div`
+export const StyledFlexContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
 `;
 
-export const EventWrapper = styled.div`
+export const StyledEventWrapper = styled.div`
   margin-top: 1em;
 `;
 
-export const Event = styled.div`
+export const StyledEventContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -33,7 +33,7 @@ export const Event = styled.div`
   }
 `;
 
-export const EventContent = styled.div`
+export const StyledEventContent = styled.div`
   height: 100%;
   padding: 1em;
   display: flex;
@@ -53,14 +53,14 @@ export const EventContent = styled.div`
   }
 `;
 
-export const EventHeading = styled.h1`
+export const StyledEventHeading = styled.h1`
   color: #2faad9;
   font-size: 1.5em;
   font-weight: 600;
   margin: 0;
 `;
 
-export const EventDescription = styled.p`
+export const StyledEventDescription = styled.p`
   font-size: 1em;
   line-height: 1.5em;
   color: #777777;

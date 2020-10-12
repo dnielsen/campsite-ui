@@ -19,7 +19,7 @@ function SessionSidebarItem() {
   if (!event) return <div>something went wrong</div>;
 
   return (
-    <s.SessionListWrapper>
+    <s.StyledSessionListWrapper>
       <h3>
         <Link to={`/events/${eventId}`}>{event.name}</Link>
       </h3>
@@ -33,7 +33,7 @@ function SessionSidebarItem() {
             </Link>
           ))}
       </ul>
-    </s.SessionListWrapper>
+    </s.StyledSessionListWrapper>
   );
 }
 

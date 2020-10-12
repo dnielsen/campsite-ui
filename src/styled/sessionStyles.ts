@@ -1,7 +1,7 @@
 // import styled component
 import styled from "styled-components";
 
-export const SessionWrapper = styled.div`
+export const StyledSessionContainer = styled.div`
   background: #f5f5f5;
   padding: 1em;
   margin-top: 2em;
@@ -14,7 +14,7 @@ export const SessionWrapper = styled.div`
   }
 `;
 
-export const FlexWrapper = styled.div`
+export const StyledFlexContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 
@@ -23,14 +23,14 @@ export const FlexWrapper = styled.div`
   }
 `;
 
-export const SpeakerFlexWrapper = styled.div`
+export const StyledSpeakerFlexWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   height: 50%;
 `;
 
-export const SessionListWrapper = styled.div`
+export const StyledSessionListWrapper = styled.div`
   min-height: 100%;
   background: #fff;
   padding: 15px;
@@ -72,9 +72,9 @@ export const SessionListWrapper = styled.div`
   }
 `;
 
-export const SpeakerWrapper = styled.div``;
+export const StyledSpeakerContainer = styled.div``;
 
-export const SessionDetailWrapper = styled.div`
+export const StyledSessionDetailWrapper = styled.div`
   flex: 1;
   position: relative;
   background: #fff;
@@ -98,32 +98,7 @@ export const SessionDetailWrapper = styled.div`
   }
 `;
 
-export const SpeakerSessionScheduleWrapper = styled.div`
-  background: #f5f5f5;
-  font-size: 1em;
-  display: flex;
-  justify-content: center;
-  padding: 0 15px;
-  color: #414141;
-  font-size: 14px;
-  border: 1px solid #e3e3e3;
-  font-weight: 600;
-  border-radius: 8px;
-
-  @media (max-width: 767px) {
-    flex-direction: column;
-  }
-
-  div {
-    margin: 15px;
-
-    @media (max-width: 991px) {
-      flex: 1;
-    }
-  }
-`;
-
-export const SpeakerPhoto = styled.div`
+export const StyledSpeakerPhoto = styled.div`
   border: 5px solid #fff;
   border-radius: 50%;
 
@@ -134,21 +109,21 @@ export const SpeakerPhoto = styled.div`
   }
 `;
 
-export const SpeakerName = styled.p`
+export const StyledSpeakerName = styled.p`
   color: #2faad9;
   font-size: 1.2em !important;
   font-weight: 600;
   margin: 5px 0;
 `;
 
-export const SpeakerTitle = styled.p`
+export const StyledSpeakerTitle = styled.p`
   color: #414141;
   font-size: 1em !important;
   font-weight: 500;
   margin: 5px 0;
 `;
 
-export const SpeakerContent = styled.div`
+export const StyledSpeakerContent = styled.div`
   text-align: center;
 
   @media (max-width: 767px) {
@@ -156,7 +131,7 @@ export const SpeakerContent = styled.div`
   }
 `;
 
-export const VideoWrapper = styled.div`
+export const StyledVideoContainer = styled.div`
   position: relative;
   padding-bottom: 50%;
   padding-top: 30px;

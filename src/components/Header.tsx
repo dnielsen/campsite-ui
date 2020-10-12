@@ -77,7 +77,7 @@ function Header() {
   // although there should be just 1. We don't know how to style the navigation
   // in CSS correctly so that it's responsive.
   useEffect(() => {
-    // setRoutes(getRoutes(authData));
+    setRoutes(getRoutes(authData));
   }, [authData]);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

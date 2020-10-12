@@ -7,7 +7,10 @@ import util from "../../common/util";
 import { Link } from "react-router-dom";
 import Comments from "./Comments";
 import { StyledSessionDescription } from "../../styled/styledSession";
-import { SpeakerFlexWrapper, SpeakerWrapper } from "../../styled/sessionStyles";
+import {
+  StyledSpeakerFlexWrapper,
+  StyledSpeakerContainer,
+} from "../../styled/sessionStyles";
 
 function SessionItem() {
   const { data: session, loading, error } = useSelector(
@@ -19,15 +22,15 @@ function SessionItem() {
   if (!session) return <div>something went wrong</div>;
 
   return (
-    <sessStyles.SessionDetailWrapper>
-      <spkStyles.SpeakerSessionScheduleWrapper>
+    <sessStyles.StyledSessionDetailWrapper>
+      <spkStyles.StyledSpeakerSessionScheduleContainer>
         <p>{session.name}</p>
         <p>{util.getFullDateString(session.startDate)}</p>
         <p>
           <Link to={`/sessions/${session.id}`}>Watch</Link>
         </p>
-      </spkStyles.SpeakerSessionScheduleWrapper>
-      <sessStyles.VideoWrapper>
+      </spkStyles.StyledSpeakerSessionScheduleContainer>
+      <sessStyles.StyledVideoContainer>
         <iframe
           title={session.name}
           width="560"
@@ -37,43 +40,43 @@ function SessionItem() {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
-      </sessStyles.VideoWrapper>
+      </sessStyles.StyledVideoContainer>
       <Comments />
       <StyledSessionDescription>
         <h2>Description</h2>
         <p>{session.description}</p>
       </StyledSessionDescription>
       {session.speakers && (
-        <SpeakerWrapper>
+        <StyledSpeakerContainer>
           <h2>Speakers</h2>
-          <SpeakerFlexWrapper>
+          <StyledSpeakerFlexWrapper>
             {session.speakers.map((speaker) => (
-              <sessStyles.SpeakerContent key={speaker.id}>
-                <sessStyles.SpeakerPhoto>
+              <sessStyles.StyledSpeakerContent key={speaker.id}>
+                <sessStyles.StyledSpeakerPhoto>
                   <Link to={`/speakers/${speaker.id}`}>
                     <img src={speaker.photo} alt="speaker-img" />
                   </Link>
-                </sessStyles.SpeakerPhoto>
-                <sessStyles.SpeakerName>
+                </sessStyles.StyledSpeakerPhoto>
+                <sessStyles.StyledSpeakerName>
                   <Link to={`/speakers/${speaker.id}`}>{speaker.name}</Link>
-                </sessStyles.SpeakerName>
-                <sessStyles.SpeakerTitle>
+                </sessStyles.StyledSpeakerName>
+                <sessStyles.StyledSpeakerTitle>
                   {speaker.headline}
-                </sessStyles.SpeakerTitle>
-                <spkStyles.SpeakerSocialMedia>
+                </sessStyles.StyledSpeakerTitle>
+                <spkStyles.StyledSpeakerSocialMedia>
                   <a href={"https://twitter.com/elonmusk"}>
                     <i className="fa fa-twitter twitter" aria-hidden="true" />
                   </a>
                   <a href={"https://linkedin.com"}>
                     <i className="fa fa-linkedin linkedin" aria-hidden="true" />
                   </a>
-                </spkStyles.SpeakerSocialMedia>
-              </sessStyles.SpeakerContent>
+                </spkStyles.StyledSpeakerSocialMedia>
+              </sessStyles.StyledSpeakerContent>
             ))}
-          </SpeakerFlexWrapper>
-        </SpeakerWrapper>
+          </StyledSpeakerFlexWrapper>
+        </StyledSpeakerContainer>
       )}
-    </sessStyles.SessionDetailWrapper>
+    </sessStyles.StyledSessionDetailWrapper>
   );
 }
 

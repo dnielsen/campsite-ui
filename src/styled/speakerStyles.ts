@@ -1,20 +1,7 @@
 // import styled component
 import styled from "styled-components";
 
-export const SpeakerBanner = styled.div`
-  flex: 0 0 100%;
-  max-width: 100%;
-
-  img {
-    height: auto;
-    width: 100%;
-    @media (min-width: 767px) {
-      border-radius: 12px;
-    }
-  }
-`;
-
-export const SpeakerProfileWrapper = styled.div`
+export const StyledSpeakerProfileWrapper = styled.div`
   background: #f5f5f5;
   padding: 1.2em;
   border-radius: 8px;
@@ -28,7 +15,7 @@ export const SpeakerProfileWrapper = styled.div`
   }
 `;
 
-export const SpeakerSessionWrapper = styled.div`
+export const StyledSpeakerSessionWrapper = styled.div`
   flex: 1;
   position: relative;
   background: #fff;
@@ -51,7 +38,7 @@ export const SpeakerSessionWrapper = styled.div`
   }
 `;
 
-export const FlexWrapper = styled.div`
+export const StyledFlexContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 
@@ -60,14 +47,14 @@ export const FlexWrapper = styled.div`
   }
 `;
 
-export const SpeakerDataWrapper = styled.div`
+export const StyledSpeakerDataContainer = styled.div`
   position: relative;
   @media (min-width: 991px) {
     top: -100px;
   }
 `;
 
-export const SpeakerInfoWrapper = styled.div`
+export const StyledSpeakerInfoWrapper = styled.div`
   background: #fff;
   padding: 0 15px;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.18);
@@ -85,7 +72,7 @@ export const SpeakerInfoWrapper = styled.div`
   }
 `;
 
-export const SpeakerContent = styled.div`
+export const StyledSpeakerContent = styled.div`
   margin-top: 1em;
   text-align: center;
 
@@ -95,7 +82,7 @@ export const SpeakerContent = styled.div`
   }
 `;
 
-export const SpeakerPhoto = styled.div`
+export const StyledSpeakerPhoto = styled.div`
   margin: 0;
   display: flex;
   justify-content: center;
@@ -113,21 +100,21 @@ export const SpeakerPhoto = styled.div`
   }
 `;
 
-export const SpeakerName = styled.p`
+export const StyledSpeakerName = styled.p`
   color: #2faad9;
   font-size: 1.5em;
   font-weight: 600;
   margin: 0 0 0.2em;
 `;
 
-export const SpeakerTitle = styled.p`
+export const StyledSpeakerTitle = styled.p`
   color: #414141;
   font-size: 1em;
   font-weight: 500;
   margin: 0;
 `;
 
-export const SpeakerSocialMedia = styled.div`
+export const StyledSpeakerSocialMedia = styled.div`
   margin: 20px 0;
 
   a {
@@ -153,12 +140,12 @@ export const SpeakerSocialMedia = styled.div`
   }
 `;
 
-export const SpeakerBio = styled.div`
+export const StyledSpeakerBio = styled.div`
   color: rgba(26, 26, 26, 0.6);
   font-size: 1em;
 `;
 
-export const SpeakerSessionScheduleWrapper = styled.div`
+export const StyledSpeakerSessionScheduleContainer = styled.div`
   background: #f5f5f5;
   display: flex;
   padding: 0 1em;

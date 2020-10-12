@@ -19,20 +19,20 @@ function Home() {
 
   return (
     <StyledContainer>
-      <s.EventWrapper>
-        <s.FlexWrapper>
+      <s.StyledEventWrapper>
+        <s.StyledFlexContainer>
           {events.map((eventDetails) => (
-            <s.Event key={eventDetails.id}>
+            <s.StyledEventContainer key={eventDetails.id}>
               <Link to={`/events/${eventDetails.id}`}>
                 <img src={eventDetails.photo} alt={eventDetails.name} />
               </Link>
-              <s.EventContent>
+              <s.StyledEventContent>
                 <div>
-                  <s.EventHeading>
+                  <s.StyledEventHeading>
                     <Link to={`/events/${eventDetails.id}`}>
                       {eventDetails.name}
                     </Link>
-                  </s.EventHeading>
+                  </s.StyledEventHeading>
                   <p>
                     <i className="fa fa-calendar mr-2" aria-hidden="true" />
                     {util.getFullDateString(eventDetails.startDate)}
@@ -45,18 +45,18 @@ function Home() {
                     <i className="fa fa-user mr-2" aria-hidden="true" />
                     {eventDetails.organizerName}
                   </p>
-                  <s.EventDescription>
+                  <s.StyledEventDescription>
                     {/*Temporarily we're doing it this way, we'll later clean it up*/}
                     {eventDetails.description.length > 200
                       ? eventDetails.description.slice(0, 250) + "..."
                       : eventDetails.description}
-                  </s.EventDescription>
+                  </s.StyledEventDescription>
                 </div>
-              </s.EventContent>
-            </s.Event>
+              </s.StyledEventContent>
+            </s.StyledEventContainer>
           ))}
-        </s.FlexWrapper>
-      </s.EventWrapper>
+        </s.StyledFlexContainer>
+      </s.StyledEventWrapper>
     </StyledContainer>
   );
 }

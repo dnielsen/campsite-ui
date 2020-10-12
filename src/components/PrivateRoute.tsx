@@ -13,10 +13,9 @@ function PrivateRoute(props: Props) {
   const { data: authData, loading } = useSelector(
     (state: RootState) => state.auth,
   );
-  // if (loading) return <div>loading...</div>;
-
+  if (loading) return <div>loading...</div>;
   return (
-    <Route>
+    <Route exact={props.exact} path={props.path}>
       {authData ? props.children : <Redirect to={"/auth/sign-in"} />}
     </Route>
   );

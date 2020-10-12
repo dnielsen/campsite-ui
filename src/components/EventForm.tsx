@@ -25,7 +25,6 @@ function EventForm(props: Props) {
             <StyledLabel htmlFor={"name"}>Name</StyledLabel>
             <Field type={"text"} name={"name"} as={StyledInput} />
           </StyledSection>
-
           <StyledSection>
             <StyledLabel htmlFor={"organizerName"}>Organizer name</StyledLabel>
             <Field type={"text"} name={"organizerName"} as={StyledInput} />

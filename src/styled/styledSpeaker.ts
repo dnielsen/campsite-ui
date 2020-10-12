@@ -14,3 +14,16 @@ export const StyledSpeakerSessionName = styled.p`
     width: 65%;
   }
 `;
+
+export const StyledSpeakerBanner = styled.div`
+  flex: 0 0 100%;
+  max-width: 100%;
+
+  img {
+    height: auto;
+    width: 100%;
+    @media (min-width: 767px) {
+      border-radius: 12px;
+    }
+  }
+`;

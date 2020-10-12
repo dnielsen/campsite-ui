@@ -17,12 +17,12 @@ function FullSession() {
   }, [dispatch, sessionId, eventId]);
 
   return (
-    <s.SessionWrapper>
-      <s.FlexWrapper>
+    <s.StyledSessionContainer>
+      <s.StyledFlexContainer>
         <SessionSidebar />
         <SessionItem />
-      </s.FlexWrapper>
-    </s.SessionWrapper>
+      </s.StyledFlexContainer>
+    </s.StyledSessionContainer>
   );
 }
 
