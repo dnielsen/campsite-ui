@@ -19,14 +19,15 @@ import SignOut from "./pages/SignOut";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "./store/auth/authActions";
 import { RootState } from "./store";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const { loading } = useSelector((state: RootState) => state.auth);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(authenticate());
-  }, [dispatch]);
+    if (!loading) dispatch(authenticate());
+  }, [loading, dispatch]);
 
   if (loading) return null;
   return (
@@ -35,45 +36,50 @@ function App() {
       <main>
         <StyledContainer>
           <Switch>
-            {/* TODO: add private routes */}
+            {/* PUBLIC ROUTES (besides auth routes) */}
             <Route exact path="/speakers">
               <AllSpeakers />
-            </Route>
-            <Route exact path="/speakers/create">
-              <CreateSpeaker />
             </Route>
             <Route exact path="/speakers/:id">
               <FullSpeaker />
             </Route>
-            <Route exact path="/speakers/:id/edit">
-              <EditSpeaker />
-            </Route>
-            <Route exact path="/sessions/create">
-              <CreateSession />
-            </Route>
             <Route exact path="/events/:eventId/sessions/:sessionId">
               <FullSession />
-            </Route>
-            <Route exact path="/events/:eventId/sessions/:sessionId/edit">
-              <EditSession />
-            </Route>
-            <Route exact path="/events/create">
-              <CreateEvent />
             </Route>
             <Route exact path="/events/:id">
               <FullEvent />
             </Route>
-            <Route exact path="/events/:id/edit">
-              <EditEvent />
-            </Route>
-            <Route exact path="/auth/sign-in">
-              <SignIn />
-            </Route>
-            <Route exact path="/auth/sign-out">
-              <SignOut />
-            </Route>
             <Route exact path="/">
               <Home />
+            </Route>
+            {/* PRIVATE ROUTES (besides auth routes) */}
+            <PrivateRoute exact path="/speakers/create">
+              <CreateSpeaker />
+            </PrivateRoute>
+            <PrivateRoute exact path="/speakers/:id/edit">
+              <EditSpeaker />
+            </PrivateRoute>
+            <PrivateRoute exact path="/sessions/create">
+              <CreateSession />
+            </PrivateRoute>
+            <PrivateRoute
+              exact
+              path="/events/:eventId/sessions/:sessionId/edit"
+            >
+              <EditSession />
+            </PrivateRoute>
+            <PrivateRoute exact path="/events/create">
+              <CreateEvent />
+            </PrivateRoute>
+            <PrivateRoute exact path="/events/:id/edit">
+              <EditEvent />
+            </PrivateRoute>
+            {/* AUTH ROUTES */}
+            <PrivateRoute exact path="/auth/sign-out">
+              <SignOut />
+            </PrivateRoute>
+            <Route exact path="/auth/sign-in">
+              <SignIn />
             </Route>
           </Switch>
         </StyledContainer>

@@ -1,17 +1,15 @@
 import React from "react";
 import { StyledH2 } from "../styled/styledCommon";
-import useSignInFormProps from "../hooks/useSignInFormProps";
 import SignInForm from "./signIn/SignInForm";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function SignIn() {
   const history = useHistory();
-  const { error } = useSelector((state: RootState) => state.auth);
-
-  if (error) history.go(0);
-
+  const { data: authData } = useSelector((state: RootState) => state.auth);
+  // Redirect to the home page if the user is already logged in.
+  if (authData) history.push("/");
   return (
     <div>
       <StyledH2>Sign in</StyledH2>

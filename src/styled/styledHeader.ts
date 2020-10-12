@@ -18,6 +18,7 @@ export const StyledNavItem = styled.li`
   font-weight: 600;
   a {
     padding: 1em;
+    text-transform: capitalize;
   }
 `;
 

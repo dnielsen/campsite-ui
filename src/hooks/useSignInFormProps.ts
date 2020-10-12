@@ -1,15 +1,18 @@
 import * as Yup from "yup";
 import { FormProps, FormSignInInput } from "../common/interfaces";
 import { signIn } from "../store/auth/authActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { RootState } from "../store";
 
 export default function useSignInFormProps(): FormProps<FormSignInInput> {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { data: authData, loading, error } = useSelector(
+    (state: RootState) => state.auth,
+  );
   async function onSubmit(input: FormSignInInput) {
-    await dispatch(signIn(input));
-    history.push(`/`);
+    dispatch(signIn(input, history));
   }
 
   const initialValues: FormSignInInput = {

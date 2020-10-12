@@ -1,13 +1,23 @@
 import Axios from "axios";
 import { BASE_EVENT_API_URL } from "../common/constants";
-import { EventDetails } from "../common/interfaces";
+import { Event, FetchEventInput, FormEventInput } from "../common/interfaces";
 
-async function getById(id: string): Promise<EventDetails> {
-  const { data: eventDetails } = await Axios.get<EventDetails>(
-    `${BASE_EVENT_API_URL}/${id}`,
-  );
+async function getById(id: string) {
+  const { data: event } = await Axios.get<Event>(`${BASE_EVENT_API_URL}/${id}`);
 
-  return eventDetails;
+  return event;
 }
 
-export default { getById };
+async function editById(id: string, input: FetchEventInput) {
+  // We'll change the JWT in local storage into cookie/OAuth authentication.
+  const token = localStorage.getItem("token");
+  const { data: event } = await Axios.put<Event>(
+    `${BASE_EVENT_API_URL}/${id}`,
+    input,
+    { headers: { Authorization: token } },
+  );
+
+  return event;
+}
+
+export default { getById, editById };

@@ -1,7 +1,7 @@
 import React from "react";
 import SessionForm from "../components/SessionForm";
 import useAPI from "../hooks/useAPI";
-import { EventDetails, SpeakerPreview } from "../common/interfaces";
+import { Event, SpeakerPreview } from "../common/interfaces";
 import useCreateSessionFormProps from "../hooks/useCreateSessionFormProps";
 import { StyledH2 } from "../styled/styledCommon";
 
@@ -14,7 +14,7 @@ function CreateSession() {
     error: speakersError,
   } = useAPI<SpeakerPreview[]>("/speakers");
   const { data: events, loading: eventsLoading, error: eventsError } = useAPI<
-    EventDetails[]
+    Event[]
   >("/events");
 
   const formProps = useCreateSessionFormProps({

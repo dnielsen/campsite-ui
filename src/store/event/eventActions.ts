@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { EventDetails } from "../../common/interfaces";
+import { Event, FetchEventInput } from "../../common/interfaces";
 import eventService from "../../services/eventService";
 
 export enum EventActionType {
@@ -20,7 +20,7 @@ export interface FetchEventRequest {
 export interface FetchEventSuccess {
   type: EventActionType.FETCH_EVENT_SUCCESS;
   payload: {
-    data: EventDetails;
+    data: Event;
   };
 }
 
@@ -37,7 +37,7 @@ function fetchEventRequest(): FetchEventRequest {
   };
 }
 
-function fetchEventSuccess(data: EventDetails): FetchEventSuccess {
+function fetchEventSuccess(data: Event): FetchEventSuccess {
   return {
     type: EventActionType.FETCH_EVENT_SUCCESS,
     payload: {
@@ -63,6 +63,26 @@ export function getEventById(id: string) {
       dispatch(fetchEventSuccess(data));
     } catch (e) {
       dispatch(fetchEventFailure(e));
+    }
+  };
+}
+
+export function editEventById(
+  id: string,
+  input: FetchEventInput,
+  // We mean the History type from `react-router-dom`. The package doesn't have
+  // this type exported unfortunately.
+  history: any,
+) {
+  return async function (dispatch: Dispatch): Promise<void> {
+    dispatch(fetchEventRequest());
+    try {
+      const event = await eventService.editById(id, input);
+      dispatch(fetchEventSuccess(event));
+      history.push(`/events/${event.id}`);
+    } catch (e) {
+      dispatch(fetchEventFailure(e));
+      history.push("/auth/sign-in");
     }
   };
 }

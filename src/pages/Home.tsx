@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useAPI from "../hooks/useAPI";
-import { EventDetails } from "../common/interfaces";
+import { Event } from "../common/interfaces";
 import * as s from "../styled/eventStyles";
 import util from "../common/util";
 import { StyledContainer } from "../styled/styledCommon";
 
 function Home() {
-  const { data: events, loading, error } = useAPI<EventDetails[]>("/events");
+  const { data: events, loading, error } = useAPI<Event[]>("/events");
   if (loading) return <div>loading...</div>;
   if (error) return <div>error: {error.message}</div>;
   if (events.length === 0)

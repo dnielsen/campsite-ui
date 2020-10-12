@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import SessionForm from "../components/SessionForm";
 import useEditSessionFormProps from "../hooks/useEditSessionFormProps";
 import useAPI from "../hooks/useAPI";
-import { EventDetails, SpeakerPreview } from "../common/interfaces";
+import { Event, SpeakerPreview } from "../common/interfaces";
 
 function EditSession() {
   const { id } = useParams<{ id: string }>();
@@ -16,7 +16,7 @@ function EditSession() {
     error: speakersError,
   } = useAPI<SpeakerPreview[]>("/speakers");
   const { data: events, loading: eventsLoading, error: eventsError } = useAPI<
-    EventDetails[]
+    Event[]
   >("/events");
 
   if (speakersLoading || eventsLoading) return <div>loading...</div>;

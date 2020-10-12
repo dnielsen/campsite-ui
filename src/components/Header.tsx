@@ -14,6 +14,7 @@ import {
 } from "../styled/styledHeader";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import { AuthData } from "../store/auth/authReducer";
 
 interface Route {
   text: string;
@@ -21,25 +22,29 @@ interface Route {
   // true: visible only when authenticated
   // false: visible only when unauthenticated
   // null: visible always
-  auth?: boolean;
+  auth: boolean | null;
 }
 
 const ROUTES: Route[] = [
   {
     text: "Speakers",
     href: "/speakers",
+    auth: null,
   },
   {
     text: "Create session",
     href: "/sessions/create",
+    auth: null,
   },
   {
     text: "Create event",
     href: "/events/create",
+    auth: null,
   },
   {
     text: "Create speaker",
     href: "/speakers/create",
+    auth: null,
   },
   {
     text: "Sign in",
@@ -53,22 +58,26 @@ const ROUTES: Route[] = [
   },
 ];
 
+const UNAUTHENTICATED_ROUTES = ROUTES.filter(
+  (r) => r.auth === null || r.auth === false,
+);
+const AUTHENTICATED_ROUTES = ROUTES.filter(
+  (r) => r.auth === null || r.auth === true,
+);
+
+function getRoutes(authData: AuthData | null) {
+  return authData ? AUTHENTICATED_ROUTES : UNAUTHENTICATED_ROUTES;
+}
+
 function Header() {
-  const [routes, setRoutes] = useState<Route[]>(ROUTES);
   const { data: authData } = useSelector((state: RootState) => state.auth);
+  const [routes, setRoutes] = useState<Route[]>(getRoutes(authData));
 
   // TODO: refactor, currently there are 2 navigations for styling purposes,
   // although there should be just 1. We don't know how to style the navigation
   // in CSS correctly so that it's responsive.
   useEffect(() => {
-    setRoutes(
-      ROUTES.filter(
-        (r) =>
-          r.auth === undefined ||
-          (r.auth && authData) ||
-          (!r.auth && !authData),
-      ),
-    );
+    // setRoutes(getRoutes(authData));
   }, [authData]);
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

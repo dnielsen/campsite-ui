@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, Form, Formik, FormikState, FormikValues } from "formik";
 import {
-  EventDetails,
+  Event,
   FormProps,
   FormSessionInput,
   SpeakerPreview,
@@ -21,7 +21,7 @@ import {
 // and fetch less data.
 interface Props {
   speakers: SpeakerPreview[];
-  events: EventDetails[];
+  events: Event[];
   formProps: FormProps<FormSessionInput>;
 }
 

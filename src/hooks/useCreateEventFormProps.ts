@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 import {
-  EventDetails,
+  Event,
   FetchEventInput,
   FormEventInput,
   FormProps,
@@ -34,7 +34,7 @@ export default function useCreateEventFormProps(): FormProps<FormEventInput> {
       return;
     }
 
-    const createdEvent = (await res.json()) as EventDetails;
+    const createdEvent = (await res.json()) as Event;
     // Redirect to the created session page.
     history.push(`/events/${createdEvent.id}`);
   }

@@ -1,8 +1,6 @@
 import * as Yup from "yup";
 
-// It's called EventDetails instead of Event because there would
-// be a compatibility issue with the JavaScript APIs.
-export interface EventDetails {
+export interface Event {
   id: string;
   name: string;
   description: string;
@@ -33,7 +31,7 @@ export interface SpeakerPreview {
 export interface Session extends SessionPreview {
   speakers: SpeakerPreview[];
   eventId: string;
-  event: EventDetails;
+  event: Event;
   comments?: Comment[];
 }
 

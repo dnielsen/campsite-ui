@@ -1,15 +1,16 @@
 import * as Yup from "yup";
 import {
-  EventDetails,
   FetchEventInput,
   FormEventInput,
   FormProps,
 } from "../common/interfaces";
 import { BASE_EVENT_API_URL } from "../common/constants";
 import util from "../common/util";
-import useAPI from "./useAPI";
 import { useHistory } from "react-router-dom";
 import { authFetch } from "../common/fetch";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store";
+import { editEventById, getEventById } from "../store/event/eventActions";
 
 interface Props {
   id: string;
@@ -19,7 +20,11 @@ export default function useEditEventFormProps(
   props: Props,
 ): FormProps<FormEventInput> {
   const history = useHistory();
-  const { data: eventDetails } = useAPI<EventDetails>(`/events/${props.id}`);
+  const dispatch = useDispatch();
+
+  const { data: event } = useSelector((state: RootState) => state.event);
+
+  if (event?.id !== props.id) dispatch(getEventById(props.id));
 
   async function onSubmit(input: FormEventInput) {
     // The dates must be of type Date for the backend, however,
@@ -32,31 +37,20 @@ export default function useEditEventFormProps(
     };
 
     // Send a request to edit the event with the input.
-    const res = await authFetch(`${BASE_EVENT_API_URL}/${props.id}`, {
-      method: "PUT",
-      body: JSON.stringify(fetchInput),
-    });
-
-    if (!res.ok) {
-      history.push("/auth/sign-in");
-      return;
-    }
-
-    // Redirect to the edited event page.
-    history.push(`/events/${props.id}`);
+    dispatch(editEventById(props.id, fetchInput, history));
   }
 
   // If event details have been fetched then put them in,
   // else leave the properties empty.
-  const initialValues: FormEventInput = eventDetails
+  const initialValues: FormEventInput = event
     ? {
-        name: eventDetails.name,
-        description: eventDetails.description,
-        address: eventDetails.address,
-        organizerName: eventDetails.organizerName,
-        photo: eventDetails.photo,
-        startDate: util.getDateFormValue(eventDetails.startDate),
-        endDate: util.getDateFormValue(eventDetails.endDate),
+        name: event.name,
+        description: event.description,
+        address: event.address,
+        organizerName: event.organizerName,
+        photo: event.photo,
+        startDate: util.getDateFormValue(event.startDate),
+        endDate: util.getDateFormValue(event.endDate),
       }
     : {
         name: "",

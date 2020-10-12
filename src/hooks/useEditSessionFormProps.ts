@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import {
-  EventDetails,
+  Event,
   FetchEventInput,
   FetchSessionInput,
   FormEventInput,

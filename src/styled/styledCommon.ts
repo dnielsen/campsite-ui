@@ -22,6 +22,7 @@ export const StyledH2 = styled.h2`
   text-align: center;
   font-size: 2em;
   margin-bottom: 1.5em;
+  text-transform: capitalize;
 `;
 
 export const StyledH3 = styled.h3`

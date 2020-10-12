@@ -1,9 +1,11 @@
 import { AuthAction, AuthActionType } from "./authActions";
 
+export interface AuthData {
+  token: string;
+}
+
 export interface AuthState {
-  data: {
-    token: string | null;
-  } | null;
+  data: AuthData | null;
   loading: boolean;
   error: Error | null;
 }

@@ -1,8 +1,8 @@
-import { EventDetails } from "../../common/interfaces";
+import { Event } from "../../common/interfaces";
 import { EventAction, EventActionType } from "./eventActions";
 
 export interface EventState {
-  data: EventDetails | null;
+  data: Event | null;
   loading: boolean;
   error: Error | null;
 }
