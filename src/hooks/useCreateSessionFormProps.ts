@@ -38,7 +38,7 @@ export default function useCreateSessionFormProps(
     url: "",
     startDate: util.getDateFormValue(now),
     endDate: util.getDateFormValue(now),
-    eventId: props.eventId ?? "",
+    eventId: props.eventId,
     speakerIds: [],
   };
 

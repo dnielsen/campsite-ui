@@ -81,7 +81,7 @@ export function createSession(
       dispatch(fetchSessionSuccess(createdSession));
       console.log(createdSession);
       history.push(
-        `/events/${createdSession.eventId}/session/${createdSession.id}`,
+        `/events/${createdSession.eventId}/sessions/${createdSession.id}`,
       );
     } catch (e) {
       dispatch(fetchSessionFailure(e));

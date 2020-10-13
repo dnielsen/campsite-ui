@@ -7,7 +7,6 @@ import {
   StyledSpeakerInfoWrapper,
   StyledSpeakerName,
 } from "../styled/styledAllSpeakers";
-import { StyledH3 } from "../styled/styledCommon";
 
 interface Props {
   speaker: SpeakerPreview;

@@ -13,7 +13,12 @@ function PrivateRoute(props: Props) {
   const { data: authData, loading } = useSelector(
     (state: RootState) => state.auth,
   );
-  if (loading) return <div>loading...</div>;
+
+  // We check for `authData === undefined` because otherwise
+  // we'd get redirected to the sign in page anyways even if
+  // we were logged in since this code runs before the
+  // `dispatch(authenticate())` executes.
+  if (loading || authData === undefined) return <div>loading...</div>;
   return (
     <Route exact={props.exact} path={props.path}>
       {authData ? props.children : <Redirect to={"/auth/sign-in"} />}

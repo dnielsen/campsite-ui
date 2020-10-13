@@ -1,17 +1,19 @@
 import { AuthAction, AuthActionType } from "./authActions";
 
-export interface AuthData {
+interface Auth {
   token: string;
 }
 
+export type AuthData = Auth | null | undefined;
+
 export interface AuthState {
-  data: AuthData | null;
+  data: AuthData;
   loading: boolean;
   error: Error | null;
 }
 
 export const initialState: AuthState = {
-  data: null,
+  data: undefined,
   loading: false,
   error: null,
 };

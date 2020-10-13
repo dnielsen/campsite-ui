@@ -1,11 +1,14 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import SessionForm from "../components/SessionForm";
-import useEditSessionFormProps from "../hooks/useEditSessionFormProps";
+import useEditSessionFormProps from "../hooks/useEditSession";
+import { FullSessionParams } from "../common/interfaces";
 
 function EditSession() {
-  const { id } = useParams<{ id: string }>();
-  const formProps = useEditSessionFormProps({ id });
+  const { sessionId } = useParams<FullSessionParams>();
+  const formProps = useEditSessionFormProps({
+    id: sessionId,
+  });
 
   return (
     <div>

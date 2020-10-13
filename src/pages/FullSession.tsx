@@ -11,7 +11,7 @@ import SessionSidebar from "./fullSession/SessionSidebar";
 function FullSession() {
   const dispatch = useDispatch();
   const { sessionId, eventId } = useParams<FullSessionParams>();
-
+  console.log(sessionId, eventId);
   useEffect(() => {
     dispatch(getSessionById(sessionId));
   }, [dispatch, sessionId, eventId]);

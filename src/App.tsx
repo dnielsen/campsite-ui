@@ -44,13 +44,13 @@ function App() {
             <PrivateRoute exact path="/events/:id/edit">
               <EditEvent />
             </PrivateRoute>
-            <Route exact path="/events/:eventId/sessions/:sessionId">
-              <FullSession />
-            </Route>
             <Route exact path="/events/:id">
               <FullEvent />
             </Route>
             {/* SESSION ROUTES*/}
+            <Route exact path="/events/:eventId/sessions/:sessionId">
+              <FullSession />
+            </Route>
             <PrivateRoute exact path="/sessions/create">
               <CreateSession />
             </PrivateRoute>

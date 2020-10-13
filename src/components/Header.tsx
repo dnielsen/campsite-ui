@@ -65,7 +65,7 @@ const AUTHENTICATED_ROUTES = ROUTES.filter(
   (r) => r.auth === null || r.auth === true,
 );
 
-function getRoutes(authData: AuthData | null) {
+function getRoutes(authData: AuthData) {
   return authData ? AUTHENTICATED_ROUTES : UNAUTHENTICATED_ROUTES;
 }
 
