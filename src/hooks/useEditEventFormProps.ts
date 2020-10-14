@@ -11,6 +11,7 @@ import { authFetch } from "../common/fetch";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { editEventById, getEventById } from "../store/event/eventActions";
+import { useEffect } from "react";
 
 interface Props {
   id: string;
@@ -24,7 +25,9 @@ export default function useEditEventFormProps(
 
   const { data: event } = useSelector((state: RootState) => state.event);
 
-  if (event?.id !== props.id) dispatch(getEventById(props.id));
+  useEffect(() => {
+    if (event?.id !== props.id) dispatch(getEventById(props.id));
+  }, [dispatch, event?.id, props.id]);
 
   async function onSubmit(input: FormEventInput) {
     // The dates must be of type Date for the backend, however,

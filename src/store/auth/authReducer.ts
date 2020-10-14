@@ -32,7 +32,12 @@ export default function authReducer(
         data: { ...state.data, token: action.payload.data },
       };
     case AuthActionType.FETCH_TOKEN_FAILURE:
-      return { ...state, loading: false, error: action.payload.error };
+      return {
+        ...state,
+        data: null,
+        loading: false,
+        error: action.payload.error,
+      };
     case AuthActionType.RESET_AUTH:
       return initialState;
     default:
