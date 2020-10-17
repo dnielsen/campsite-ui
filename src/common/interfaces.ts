@@ -108,6 +108,10 @@ export interface FormSignInInput {
   password: string;
 }
 
+export interface FormSignUpInput extends FormSignInInput {
+  passwordConfirm: string;
+}
+
 export interface Comment {
   id: string;
   content: string;

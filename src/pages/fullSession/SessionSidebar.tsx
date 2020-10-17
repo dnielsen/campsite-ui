@@ -15,7 +15,7 @@ function SessionSidebar() {
     // TODO: getEventSessionSidebar(eventId)
     // dispatch(getEventSessionSidebar(eventId));
     if (eventDetails?.id !== eventId) dispatch(getEventById(eventId));
-  }, [dispatch, eventId, eventDetails?.id]);
+  }, [dispatch, eventId, eventDetails]);
 
   return <SessionSidebarItem />;
 }

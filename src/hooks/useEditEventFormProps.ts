@@ -4,10 +4,8 @@ import {
   FormEventInput,
   FormProps,
 } from "../common/interfaces";
-import { BASE_EVENT_API_URL } from "../common/constants";
 import util from "../common/util";
 import { useHistory } from "react-router-dom";
-import { authFetch } from "../common/fetch";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { editEventById, getEventById } from "../store/event/eventActions";
@@ -27,7 +25,7 @@ export default function useEditEventFormProps(
 
   useEffect(() => {
     if (event?.id !== props.id) dispatch(getEventById(props.id));
-  }, [dispatch, event?.id, props.id]);
+  }, [dispatch, event, props.id]);
 
   async function onSubmit(input: FormEventInput) {
     // The dates must be of type Date for the backend, however,

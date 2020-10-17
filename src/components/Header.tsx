@@ -52,6 +52,11 @@ const ROUTES: Route[] = [
     auth: false,
   },
   {
+    text: "Sign up",
+    href: "/auth/sign-up",
+    auth: false,
+  },
+  {
     text: "Sign out",
     href: "/auth/sign-out",
     auth: true,

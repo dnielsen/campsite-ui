@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { BASE_EVENT_API_URL } from "../common/constants";
-import { Event, FetchEventInput, FormEventInput } from "../common/interfaces";
+import { Event, FetchEventInput } from "../common/interfaces";
 
 async function getById(id: string) {
   const { data: event } = await Axios.get<Event>(`${BASE_EVENT_API_URL}/${id}`);

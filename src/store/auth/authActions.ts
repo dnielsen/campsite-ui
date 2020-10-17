@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { FormSignInInput } from "../../common/interfaces";
+import { FormSignInInput, FormSignUpInput } from "../../common/interfaces";
 import authService from "../../services/authService";
 
 export type Token = string;
@@ -90,6 +90,31 @@ export function signIn(
       dispatch(fetchTokenFailure(e));
       // Temporarily just refresh the page when the credentials
       // don't match.
+      history.go(0);
+    }
+  };
+}
+
+export function signUp(
+  input: FormSignUpInput,
+  // `history` is of type `History` from the `react-router-dom` package.
+  // Unfortunately the package doesn't export this type so we
+  // just define it as any.
+  history: any,
+) {
+  return async function (dispatch: Dispatch): Promise<void> {
+    dispatch(fetchTokenRequest());
+    try {
+      const token = await authService.signUp(input);
+      // localStorage is our temporary solution. We're gonna change it
+      // to OAuth2 and cookies later.
+      localStorage.setItem("token", token);
+      dispatch(fetchTokenSuccess(token));
+      // Redirect to the home page when the user signed up successfully.
+      history.push("/");
+    } catch (e) {
+      dispatch(fetchTokenFailure(e));
+      // Temporarily just refresh the page when the there was a sign up error.
       history.go(0);
     }
   };

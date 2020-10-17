@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "./store/auth/authActions";
 import { RootState } from "./store";
 import PrivateRoute from "./components/PrivateRoute";
+import SignUp from "./pages/SignUp";
 
 function App() {
   const { loading } = useSelector((state: RootState) => state.auth);
@@ -79,6 +80,9 @@ function App() {
             </PrivateRoute>
             <Route exact path="/auth/sign-in">
               <SignIn />
+            </Route>
+            <Route exact path="/auth/sign-up">
+              <SignUp />
             </Route>
             {/* HOME ROUTE */}
             <Route exact path="/">

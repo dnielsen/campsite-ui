@@ -1,20 +1,21 @@
 import * as Yup from "yup";
-import { FormProps, FormSignInInput } from "../common/interfaces";
-import { signIn } from "../store/auth/authActions";
+import { FormProps, FormSignUpInput } from "../common/interfaces";
+import { signUp } from "../store/auth/authActions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-export default function useSignInFormProps(): FormProps<FormSignInInput> {
+export default function useSignUpFormProps(): FormProps<FormSignUpInput> {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  async function onSubmit(input: FormSignInInput) {
-    dispatch(signIn(input, history));
+  async function onSubmit(input: FormSignUpInput) {
+    dispatch(signUp(input, history));
   }
 
-  const initialValues: FormSignInInput = {
+  const initialValues: FormSignUpInput = {
     email: "",
     password: "",
+    passwordConfirm: "",
   };
 
   const validationSchema = Yup.object().shape({

@@ -1,7 +1,6 @@
 import { Tracer, BatchRecorder, jsonEncoder, ExplicitContext } from "zipkin";
 import { HttpLogger } from "zipkin-transport-http";
 import wrapFetch from "zipkin-instrumentation-fetch";
-import CLSContext from "zipkin-context-cls";
 
 // Setup the tracer
 const tracer = new Tracer({

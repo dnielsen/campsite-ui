@@ -287,8 +287,22 @@ function EventItem() {
                     ),
                   )}
                   <StyledKeepInMindText>
-                    &quot;❗ All timings are displayed in 🕤 Pacific Time Zone
-                    (PDT) 🕛 ❗&quot;{" "}
+                    &quot;
+                    <span role={"img"} aria-label={"warning"}>
+                      ❗
+                    </span>{" "}
+                    All timings are displayed in{" "}
+                    <span role={"img"} aria-label={"warning"}>
+                      🕤
+                    </span>{" "}
+                    Pacific Time Zone (PDT){" "}
+                    <span role={"img"} aria-label={"warning"}>
+                      🕛
+                    </span>
+                    <span role={"img"} aria-label={"warning"}>
+                      ❗
+                    </span>
+                    &quot;{" "}
                   </StyledKeepInMindText>
                 </StyledTabContent>
               </Tabs>
@@ -359,7 +373,7 @@ function EventItem() {
             {" "}
             <img
               src="https://uploads-ssl.webflow.com/5f329fb0017255d9d0baddec/5f3a7e64ecda612e4c4ab82e_Jerome_Remote%20Future%20Summit.jpg"
-              alt="speaker-image"
+              alt="speaker"
             />
           </StyledOrganizerImage>
         </StyledSectionAboutOrganizer>

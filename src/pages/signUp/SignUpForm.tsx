@@ -6,10 +6,10 @@ import {
   StyledLabel,
   StyledSection,
 } from "../../styled/styledForm";
-import useSignInFormProps from "../../hooks/useSignInFormProps";
+import useSignUpFormProps from "../../hooks/useSignUpFormProps";
 
-function SignInForm() {
-  const formProps = useSignInFormProps();
+function SignUpForm() {
+  const formProps = useSignUpFormProps();
   return (
     <Formik {...formProps}>
       {({ isSubmitting }: FormikState<FormikValues>) => (
@@ -22,6 +22,12 @@ function SignInForm() {
             <StyledLabel htmlFor={"password"}>Password</StyledLabel>
             <Field type={"text"} name={"password"} as={StyledInput} />
           </StyledSection>
+          <StyledSection>
+            <StyledLabel htmlFor={"passwordConfirm"}>
+              Confirm password
+            </StyledLabel>
+            <Field type={"text"} name={"passwordConfirm"} as={StyledInput} />
+          </StyledSection>
           <StyledButton type={"submit"} disabled={isSubmitting}>
             Submit
           </StyledButton>
@@ -31,4 +37,4 @@ function SignInForm() {
   );
 }
 
-export default SignInForm;
+export default SignUpForm;
