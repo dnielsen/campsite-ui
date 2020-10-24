@@ -1,39 +1,38 @@
 import { Dispatch } from "redux";
-import { FormSignInInput, FormSignUpInput } from "../../common/interfaces";
+import { FormSignInInput } from "../../common/interfaces";
 import authService from "../../services/authService";
-
-export type Token = string;
+import { AuthData } from "./authReducer";
 
 export enum AuthActionType {
-  FETCH_TOKEN_REQUEST = "FETCH_TOKEN_REQUEST",
-  FETCH_TOKEN_SUCCESS = "FETCH_TOKEN_SUCCESS",
-  FETCH_TOKEN_FAILURE = "FETCH_TOKEN_FAILURE",
+  FETCH_AUTHENTICATE_REQUEST = "FETCH_AUTHENTICATE_REQUEST",
+  FETCH_AUTHENTICATE_SUCCESS = "FETCH_AUTHENTICATE_SUCCESS",
+  FETCH_AUTHENTICATE_FAILURE = "FETCH_AUTHENTICATE_FAILURE",
   RESET_AUTH = "RESET_AUTH",
 }
 
 export type AuthAction =
-  | FetchTokenRequest
-  | FetchTokenSuccess
-  | FetchTokenFailure
+  | FetchAuthenticateRequest
+  | FetchAuthenticateSuccess
+  | FetchAuthenticateFailure
   | ResetAuth;
 
 export interface ResetAuth {
   type: AuthActionType.RESET_AUTH;
 }
 
-export interface FetchTokenRequest {
-  type: AuthActionType.FETCH_TOKEN_REQUEST;
+export interface FetchAuthenticateRequest {
+  type: AuthActionType.FETCH_AUTHENTICATE_REQUEST;
 }
 
-export interface FetchTokenSuccess {
-  type: AuthActionType.FETCH_TOKEN_SUCCESS;
+export interface FetchAuthenticateSuccess {
+  type: AuthActionType.FETCH_AUTHENTICATE_SUCCESS;
   payload: {
-    data: Token;
+    data: AuthData;
   };
 }
 
-export interface FetchTokenFailure {
-  type: AuthActionType.FETCH_TOKEN_FAILURE;
+export interface FetchAuthenticateFailure {
+  type: AuthActionType.FETCH_AUTHENTICATE_FAILURE;
   payload: {
     error: Error;
   };
@@ -45,26 +44,26 @@ function resetAuth(): ResetAuth {
   };
 }
 
-function fetchTokenRequest(): FetchTokenRequest {
+function fetchAuthenticateRequest(): FetchAuthenticateRequest {
   return {
-    type: AuthActionType.FETCH_TOKEN_REQUEST,
+    type: AuthActionType.FETCH_AUTHENTICATE_REQUEST,
   };
 }
 
-function fetchTokenFailure(error: Error): FetchTokenFailure {
+function fetchAuthenticateSuccess(data: AuthData): FetchAuthenticateSuccess {
   return {
-    type: AuthActionType.FETCH_TOKEN_FAILURE,
+    type: AuthActionType.FETCH_AUTHENTICATE_SUCCESS,
     payload: {
-      error,
+      data,
     },
   };
 }
 
-function fetchTokenSuccess(data: Token): FetchTokenSuccess {
+function fetchAuthenticateFailure(error: Error): FetchAuthenticateFailure {
   return {
-    type: AuthActionType.FETCH_TOKEN_SUCCESS,
+    type: AuthActionType.FETCH_AUTHENTICATE_FAILURE,
     payload: {
-      data,
+      error,
     },
   };
 }
@@ -77,17 +76,14 @@ export function signIn(
   history: any,
 ) {
   return async function (dispatch: Dispatch): Promise<void> {
-    dispatch(fetchTokenRequest());
+    dispatch(fetchAuthenticateRequest());
     try {
-      const token = await authService.signIn(input);
-      // localStorage is our temporary solution. We're gonna change it
-      // to OAuth2 and cookies later.
-      localStorage.setItem("token", token);
-      dispatch(fetchTokenSuccess(token));
+      const me = await authService.signIn(input);
+      dispatch(fetchAuthenticateSuccess(me));
       // Redirect to the home page when the user signed in successfully.
-      history.push(`/`);
+      history.push("/");
     } catch (e) {
-      dispatch(fetchTokenFailure(e));
+      dispatch(fetchAuthenticateFailure(e));
       // Temporarily just refresh the page when the credentials
       // don't match.
       history.go(0);
@@ -95,50 +91,21 @@ export function signIn(
   };
 }
 
-export function signUp(
-  input: FormSignUpInput,
-  // `history` is of type `History` from the `react-router-dom` package.
-  // Unfortunately the package doesn't export this type so we
-  // just define it as any.
-  history: any,
-) {
-  return async function (dispatch: Dispatch): Promise<void> {
-    dispatch(fetchTokenRequest());
-    try {
-      const token = await authService.signUp(input);
-      // localStorage is our temporary solution. We're gonna change it
-      // to OAuth2 and cookies later.
-      localStorage.setItem("token", token);
-      dispatch(fetchTokenSuccess(token));
-      // Redirect to the home page when the user signed up successfully.
-      history.push("/");
-    } catch (e) {
-      dispatch(fetchTokenFailure(e));
-      // Temporarily just refresh the page when the there was a sign up error.
-      history.go(0);
-    }
-  };
-}
-
 export function signOut() {
   return async function (dispatch: Dispatch): Promise<void> {
-    localStorage.clear();
+    await authService.signOut();
     dispatch(resetAuth());
   };
 }
 
 export function authenticate() {
   return async function (dispatch: Dispatch): Promise<void> {
-    // TODO: refactor, (this code makes no sense, it's a temporary solution,
-    // later we're gonna use cookies)
-    dispatch(fetchTokenRequest());
-    const token = localStorage.getItem("token");
+    dispatch(fetchAuthenticateRequest());
     try {
-      // Temporary solution, for explanation see the comment above.
-      if (!token) throw new Error("Not authenticated");
-      dispatch(fetchTokenSuccess(token));
+      const authData = await authService.authenticate();
+      dispatch(fetchAuthenticateSuccess(authData));
     } catch (e) {
-      dispatch(fetchTokenFailure(e));
+      dispatch(fetchAuthenticateFailure(e));
     }
   };
 }

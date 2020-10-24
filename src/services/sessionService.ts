@@ -11,18 +11,27 @@ async function getById(id: string) {
 }
 
 async function create(input: FetchSessionInput) {
-  const token = localStorage.getItem("token");
-
   const { data: session } = await Axios.post<Session>(
     `${BASE_SESSION_API_URL}`,
     input,
     {
-      headers: {
-        Authorization: token,
-      },
+      withCredentials: true,
     },
   );
 
   return session;
 }
-export default { getById, create };
+
+async function edit(id: string, input: FetchSessionInput) {
+  const { data: session } = await Axios.put<Session>(
+    `${BASE_SESSION_API_URL}/${id}`,
+    input,
+    {
+      withCredentials: true,
+    },
+  );
+
+  return session;
+}
+
+export default { getById, create, edit };

@@ -82,7 +82,19 @@ export function editEventById(
       history.push(`/events/${event.id}`);
     } catch (e) {
       dispatch(fetchEventFailure(e));
-      history.push("/auth/sign-in");
+    }
+  };
+}
+
+export function createEvent(input: FetchEventInput, history: any) {
+  return async function (dispatch: Dispatch): Promise<void> {
+    dispatch(fetchEventRequest());
+    try {
+      const event = await eventService.create(input);
+      dispatch(fetchEventSuccess(event));
+      history.push(`/events/${event.id}`);
+    } catch (e) {
+      dispatch(fetchEventFailure(e));
     }
   };
 }

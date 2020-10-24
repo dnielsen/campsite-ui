@@ -5,7 +5,6 @@ import * as sessStyles from "../../styled/sessionStyles";
 import * as spkStyles from "../../styled/speakerStyles";
 import util from "../../common/util";
 import { Link } from "react-router-dom";
-import Comments from "./Comments";
 import { StyledSessionDescription } from "../../styled/styledSession";
 import {
   StyledSpeakerFlexWrapper,
@@ -41,7 +40,6 @@ function SessionItem() {
           allowFullScreen
         />
       </sessStyles.StyledVideoContainer>
-      <Comments />
       <StyledSessionDescription>
         <h2>Description</h2>
         <p>{session.description}</p>

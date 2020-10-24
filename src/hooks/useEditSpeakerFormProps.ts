@@ -1,13 +1,13 @@
 import * as Yup from "yup";
-import {
-  FormProps,
-  FormSpeakerInput,
-  SpeakerPreview,
-} from "../common/interfaces";
-import { BASE_SPEAKER_API_URL } from "../common/constants";
-import useAPI from "./useAPI";
+import { FormProps, FormSpeakerInput } from "../common/interfaces";
 import { useHistory } from "react-router-dom";
-import { authFetch } from "../common/fetch";
+import { useEffect } from "react";
+import {
+  editSpeakerById,
+  getSpeakerById,
+} from "../store/speaker/speakerActions";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store";
 
 interface Props {
   id: string;
@@ -17,27 +17,19 @@ export default function useEditSpeakerFormProps(
   props: Props,
 ): FormProps<FormSpeakerInput> {
   const history = useHistory();
-  const { data: speaker } = useAPI<SpeakerPreview>(`/speakers/${props.id}`);
+  const dispatch = useDispatch();
+
+  const { data: speaker } = useSelector((state: RootState) => state.speaker);
+
+  useEffect(() => {
+    if (speaker?.id !== props.id) dispatch(getSpeakerById(props.id));
+  }, [dispatch, speaker, props.id]);
 
   async function onSubmit(input: FormSpeakerInput) {
-    // Send a request to edit the speaker with the input.
-    const res = await authFetch(`${BASE_SPEAKER_API_URL}/${props.id}`, {
-      method: "PUT",
-      body: JSON.stringify(input),
-    });
-
-    if (!res.ok) {
-      history.push("/auth/sign-in");
-      return;
-    }
-
-    // Redirect to the edited speaker page.
-    history.push(`/speakers/${props.id}`);
+    dispatch(editSpeakerById(props.id, input, history));
   }
 
-  // If event details have been fetched then put them in,
-  // else leave the properties empty.
-  const initialValues: FormSpeakerInput = speaker
+  const initialValues = speaker
     ? {
         name: speaker.name,
         photo: speaker.photo,

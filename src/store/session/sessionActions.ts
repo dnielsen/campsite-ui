@@ -77,15 +77,28 @@ export function createSession(
   return async function (dispatch: Dispatch): Promise<void> {
     dispatch(fetchSessionRequest());
     try {
-      const createdSession = await sessionService.create(input);
-      dispatch(fetchSessionSuccess(createdSession));
-      console.log(createdSession);
-      history.push(
-        `/events/${createdSession.eventId}/sessions/${createdSession.id}`,
-      );
+      const session = await sessionService.create(input);
+      dispatch(fetchSessionSuccess(session));
+      history.push(`/events/${session.eventId}/sessions/${session.id}`);
     } catch (e) {
       dispatch(fetchSessionFailure(e));
-      history.push("/auth/sign-in");
+    }
+  };
+}
+
+export function editSessionById(
+  id: string,
+  input: FetchSessionInput,
+  history: any,
+) {
+  return async function (dispatch: Dispatch): Promise<void> {
+    dispatch(fetchSessionRequest());
+    try {
+      const session = await sessionService.edit(id, input);
+      dispatch(fetchSessionSuccess(session));
+      history.push(`/events/${session.eventId}/sessions/${session.id}`);
+    } catch (e) {
+      dispatch(fetchSessionFailure(e));
     }
   };
 }

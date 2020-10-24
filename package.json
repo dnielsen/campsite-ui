@@ -1,6 +1,7 @@
 {
   "name": "ui",
   "version": "0.1.0",
+  "proxy": "http://localhost:1111",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -16,12 +17,12 @@
     "typescript": "^4.0.2"
   },
   "scripts": {
-    "dev": "REACT_APP_BASE_API_URL=http://localhost:4444 react-scripts start",
+    "dev": "REACT_APP_BASE_API_URL=http://localhost:1111 react-scripts start",
     "start:monolith": "REACT_APP_BASE_API_URL=http://campsites-env.eba-e95xwame.eu-central-1.elasticbeanstalk.com react-scripts start",
-    "start:microservice": "REACT_APP_BASE_API_URL=REACT_APP_BASE_API_URL=http://ec2-18-195-109-117.eu-central-1.compute.amazonaws.com:4444 react-scripts start",
+    "start:microservice": "REACT_APP_BASE_API_URL=REACT_APP_BASE_API_URL=http://ec2-18-195-109-117.eu-central-1.compute.amazonaws.com:1111 react-scripts start",
     "build:monolith": "rm -rf build && REACT_APP_BASE_API_URL=http://campsites-env.eba-e95xwame.eu-central-1.elasticbeanstalk.com react-scripts build",
-    "build:microservice": "rm -rf build && REACT_APP_BASE_API_URL=http://ec2-18-195-109-117.eu-central-1.compute.amazonaws.com:4444 react-scripts build",
-    "build:dev": "rm -rf build && REACT_APP_BASE_API_URL=http://localhost:4444 react-scripts build",
+    "build:microservice": "rm -rf build && REACT_APP_BASE_API_URL=http://ec2-18-195-109-117.eu-central-1.compute.amazonaws.com:1111 react-scripts build",
+    "build:dev": "rm -rf build && REACT_APP_BASE_API_URL=http://localhost:1111 react-scripts build",
     "serve": "serve -s build -l 3000",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

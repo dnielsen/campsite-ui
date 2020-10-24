@@ -1,14 +1,12 @@
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 import {
-  Event,
   FetchEventInput,
   FormEventInput,
   FormProps,
 } from "../common/interfaces";
-import { BASE_EVENT_API_URL } from "../common/constants";
 import util from "../common/util";
-import { authFetch } from "../common/fetch";
+import { createEvent } from "../store/event/eventActions";
 
 export default function useCreateEventFormProps(): FormProps<FormEventInput> {
   const history = useHistory();
@@ -23,20 +21,7 @@ export default function useCreateEventFormProps(): FormProps<FormEventInput> {
       endDate: new Date(input.endDate),
     };
 
-    // Send a request to create the event with the input.
-    const res = await authFetch(BASE_EVENT_API_URL, {
-      method: "POST",
-      body: JSON.stringify(fetchInput),
-    });
-
-    if (!res.ok) {
-      history.push("/auth/sign-in");
-      return;
-    }
-
-    const createdEvent = (await res.json()) as Event;
-    // Redirect to the created session page.
-    history.push(`/events/${createdEvent.id}`);
+    createEvent(fetchInput, history);
   }
 
   const now = new Date();

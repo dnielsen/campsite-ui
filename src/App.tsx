@@ -16,22 +16,22 @@ import EditSession from "./pages/EditSession";
 import { StyledContainer } from "./styled/styledCommon";
 import SignIn from "./pages/SignIn";
 import SignOut from "./pages/SignOut";
+import PrivateRoute from "./components/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "./store/auth/authActions";
 import { RootState } from "./store";
-import PrivateRoute from "./components/PrivateRoute";
-import SignUp from "./pages/SignUp";
 
 function App() {
-  const { loading } = useSelector((state: RootState) => state.auth);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!loading) dispatch(authenticate());
-  }, [loading, dispatch]);
+    dispatch(authenticate());
+  }, [dispatch]);
 
-  if (loading) return null;
+  const { data: authData } = useSelector((state: RootState) => state.auth);
+
+  if (authData === undefined) return null;
+
   return (
     <div>
       <Header />
@@ -80,9 +80,6 @@ function App() {
             </PrivateRoute>
             <Route exact path="/auth/sign-in">
               <SignIn />
-            </Route>
-            <Route exact path="/auth/sign-up">
-              <SignUp />
             </Route>
             {/* HOME ROUTE */}
             <Route exact path="/">

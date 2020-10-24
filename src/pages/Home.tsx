@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useAPI from "../hooks/useAPI";
-import { Event } from "../common/interfaces";
 import * as s from "../styled/eventStyles";
 import util from "../common/util";
 import { StyledContainer } from "../styled/styledCommon";
+import { Event } from "../common/interfaces";
+import eventService from "../services/eventService";
 
 function Home() {
-  const { data: events, loading, error } = useAPI<Event[]>("/events");
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    (async function () {
+      setLoading(true);
+      const data = await eventService.getAll();
+      setEvents(data);
+      setLoading(false);
+    })();
+  }, []);
+
   if (loading) return <div>loading...</div>;
-  if (error) return <div>error: {error.message}</div>;
   if (events.length === 0)
     return (
       <div>

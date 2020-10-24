@@ -108,20 +108,6 @@ export interface FormSignInInput {
   password: string;
 }
 
-export interface FormSignUpInput extends FormSignInInput {
-  passwordConfirm: string;
-}
-
-export interface Comment {
-  id: string;
-  content: string;
-  createdAt: Date;
-}
-
-export interface FormCommentInput {
-  content: string;
-}
-
 export interface PaginatedDataBase {
   endCursor: string | null;
 }
@@ -129,4 +115,9 @@ export interface PaginatedDataBase {
 export interface FullSessionParams {
   eventId: string;
   sessionId: string;
+}
+
+export interface Me {
+  id: string;
+  email: string;
 }

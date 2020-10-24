@@ -8,24 +8,31 @@ async function getById(id: string) {
   return event;
 }
 
-async function editById(id: string, input: FetchEventInput) {
-  // We'll change the JWT in local storage into cookie/OAuth authentication.
-  const token = localStorage.getItem("token");
-  const { data: event } = await Axios.put<Event>(
-    `${BASE_EVENT_API_URL}/${id}`,
-    input,
-    { headers: { Authorization: token } },
-  );
-
-  return event;
-}
-
-// Later we might add pagination or filtering there.
-// Currently we could also call it `getAll`
-async function getMany() {
+async function getAll() {
   const { data: events } = await Axios.get<Event[]>(BASE_EVENT_API_URL);
 
   return events;
 }
 
-export default { getById, editById, getMany };
+async function editById(id: string, input: FetchEventInput) {
+  // We'll change the JWT in local storage into cookie/OAuth authentication.
+  const { data: event } = await Axios.put<Event>(
+    `${BASE_EVENT_API_URL}/${id}`,
+    input,
+    { withCredentials: true },
+  );
+
+  return event;
+}
+
+async function create(input: FetchEventInput) {
+  const { data: event } = await Axios.post<Event>(
+    `${BASE_EVENT_API_URL}`,
+    input,
+    { withCredentials: true },
+  );
+
+  return event;
+}
+
+export default { getAll, getById, editById, create };

@@ -16,11 +16,11 @@ function SignInForm() {
         <Form noValidate>
           <StyledSection>
             <StyledLabel htmlFor={"email"}>Email</StyledLabel>
-            <Field type={"text"} name={"email"} as={StyledInput} />
+            <Field type={"email"} name={"email"} as={StyledInput} />
           </StyledSection>
           <StyledSection>
             <StyledLabel htmlFor={"password"}>Password</StyledLabel>
-            <Field type={"text"} name={"password"} as={StyledInput} />
+            <Field type={"password"} name={"password"} as={StyledInput} />
           </StyledSection>
           <StyledButton type={"submit"} disabled={isSubmitting}>
             Submit

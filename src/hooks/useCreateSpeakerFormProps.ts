@@ -1,33 +1,17 @@
 import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
-import {
-  FormProps,
-  FormSpeakerInput,
-  SpeakerPreview,
-} from "../common/interfaces";
-import { BASE_SPEAKER_API_URL } from "../common/constants";
-import { authFetch } from "../common/fetch";
+import { FormProps, FormSpeakerInput } from "../common/interfaces";
+import { createSpeaker } from "../store/speaker/speakerActions";
+import { useDispatch } from "react-redux";
 
 export default function useCreateSpeakerFormProps(): FormProps<
   FormSpeakerInput
 > {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   async function onSubmit(input: FormSpeakerInput) {
-    // Send a request to create the speaker.
-    const res = await authFetch(BASE_SPEAKER_API_URL, {
-      method: "POST",
-      body: JSON.stringify(input),
-    });
-
-    if (!res.ok) {
-      history.push("/auth/sign-in");
-      return;
-    }
-
-    const createdSpeaker = (await res.json()) as SpeakerPreview;
-    // Redirect to the created speaker page.
-    history.push(`/speakers/${createdSpeaker.id}`);
+    dispatch(createSpeaker(input, history));
   }
 
   const initialValues: FormSpeakerInput = {

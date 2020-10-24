@@ -1,12 +1,27 @@
-import React from "react";
-import useAPI from "../hooks/useAPI";
+import React, { useEffect, useState } from "react";
 import { Speaker } from "../common/interfaces";
 import { StyledSpeakerLi, StyledSpeakerUl } from "../styled/styledAllSpeakers";
 import SpeakerItem from "../components/SpeakerItem";
 import { StyledH2 } from "../styled/styledCommon";
+import speakerService from "../services/speakerService";
 
 function AllSpeakers() {
-  const { data: speakers, loading, error } = useAPI<Speaker[]>("/speakers");
+  const [speakers, setSpeakers] = useState<Speaker[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    (async function () {
+      setLoading(true);
+      try {
+        const data = await speakerService.getAll();
+        setSpeakers(data);
+      } catch (e) {
+        setError(e);
+      }
+      setLoading(false);
+    })();
+  }, []);
 
   if (loading) return <div>loading...</div>;
   if (error) return <div>something went wrong: {error.message}</div>;

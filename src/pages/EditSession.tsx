@@ -1,8 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import SessionForm from "../components/SessionForm";
-import useEditSessionFormProps from "../hooks/useEditSession";
+import useEditSessionFormProps from "../hooks/useEditSessionFormProps";
 import { FullSessionParams } from "../common/interfaces";
+import { StyledH2 } from "../styled/styledCommon";
 
 function EditSession() {
   const { sessionId } = useParams<FullSessionParams>();
@@ -12,7 +13,7 @@ function EditSession() {
 
   return (
     <div>
-      <h3>Edit Session</h3>
+      <StyledH2>Edit Session</StyledH2>
       <SessionForm formProps={formProps} />
     </div>
   );

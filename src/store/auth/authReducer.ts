@@ -1,10 +1,7 @@
 import { AuthAction, AuthActionType } from "./authActions";
+import { Me } from "../../common/interfaces";
 
-interface Auth {
-  token: string;
-}
-
-export type AuthData = Auth | null | undefined;
+export type AuthData = Me | null | undefined;
 
 export interface AuthState {
   data: AuthData;
@@ -23,15 +20,15 @@ export default function authReducer(
   action: AuthAction,
 ): AuthState {
   switch (action.type) {
-    case AuthActionType.FETCH_TOKEN_REQUEST:
+    case AuthActionType.FETCH_AUTHENTICATE_REQUEST:
       return { ...state, loading: true, error: null };
-    case AuthActionType.FETCH_TOKEN_SUCCESS:
+    case AuthActionType.FETCH_AUTHENTICATE_SUCCESS:
       return {
         ...state,
         loading: false,
-        data: { ...state.data, token: action.payload.data },
+        data: action.payload.data,
       };
-    case AuthActionType.FETCH_TOKEN_FAILURE:
+    case AuthActionType.FETCH_AUTHENTICATE_FAILURE:
       return {
         ...state,
         data: null,
@@ -39,7 +36,7 @@ export default function authReducer(
         error: action.payload.error,
       };
     case AuthActionType.RESET_AUTH:
-      return initialState;
+      return { data: null, loading: false, error: null };
     default:
       return state;
   }
