@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import SessionForm from "../components/SessionForm";
 import useCreateSessionFormProps from "../hooks/useCreateSessionFormProps";
 import { StyledH2 } from "../styled/styledCommon";
-import { BASE_EVENT_API_URL } from "../common/constants";
 import { Event } from "../common/interfaces";
+import eventService from "../services/eventService";
 
 function CreateSession() {
   // TODO: refactor, currently we're fetching the events here and in the the SelectEventsSection.
@@ -16,20 +16,21 @@ function CreateSession() {
   useEffect(() => {
     (async function () {
       setLoading(true);
-      const res = await fetch(BASE_EVENT_API_URL);
-      if (!res.ok) {
-        setError(new Error(res.statusText));
-      } else {
-        const data = await res.json();
+      try {
+        const data = await eventService.getAll();
         setEvents(data);
+      } catch (e) {
+        setError(e);
       }
       setLoading(false);
     })();
-  }, []);
+  }, [setError]);
 
   const formProps = useCreateSessionFormProps({
     eventId: events.length > 0 && !loading ? events[0].id : "",
   });
+
+  if (error) return <div>something went wrong: {error.message}</div>;
 
   return (
     <div>
