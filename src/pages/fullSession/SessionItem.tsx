@@ -34,7 +34,7 @@ function SessionItem() {
           title={session.name}
           width="560"
           height="315"
-          src="https://www.youtube.com/embed/IZwdHxC3my0"
+          src="https://www.youtube.com/embed/zFFDGtUaboM"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen

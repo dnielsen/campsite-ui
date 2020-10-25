@@ -6,6 +6,9 @@ async function signIn(input: FormSignInInput) {
   const { data: me } = await Axios.post<Me>(
     `${BASE_AUTH_API_URL}/sign-in`,
     input,
+    {
+      withCredentials: true,
+    },
   );
 
   return me;
