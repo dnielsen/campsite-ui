@@ -35,7 +35,7 @@ export default function useCreateSessionFormProps(
   const initialValues: FormSessionInput = {
     name: "",
     description: "",
-    url: "",
+    videoUrl: "",
     startDate: util.getDateFormValue(now),
     endDate: util.getDateFormValue(now),
     eventId: props.eventId,

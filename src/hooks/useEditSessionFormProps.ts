@@ -47,7 +47,7 @@ export default function useEditSessionFormProps(
     ? {
         name: session.name,
         description: session.description,
-        url: session.url,
+        videoUrl: session.videoUrl,
         startDate: session.startDate,
         endDate: session.endDate,
         speakerIds: session.speakers ? session.speakers.map((s) => s.id) : [],
@@ -56,7 +56,7 @@ export default function useEditSessionFormProps(
     : {
         name: "",
         description: "",
-        url: "",
+        videoUrl: "",
         startDate: util.getDateFormValue(new Date()),
         endDate: util.getDateFormValue(new Date()),
         speakerIds: [],

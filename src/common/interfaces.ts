@@ -41,7 +41,7 @@ export interface SessionPreview {
   startDate: string;
   endDate: string;
   description: string;
-  url: string;
+  videoUrl: string;
 }
 
 export interface BaseEventInput {
@@ -65,7 +65,7 @@ export interface FetchEventInput extends BaseEventInput {
 export interface BaseSessionInput {
   name: string;
   description: string;
-  url: string;
+  videoUrl: string;
   speakerIds: string[];
   eventId: string;
 }

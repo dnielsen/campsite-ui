@@ -83,8 +83,10 @@ function SessionForm(props: Props) {
             />
           </StyledSection>
           <StyledSection>
-            <StyledLabel htmlFor={"url"}>Url</StyledLabel>
-            <Field type={"text"} name={"url"} as={StyledInput} />
+            <StyledLabel htmlFor={"videoUrl"}>
+              Video url (ex.: https://www.youtube.com/embed/zFFDGtUaboM)
+            </StyledLabel>
+            <Field type={"text"} name={"videoUrl"} as={StyledInput} />
           </StyledSection>
           <StyledSection>
             <StyledLabel htmlFor={"startDate"}>Start date</StyledLabel>
