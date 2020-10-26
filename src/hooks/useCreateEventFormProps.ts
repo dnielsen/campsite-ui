@@ -7,9 +7,11 @@ import {
 } from "../common/interfaces";
 import util from "../common/util";
 import { createEvent } from "../store/event/eventActions";
+import { useDispatch } from "react-redux";
 
 export default function useCreateEventFormProps(): FormProps<FormEventInput> {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   async function onSubmit(input: FormEventInput) {
     // The dates must be of type Date for the backend, however,
@@ -21,7 +23,7 @@ export default function useCreateEventFormProps(): FormProps<FormEventInput> {
       endDate: new Date(input.endDate),
     };
 
-    createEvent(fetchInput, history);
+    dispatch(createEvent(fetchInput, history));
   }
 
   const now = new Date();
