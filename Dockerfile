@@ -1,6 +1,8 @@
 # Stage 1
 FROM node:12.16.2-alpine AS builder
 
+#ENV ENV=dev
+
 RUN apk update
 
 WORKDIR /usr/src/app
@@ -14,19 +16,21 @@ RUN yarn install
 COPY ./src ./src
 COPY ./public ./public
 
-RUN yarn build:dev
+#RUN yarn build:${ENV}
 
 # Stage 2
-FROM node:12.16.2-alpine
+#FROM node:12.16.2-alpine
+#
+#WORKDIR /usr/src/app
+#
+#RUN yarn init -y && \
+#  yarn add serve && \
+#  yarn cache clean
 
-WORKDIR /usr/src/app
+#COPY --from=builder /usr/src/app/build ./build
 
-RUN yarn init -y && \
-  yarn add serve && \
-  yarn cache clean
+#EXPOSE 3000
+EXPOSE 80
 
-COPY --from=builder /usr/src/app/build ./build
-
-EXPOSE 3000
-
-CMD ["yarn", "serve", "-s", "build", "-l", "3000"]
+#CMD ["yarn", "serve", "-s", "build", "-l", "3000"]
+CMD ["yarn", "start"]
