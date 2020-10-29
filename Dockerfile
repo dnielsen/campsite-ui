@@ -1,9 +1,16 @@
 # Stage 1
-FROM node:12.16.2-alpine AS builder
+#FROM node:12.16.2-alpine AS builder
+FROM node:12.16.2
 
 #ENV ENV=dev
 
-RUN apk update
+#RUN apk update
+#RUN apk add --update --no-cache dnsutils
+RUN apt update
+
+RUN apt-get install -y dnsutils
+
+RUN dig +short myip.opendns.com @resolver1.opendns.com
 
 WORKDIR /usr/src/app
 

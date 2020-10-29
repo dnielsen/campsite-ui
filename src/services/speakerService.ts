@@ -25,6 +25,9 @@ async function create(input: FormSpeakerInput) {
     },
   );
 
+  // const data = await fetch(`${BASE_SPEAKER_API_URL}`, { body: JSON.stringify(input), {} });
+  //
+  // const speaker = await data.json();
   return speaker;
 }
 

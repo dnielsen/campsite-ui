@@ -18,8 +18,8 @@
   },
   "scripts": {
     "dev": "REACT_APP_BASE_API_URL=http://localhost:1111 react-scripts start",
-    "start": "MY_PUBLIC_IP=$(dig +short myip.opendns.com @resolver1.opendns.com) && REACT_APP_BASE_API_URL=http:\/\/$MY_PUBLIC_IP:1111 PORT=80 react-scripts start",
-    "build": "rm -rf build && react-scripts build",
+    "start": "react-scripts start",
+    "build": "MY_PUBLIC_IP=$(dig +short myip.opendns.com @resolver1.opendns.com) && REACT_APP_BASE_API_URL=http://$MY_PUBLIC_IP && rm -rf build && react-scripts build",
     "build:dev": "REACT_APP_BASE_API_URL=http://localhost:1111 rm -rf build && react-scripts build",
     "serve": "serve -s build -l 3000",
     "test": "react-scripts test",
